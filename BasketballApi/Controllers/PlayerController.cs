@@ -5,19 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace BasketballApi.Controllers
+namespace BasketballApi
 {
     [ApiController]
     [Route("[controller]")]
     public class PlayerController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<PlayerController> _logger;
-
         public PlayerController(ILogger<PlayerController> logger)
         {
             _logger = logger;
@@ -26,7 +20,12 @@ namespace BasketballApi.Controllers
         [HttpGet]
         public IEnumerable<Player> Get()
         {
-            return null;
+            var players = new List<Player>();
+            players.Add(new Player { Name = "Stephen Curry", Team = "GSW" });
+            players.Add(new Player { Name = "Kevin Durant", Team = "BKN" });
+            players.Add(new Player { Name = "LeBron James", Team = "LAL" });
+
+            return players;
         }
     }
 }
