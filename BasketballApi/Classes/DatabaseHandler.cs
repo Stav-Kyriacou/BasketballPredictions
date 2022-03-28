@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 
 namespace BasketballApi
 {
-    //must add package to use => dotnet add package System.Data.SqlClient
     public abstract class DatabaseHandler
     {
         public static string GetConnectionString()
@@ -12,11 +11,10 @@ namespace BasketballApi
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                builder.DataSource = "";
-                builder.UserID = "";
-                builder.Password = "";
-                // like a sql USE statement => USE APIDemo
-                builder.InitialCatalog = "";
+                builder.DataSource = "basketballeast.database.windows.net";
+                builder.UserID = "basketballeast";
+                builder.Password = "Skylines33!";
+                builder.InitialCatalog = "basketballeast"; //databsase name
                 return builder.ConnectionString;
             }
             catch (Exception e)
