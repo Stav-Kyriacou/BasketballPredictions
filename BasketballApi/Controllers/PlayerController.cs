@@ -12,27 +12,25 @@ namespace BasketballApi
     public class PlayerController : ControllerBase
     {
         private readonly ILogger<PlayerController> _logger;
-        private List<Player> players = new List<Player>();
+        private PlayerDBHandler playerDBHandler = new PlayerDBHandler();
 
         public PlayerController(ILogger<PlayerController> logger)
         {
             _logger = logger;
-            players.Add(new Player { Id = 1, Name = "Stephen Curry", Team = "GSW" });
-            players.Add(new Player { Id = 2, Name = "Kevin Durant", Team = "BKN" });
-            players.Add(new Player { Id = 3, Name = "LeBron James", Team = "LAL" });
         }
 
         [HttpGet]
         [Route("/players")]
         public IEnumerable<Player> GetAllPlayers()
         {
-            return players;
+            return playerDBHandler.GetAllPlayers();
         }
+        
         [HttpGet]
-        [Route("/player/{Id}")]
-        public Player GetPlayer(int Id)
+        [Route("/players/{Name}/{Team}/{Year}")]
+        public Player GetPlayer(string Name, string Team, int Year)
         {
-            return players.Single(x => x.Id == Id);
+            return playerDBHandler.GetPlayer(Name, Team, Year);
         }
     }
 }
