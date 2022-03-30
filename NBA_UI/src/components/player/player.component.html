@@ -1,0 +1,30 @@
+<table>
+  <thead>
+      <tr>
+          <th>NAME</th>
+          <th>TEAM</th>
+          <th>PTS</th>
+          <th>REB</th>
+          <th>BLK</th>
+          <th>STL</th>
+          <th>AST</th>
+          <th>FG</th>
+          <th>FT</th>
+          <th>EFF</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let player of playerList">
+          <td>{{player.playerName}}</td>
+          <td>{{player.team}}</td>
+          <td>{{player.points}}</td>
+          <td>{{player.rebounds}}</td>
+          <td>{{player.blocks}}</td>
+          <td>{{player.steals}}</td>
+          <td>{{player.assists}}</td>
+          <td>{{player.fieldGoalsMade}}</td>
+          <td>{{player.freeThrowsMade}}</td>
+          <td>{{player.efficiency}}</td>
+      </tr>
+  </tbody>
+</table>
