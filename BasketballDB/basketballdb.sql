@@ -63,7 +63,7 @@ GO
 
 
 
-INSERT INTO PLAYERS (PlayerName, Team, Age, [Year], GP, Wins, Losses, [MIN], Points, FGM, FGA, [FG%], [3PM], [3PA], [3P%], FTM, FTA, [FT%], OREB, DREB, Rebounds, Assists, TOV, Steals, Blocks, PF, FP, DD2, DD3, [+/-], Efficiency)
+INSERT INTO PLAYERS (PlayerName, Team, [Year], Age, GP, Wins, Losses, [MIN], Points, FGM, FGA, [FG%], [3PM], [3PA], [3P%], FTM, FTA, [FT%], OREB, DREB, Rebounds, Assists, TOV, Steals, Blocks, PF, FP, DD2, DD3, [+/-], Efficiency)
 VALUES ('Stephen Curry','GSW',2021,33,63,37,26,34.2,32,10.4,21.7,48.2,5.3,12.7,42.1,5.7,6.3,91.6,0.5,5,5.5,5.8,3.4,1.2,0.1,1.9,47.9,8,0,3.9,29.300000000000004),
     ('Bradley Beal','WAS',2021,28,60,32,28,35.8,31.3,11.2,23,48.5,2.2,6.2,34.9,6.8,7.7,88.9,1.2,3.5,4.7,4.4,3.1,1.2,0.4,2.3,45,4,0,-0.1,26.199999999999996),
     ('Damian Lillard','POR',2021,30,67,39,28,35.8,28.8,9,19.9,45.1,4.1,10.5,39.1,6.7,7.2,92.8,0.5,3.7,4.2,7.5,3,0.9,0.3,1.5,45.7,16,0,3,27.299999999999997),
