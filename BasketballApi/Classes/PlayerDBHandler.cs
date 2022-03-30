@@ -25,8 +25,8 @@ namespace BasketballApi
                             {
                                 PlayerName = reader.GetString(0),
                                 Team = reader.GetString(1),
-                                Year = reader.GetInt32(2),
-                                Age = reader.GetInt32(3),
+                                Age = reader.GetInt32(2),
+                                Year = reader.GetInt32(3),
                                 GamesPlayed = reader.GetInt32(4),
                                 Wins = reader.GetInt32(5),
                                 Losses = reader.GetInt32(6),
@@ -89,8 +89,8 @@ namespace BasketballApi
                             {
                                 PlayerName = reader.GetString(0),
                                 Team = reader.GetString(1),
-                                Year = reader.GetInt32(2),
-                                Age = reader.GetInt32(3),
+                                Age = reader.GetInt32(2),
+                                Year = reader.GetInt32(3),
                                 GamesPlayed = reader.GetInt32(4),
                                 Wins = reader.GetInt32(5),
                                 Losses = reader.GetInt32(6),
