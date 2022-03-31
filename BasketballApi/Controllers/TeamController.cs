@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Cors;
@@ -14,7 +12,6 @@ namespace BasketballApi
     {
         private readonly ILogger<TeamController> _logger;
         private TeamDBHandler teamDBHandler = new TeamDBHandler();
-
         public TeamController(ILogger<TeamController> logger)
         {
             _logger = logger;
@@ -25,13 +22,22 @@ namespace BasketballApi
         [Route("/teams")]
         public IEnumerable<Team> GetAllTeams()
         {
-            return null;
+            return teamDBHandler.GetAllTeams();
         }
+        
+        [EnableCors("MyPolicy")]
+        [HttpGet]
+        [Route("/team/{teamId}")]
+        public Team GetTeam(int teamId)
+        {
+            return teamDBHandler.GetTeam(teamId);
+        }
+
         [EnableCors("MyPolicy")]
         [HttpPost]
-        public void PostTeam()
+        public string PostTeam([FromBody]Team newTeam)
         {
-            
+            return teamDBHandler.AddTeam(newTeam);
         }
     }
 }
