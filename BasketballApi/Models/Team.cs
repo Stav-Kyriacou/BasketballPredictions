@@ -4,8 +4,8 @@ namespace BasketballApi
 {
     public class Team
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int TeamID { get; set; }
+        public string TeamName { get; set; }
         public DateTime DateMade { get; set; }
     }
 }
