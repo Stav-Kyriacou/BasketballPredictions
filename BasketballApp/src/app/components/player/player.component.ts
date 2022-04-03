@@ -1,7 +1,8 @@
 
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { Player } from 'src/app/models/player';
 import { PlayerService } from '../../services/player.service';
 
@@ -10,14 +11,19 @@ import { PlayerService } from '../../services/player.service';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, AfterViewInit {
   columnsToDisplay: string[] = ['name', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoals', 'freeThrows', 'efficiency'];
   playerList: Player[] = [];
   dataSource!: MatTableDataSource<Player>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private _playerService: PlayerService) {
+  }
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
@@ -27,6 +33,7 @@ export class PlayerComponent implements OnInit {
         //executed once completed
         this.dataSource = new MatTableDataSource<Player>(this.playerList);
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
   }
 
@@ -34,8 +41,7 @@ export class PlayerComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator)
-    {
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
