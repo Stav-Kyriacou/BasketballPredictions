@@ -1,5 +1,61 @@
 <body>
-    <table>
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="LeBron James" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let player">{{player.playerName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="team">
+                <th mat-header-cell *matHeaderCellDef>Team`</th>
+                <td mat-cell *matCellDef="let player">{{player.team}}</td>
+            </ng-container>
+            <ng-container matColumnDef="points">
+                <th mat-header-cell *matHeaderCellDef>PTS</th>
+                <td mat-cell *matCellDef="let player">{{player.points}}</td>
+            </ng-container>
+            <ng-container matColumnDef="rebounds">
+                <th mat-header-cell *matHeaderCellDef>REB</th>
+                <td mat-cell *matCellDef="let player">{{player.rebounds}}</td>
+            </ng-container>
+            <ng-container matColumnDef="blocks">
+                <th mat-header-cell *matHeaderCellDef>BLK</th>
+                <td mat-cell *matCellDef="let player">{{player.blocks}}</td>
+            </ng-container>
+            <ng-container matColumnDef="steals">
+                <th mat-header-cell *matHeaderCellDef>STL</th>
+                <td mat-cell *matCellDef="let player">{{player.steals}}</td>
+            </ng-container>
+            <ng-container matColumnDef="assists">
+                <th mat-header-cell *matHeaderCellDef>AST</th>
+                <td mat-cell *matCellDef="let player">{{player.assists}}</td>
+            </ng-container>
+            <ng-container matColumnDef="fieldGoals">
+                <th mat-header-cell *matHeaderCellDef>FG</th>
+                <td mat-cell *matCellDef="let player">{{player.fieldGoalsMade}}</td>
+            </ng-container>
+            <ng-container matColumnDef="freeThrows">
+                <th mat-header-cell *matHeaderCellDef>FT</th>
+                <td mat-cell *matCellDef="let player">{{player.freeThrowsMade}}</td>
+            </ng-container>
+            <ng-container matColumnDef="efficiency">
+                <th mat-header-cell *matHeaderCellDef>EFF</th>
+                <td mat-cell *matCellDef="let player">{{player.efficiency | number : '.2-2'}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="10">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5,10,25,100]" showFirstLastButtons aria-label="Select page of players"></mat-paginator>
+        </div>
+        <!-- <table>
         <thead>
             <tr>
                 <th>NAME</th>
@@ -28,5 +84,5 @@
                 <td>{{player.efficiency| number : '.2-2'}}</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </body>
