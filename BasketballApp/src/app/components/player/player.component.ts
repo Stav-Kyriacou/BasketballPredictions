@@ -11,8 +11,9 @@ import { PlayerService } from '../../services/player.service';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit, AfterViewInit {
+export class PlayerComponent implements OnInit {
   columnsToDisplay: string[] = ['name', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoals', 'freeThrows', 'efficiency'];
+
   playerList: Player[] = [];
   dataSource!: MatTableDataSource<Player>;
 
@@ -20,10 +21,6 @@ export class PlayerComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private _playerService: PlayerService) {
-  }
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
