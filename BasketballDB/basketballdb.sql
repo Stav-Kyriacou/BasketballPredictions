@@ -2,25 +2,11 @@
 IF OBJECT_ID('Players', 'U') IS NOT NULL
 DROP TABLE Players
 GO
-/*
-CREATE TABLE Players
-(
 
-    PlayerName [NVARCHAR] (200) NOT NULL, 
-    Team [NVARCHAR] (200) NOT NULL,
-    Year INT NOT NULL,
-    Points INT NOT NULL,
-    "FG%" INT NOT NULL,
-    "FT%" INT NOT NULL,
-    Rebounds INT NOT NULL,
-    Assists INT NOT NULL,
-    Turnovers INT NOT NULL,
-    Steals INT NOT NULL,
-    Blocks INT NOT NULL,
-    PRIMARY KEY (PlayerName, Year, Team)
-);
+IF OBJECT_ID('Teams', 'U') IS NOT NULL
+DROP TABLE Teams
 GO
-*/
+
 
 CREATE TABLE Players
 (
@@ -59,8 +45,25 @@ CREATE TABLE Players
 );
 GO
 
---select * from Players
+CREATE TABLE Teams
+(
+    TeamID INT PRIMARY KEY,
+    TeamName [NVARCHAR] (200),
+    DateMade DATE NOT NULL,
+    --PlayerName [NVARCHAR] (200) NOT NULL
+    --FOREIGN KEY (PlayerName) REFERENCES Players
 
+);
+GO
+
+
+
+INSERT INTO Teams (TeamID, TeamName, DateMade)
+VALUES
+    (1, 'TestTeam', '2022/3/31'),
+    (2, 'TestTeam2','2022/3/31')
+Select * FROM Teams
+--SELECT * FROM Players
 
 
 INSERT INTO PLAYERS (PlayerName, Team, [Year], Age, GP, Wins, Losses, [MIN], Points, FGM, FGA, [FG%], [3PM], [3PA], [3P%], FTM, FTA, [FT%], OREB, DREB, Rebounds, Assists, TOV, Steals, Blocks, PF, FP, DD2, DD3, [+/-], Efficiency)
