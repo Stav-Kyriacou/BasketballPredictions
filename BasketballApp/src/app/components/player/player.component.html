@@ -1,10 +1,9 @@
 <body>
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. LeBron James" #input>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Kevin Durant" #input>
     </mat-form-field>
 
-    <!-- <div> -->
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
 
@@ -76,7 +75,7 @@
                 <td class="mat-cell" colspan="10">No data matching the filter "{{input.value}}"</td>
             </tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5,10,25,100]" showFirstLastButtons aria-label="Select page of players">
-        </mat-paginator>
+        <mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
+        <mat-paginator [pageSizeOptions]="[5,10,25,100]" showFirstLastButtons aria-label="Select page of players"></mat-paginator>
     </div>
 </body>

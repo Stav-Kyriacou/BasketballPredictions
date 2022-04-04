@@ -13,7 +13,7 @@ import { PlayerService } from '../../services/player.service';
 })
 export class PlayerComponent implements OnInit {
   columnsToDisplay: string[] = ['name', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoals', 'freeThrows', 'efficiency'];
-
+  tableLoaded: boolean = false;
   playerList: Player[] = [];
   dataSource!: MatTableDataSource<Player>;
 
@@ -31,6 +31,7 @@ export class PlayerComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Player>(this.playerList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.tableLoaded = true;
       });
   }
 
