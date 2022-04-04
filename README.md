@@ -2,7 +2,11 @@
  
  This repo is the work of Team East creating the Basketball Prediction web application for Dod&Gy
  
+ ## Website
+ https://teameastangular.azurewebsites.net/
  
+ ## API
+ https://teameastbasketball.azurewebsites.net/
  
  SQL Connection string:
  
