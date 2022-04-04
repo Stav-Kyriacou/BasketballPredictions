@@ -1,11 +1,14 @@
 table {
   font-family: 'Courier New', Courier, monospace;
-  padding-left: 50px;
-
+  width: 100%;
 }
 
-th, td {
-  border-bottom: 1px solid #ddd;
+.namecolumn {
+  width: 20%;
+}
+
+.statcolumn {
+  width: 8%;
 }
 
 th {
@@ -13,4 +16,6 @@ th {
   padding: 15px;
 }
 
-tr:hover {background-color:rgb(218, 218, 218);}
+tr:hover {
+  background-color: rgb(218, 218, 218);
+}
