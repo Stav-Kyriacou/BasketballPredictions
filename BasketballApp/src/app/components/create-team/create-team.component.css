@@ -1,0 +1,49 @@
+.headerBox {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 0.5px;
+    padding-top: 60px;
+    background: #000000;
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;
+    text-align: left;
+    line-height: 1.5em;
+}
+
+h1 {
+    text-shadow: 2px 2px red;
+}
+
+h5 {
+    text-align: right;
+    line-height: .9em;
+    font-weight: 130;
+    text-shadow: 2px 2px red;
+}
+
+
+.teamInputArea {
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.createTeam-full-width {
+    width: 500px;
+    text-align: center;
+}
+
+.teamNames {
+    font-size: 50px;
+    font-family:'Times New Roman', Times, serif;
+    width: 100%;
+    font-style: italic;
+  }
+
+tr { 
+    text-transform: uppercase;
+    line-height: 70px;
+}
+  
