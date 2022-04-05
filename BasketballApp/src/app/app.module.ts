@@ -16,6 +16,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { BannerComponent } from './components/banner/banner.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     PlayerComponent,
     HeaderComponent,
     CreateTeamComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatProgressBarModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
