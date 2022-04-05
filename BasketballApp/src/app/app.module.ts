@@ -13,13 +13,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { CreateTeamComponent } from './components/create-team/create-team.component';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     HeaderComponent,
+    CreateTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatSortModule,
     MatToolbarModule,
     MatProgressBarModule,
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
