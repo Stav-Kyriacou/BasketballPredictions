@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Cors;
 
 namespace BasketballApi
@@ -10,34 +8,44 @@ namespace BasketballApi
     [Route("[controller]")]
     public class TeamController : ControllerBase
     {
-        private readonly ILogger<TeamController> _logger;
-        private TeamDBHandler teamDBHandler = new TeamDBHandler();
-        public TeamController(ILogger<TeamController> logger)
-        {
-            _logger = logger;
-        }
+        private TeamDBHandler _teamDBHandler = new TeamDBHandler();
 
-        [EnableCors("MyPolicy")]
+        /// <summary>
+        /// Get all Teams
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [EnableCors("MyPolicy")]
         [Route("/teams")]
         public IEnumerable<Team> GetAllTeams()
         {
-            return teamDBHandler.GetAllTeams();
+            return _teamDBHandler.GetAllTeams();
         }
-        
-        [EnableCors("MyPolicy")]
+
+        /// <summary>
+        /// Get a single Team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         [HttpGet]
+        [EnableCors("MyPolicy")]
         [Route("/team/{teamId}")]
         public Team GetTeam(int teamId)
         {
-            return teamDBHandler.GetTeam(teamId);
+            return _teamDBHandler.GetTeam(teamId);
         }
-
-        [EnableCors("MyPolicy")]
+        
+        /// <summary>
+        /// Post a new Team
+        /// </summary>
+        /// <param name="newTeam"></param>
+        /// <returns></returns>
         [HttpPost]
-        public string PostTeam([FromBody]Team newTeam)
+        [EnableCors("MyPolicy")]
+        [Route("/team")]
+        public string PostTeam([FromBody] Team newTeam)
         {
-            return teamDBHandler.AddTeam(newTeam);
+            return _teamDBHandler.AddTeam(newTeam);
         }
     }
 }

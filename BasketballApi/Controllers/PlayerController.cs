@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Cors;
 
 namespace BasketballApi
@@ -12,28 +8,32 @@ namespace BasketballApi
     [Route("[controller]")]
     public class PlayerController : ControllerBase
     {
-        private readonly ILogger<PlayerController> _logger;
-        private PlayerDBHandler playerDBHandler = new PlayerDBHandler();
+        private PlayerDBHandler _playerDBHandler = new PlayerDBHandler();
 
-        public PlayerController(ILogger<PlayerController> logger)
-        {
-            _logger = logger;
-        }
-
-        [EnableCors("MyPolicy")]
+        /// <summary>
+        /// Get all Players
+        /// </summary>
         [HttpGet]
+        [EnableCors("MyPolicy")]
         [Route("/players")]
         public IEnumerable<Player> GetAllPlayers()
         {
-            return playerDBHandler.GetAllPlayers();
+            return _playerDBHandler.GetAllPlayers();
         }
-
-        [EnableCors("MyPolicy")]
+        
+        /// <summary>
+        /// Get a single Player
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="team"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("/players/{Name}/{Team}/{Year}")]
-        public Player GetPlayer(string Name, string Team, int Year)
+        [EnableCors("MyPolicy")]
+        [Route("/player/{name}/{team}/{year}")]
+        public Player GetPlayer(string name, string team, int year)
         {
-            return playerDBHandler.GetPlayer(Name, Team, Year);
+            return _playerDBHandler.GetPlayer(name, team, year);
         }
     }
 }
