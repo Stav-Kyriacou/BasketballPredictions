@@ -11,13 +11,20 @@ export class CreateTeamComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // let storedTeams: string;
+    var storedTeams = JSON.parse(localStorage.getItem("teams"));
+
+    if (storedTeams == null) return;
+    
+    this.teams = storedTeams;
   }
 
   onSubmit() {
     if (this.value == '') return;
     
     this.teams.push(this.value);
+    localStorage.setItem('teams', JSON.stringify(this.teams));
     this.value = '';
   }
 }
