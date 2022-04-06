@@ -15,7 +15,9 @@ export class CreateTeamComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.value == '') return;
+    
     this.teams.push(this.value);
-    console.log(this.teams);
+    this.value = '';
   }
 }

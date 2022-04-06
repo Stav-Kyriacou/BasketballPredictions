@@ -5,9 +5,9 @@ import { PlayerComponent } from './components/player/player.component';
 
 
 const appRoutes: Routes = [
+  { path: '', component: PlayerComponent },
   { path: 'player', component: PlayerComponent },
   { path: 'create-team', component: CreateTeamComponent }
-
 ];
 
 @NgModule({

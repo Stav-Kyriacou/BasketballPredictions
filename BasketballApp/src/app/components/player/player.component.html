@@ -1,23 +1,7 @@
-<div class="headerBox">
-  
-        
-      <div id="headerNBA">
-        <h1>
-        NBA
-        <br />
-        <i>PLAYER</i>
-        <br />
-        STATS
-        </h1>
-        <h5><i>REGULAR</i> SEASON
-        <br>
-        2020-2021</h5>
-      </div>
-  
-</div>
-
-
 <body>
+
+    <app-banner h1="NBA" h2="PLAYER" h3="STATS"></app-banner>
+
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Kevin Durant" #input>
@@ -27,7 +11,7 @@
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- Name -->
-            <ng-container matColumnDef="name" >
+            <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="namecolumn">Name</th>
                 <td mat-cell *matCellDef="let player">{{player.playerName}}</td>
             </ng-container>
@@ -95,6 +79,7 @@
             </tr>
         </table>
         <mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
-        <mat-paginator [pageSizeOptions]="[5,10,25,100]" showFirstLastButtons aria-label="Select page of players"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5,10,25,100]" showFirstLastButtons aria-label="Select page of players">
+        </mat-paginator>
     </div>
 </body>

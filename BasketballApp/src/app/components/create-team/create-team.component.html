@@ -1,47 +1,27 @@
-<div class="headerBox">
-  
-        
-    <div id="headerNBA">
-      <h1>
-      CREATE
-      <br />
-      <i>YOUR OWN</i>
-      <br />
-      TEAM
-      </h1>
-      <h5><i>REGULAR</i> SEASON
-      <br>
-      2020-2021</h5>
-    </div>
-
-</div>
-
-<br>
-
 <body>
 
-<div class="teamInputArea">
-  
-  <mat-form-field class="createTeam-full-width" appearance="fill">
-    <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
-    <input matInput type="text" [(ngModel)]="value">
-    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-    
+  <app-banner h1="CREATE" h2="YOUR OWN" h3="TEAM"></app-banner><br>
+
+  <div class="teamInputArea">
+
+    <mat-form-field class="createTeam-full-width" appearance="fill">
+      <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
+      <input matInput type="text" [(ngModel)]="value">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
     <br>
-    
-    <button class="submit" (click)="onSubmit()"><i>SUBMIT</i></button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">CREATE TEAM</button>
     <br>
     <table class="teamNames">
       <th>
         <tr *ngFor="let team of teams">{{team}}</tr>
       </th>
     </table>
-    
-    
-</div>
+
+  </div>
 </body>
 
 
@@ -49,7 +29,7 @@
 
 
 <!-- <div class="teamInputArea"> -->
-  <!-- <form class="createTeam-form">
+<!-- <form class="createTeam-form">
     <mat-form-field class="createTeam-full-width" appearance="fill">
       <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
       <input matInput placeholder="Eg. East Beasts" value="">
