@@ -15,12 +15,15 @@
     <br>
     <button mat-raised-button color="primary" (click)="onSubmit()">CREATE TEAM</button>
     <br>
+
+  </div>
+
+  <div class="table">
     <table class="teamNames">
       <th>
         <tr *ngFor="let team of teams">{{team}}</tr>
       </th>
     </table>
-
   </div>
 </body>
 

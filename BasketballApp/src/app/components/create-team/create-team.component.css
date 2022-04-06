@@ -12,13 +12,17 @@
 
 .teamNames {
     font-size: 50px;
-    font-family:'Times New Roman', Times, serif;
-    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
     font-style: italic;
-  }
+    align-self: center;
+}
 
-tr { 
+tr {
     text-transform: uppercase;
     line-height: 70px;
 }
-  
+
+.table {
+    display: flex;
+    justify-content: center;
+}
