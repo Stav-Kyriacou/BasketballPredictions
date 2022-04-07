@@ -2,6 +2,15 @@
  
  This repo is the work of Team East creating the Basketball Prediction web application for Dod&Gy
  
+ ## Website
+ https://teameastangular.azurewebsites.net/
+ 
+ ## API
+ https://teameastbasketball.azurewebsites.net/
+ 
+ ## C# Coding Standards
+ https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
+ 
  
  
  SQL Connection string:
