@@ -12,7 +12,7 @@ import { PlayerService } from '../../services/player.service';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
-  columnsToDisplay: string[] = ['name', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoals', 'freeThrows', 'efficiency'];
+  columnsToDisplay: string[] = ['image','name', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoals', 'freeThrows', 'efficiency'];
   tableLoaded: boolean = false;
   playerList: Player[] = [];
   dataSource!: MatTableDataSource<Player>;
