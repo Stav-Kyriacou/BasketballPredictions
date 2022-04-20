@@ -10,6 +10,12 @@
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
 
+            <!-- image -->
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="imagecolumn">Image</th>
+                <td mat-cell *matCellDef="let player"><img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{player.playerID}}.png"></td>
+            </ng-container>
+
             <!-- Name -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="namecolumn">Name</th>
