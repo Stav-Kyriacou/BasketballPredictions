@@ -5,6 +5,7 @@ namespace BasketballApi
     public class Player
     {
         public string PlayerName { get; set; }
+        public int PlayerID { get; set; }
         public string Team { get; set; }
         public int Age { get; set; }
         public int Year { get; set; }
