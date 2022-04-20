@@ -1,5 +1,6 @@
 export interface Player {
     playerName: string;
+    playerID:number;
     team: string;
     points: number;
     rebounds: number;
