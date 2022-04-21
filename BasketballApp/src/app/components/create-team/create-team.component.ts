@@ -1,4 +1,7 @@
+import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Team } from 'src/app/models/team/team';
+import {PlayerService} from '../../services/player.service'
 
 @Component({
   selector: 'app-create-team',
@@ -7,24 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTeamComponent implements OnInit {
   value: string = '';
-  teams: string[] = [];
+  test:Team = {teamName:'my team', teamID:79,dateMade:new Date()}
+  teams: Team[] = [];
 
-  constructor() { }
+  constructor(private _teamService: PlayerService) { }
 
   ngOnInit() {
     // let storedTeams: string;
-    var storedTeams = JSON.parse(localStorage.getItem("teams"));
-
-    if (storedTeams == null) return;
-    
-    this.teams = storedTeams;
+    this._teamService.GetAllTeams().subscribe(unpackedPlayers => this.teams = unpackedPlayers);
   }
 
   onSubmit() {
-    if (this.value == '') return;
-    
-    this.teams.push(this.value);
-    localStorage.setItem('teams', JSON.stringify(this.teams));
-    this.value = '';
+    this._teamService.PostATeam(this.value).subscribe(value => value,
+    ()=>{
+      this._teamService.GetAllTeams().subscribe(unpackedPlayers => this.teams = unpackedPlayers);
+    });
   }
 }

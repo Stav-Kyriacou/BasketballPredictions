@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Player } from '../models/player';
+import { Player } from '../models/player/player';
+import { Team } from '../models/team/team';
 
 
 @Injectable({
@@ -9,12 +10,21 @@ import { Player } from '../models/player';
 })
 
 export class PlayerService {
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net/players";
+  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  // readonly baseUrl: string = "https://localhost:5001";
 
   constructor(private _http: HttpClient) { }
 
   getAllPlayers(): Observable<Player[]> {
-    return this._http.get<Player[]>(this.baseUrl);
+    return this._http.get<Player[]>(this.baseUrl+"/players");
+  }
+
+  GetAllTeams(): Observable<Team[]>{
+    return this._http.get<Team[]>(this.baseUrl+"/teams")
+  }
+
+  PostATeam(team:string ): Observable<string>{
+    return this._http.post<string>(this.baseUrl+"/team", team)
   }
 
 }
