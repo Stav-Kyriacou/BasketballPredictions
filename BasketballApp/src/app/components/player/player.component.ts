@@ -3,7 +3,7 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { Player } from 'src/app/models/player';
+import { Player } from 'src/app/models/player/player';
 import { PlayerService } from '../../services/player.service';
 
 @Component({

@@ -67,7 +67,7 @@ namespace BasketballApi
 
             return team;
         }
-        public string AddTeam(Team newTeam)
+        public string AddTeam(string newTeam)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
@@ -76,9 +76,9 @@ namespace BasketballApi
                 using (SqlCommand command = new SqlCommand("ADD_TEAM", conn))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@pTeamID", newTeam.TeamID);
-                    command.Parameters.AddWithValue("@pTeamName", newTeam.TeamName);
-                    command.Parameters.AddWithValue("@pDateMade", newTeam.DateMade);
+                    command.Parameters.AddWithValue("@pTeamID", 0);
+                    command.Parameters.AddWithValue("@pTeamName", newTeam);
+                    command.Parameters.AddWithValue("@pDateMade", System.DateTime.Now);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     conn.Close();

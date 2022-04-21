@@ -43,7 +43,7 @@ namespace BasketballApi
         [HttpPost]
         [EnableCors("MyPolicy")]
         [Route("/team")]
-        public string PostTeam([FromBody] Team newTeam)
+        public string PostTeam([FromBody] string newTeam)
         {
             return _teamDBHandler.AddTeam(newTeam);
         }
