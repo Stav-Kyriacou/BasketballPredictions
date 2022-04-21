@@ -10,8 +10,6 @@ import {PlayerService} from '../../services/player.service'
 })
 export class CreateTeamComponent implements OnInit {
   value: string = '';
-  test:Team = {teamName:'my team', teamID:79,dateMade:new Date()}
-  teams: Team[] = [];
 
   constructor(private _teamService: PlayerService) { }
 
@@ -21,8 +19,10 @@ export class CreateTeamComponent implements OnInit {
   }
 
   onSubmit() {
+    // send POST request with value(name of team) to API
     this._teamService.PostATeam(this.value).subscribe(value => value,
     ()=>{
+      // Reload list of teams
       this._teamService.GetAllTeams().subscribe(unpackedPlayers => this.teams = unpackedPlayers);
     });
   }
