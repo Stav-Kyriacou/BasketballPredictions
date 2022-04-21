@@ -5,15 +5,13 @@ import { Player } from '../models/player/player';
 import { Team } from '../models/team/team';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class PlayerService {
   readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  readonly headers = new HttpHeaders({'Content-Type': 'application/json'});
-  readonly options = { headers: this.headers };
-  // readonly baseUrl: string = "https://localhost:5001";
   
 
   constructor(private _http: HttpClient) {
@@ -28,7 +26,9 @@ export class PlayerService {
   }
 
   PostATeam(team:string ): Observable<string>{
-    return this._http.post<string>(this.baseUrl+"/team", team, this.options)
+    const headers= {'content-type':'application/json'}
+    const body = JSON.stringify(team);
+    return this._http.post<string>(this.baseUrl+"/team", body, {'headers':headers})
   }
 
 }
