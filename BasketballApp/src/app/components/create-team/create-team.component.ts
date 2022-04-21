@@ -10,6 +10,7 @@ import {PlayerService} from '../../services/player.service'
 })
 export class CreateTeamComponent implements OnInit {
   value: string = '';
+  teams: Team[] = [];
 
   constructor(private _teamService: PlayerService) { }
 
