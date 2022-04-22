@@ -1,5 +1,3 @@
-using System;
-
 namespace BasketballApi
 {
     public class TeamAllocation

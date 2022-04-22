@@ -16,7 +16,7 @@ namespace BasketballApi
         /// <returns></returns>
         [HttpGet]
         [EnableCors("MyPolicy")]
-        [Route("/TeamAllocation/teamId}")]
+        [Route("/TeamAllocation/{teamId}")]
         public IEnumerable<TeamAllocation> GetTeamAllocation(int teamId)
         {
             return _teamAllocationHandler.GetTeamAllocations(teamId);

@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System;
-
 namespace BasketballApi
 {
     public class TeamAllocationHandler : DatabaseHandler
     {
-          public List<TeamAllocation> GetTeamAllocations(int teamId)
-    
+        public List<TeamAllocation> GetTeamAllocations(int teamId)
+
         {
             List<TeamAllocation> Allocation = new List<TeamAllocation>();
 
@@ -16,7 +14,7 @@ namespace BasketballApi
             {
                 conn.Open();
 
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Teams WHERE TeamID = @TeamID", conn))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM TeamAllocation WHERE TeamID = @TeamID", conn))
                 {
                     command.Parameters.Add("@TeamID", SqlDbType.Int);
                     command.Parameters["@TeamID"].Value = teamId;
@@ -27,11 +25,10 @@ namespace BasketballApi
                         {
                             Allocation.Add(new TeamAllocation()
                             {
-                                PlayerID = reader.GetInt32(0),
-                                TeamID = reader.GetInt32(1),
-                                Year = reader.GetInt32(2),
-                            })
-                            ;
+                                TeamID = reader.GetInt32(0),
+                                Year = reader.GetInt32(1),
+                                PlayerID = reader.GetInt32(2)
+                            });
                         }
                     }
                 }
