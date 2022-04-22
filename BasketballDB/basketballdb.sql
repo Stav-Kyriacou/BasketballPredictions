@@ -1,4 +1,8 @@
 
+IF OBJECT_ID('TeamAllocation', 'U') IS NOT NULL
+DROP TABLE TeamAllocation
+GO
+
 IF OBJECT_ID('Players', 'U') IS NOT NULL
 DROP TABLE Players
 GO
@@ -6,6 +10,7 @@ GO
 IF OBJECT_ID('Teams', 'U') IS NOT NULL
 DROP TABLE Teams
 GO
+
 
 
 CREATE TABLE Players
@@ -58,13 +63,13 @@ CREATE TABLE Teams
 );
 GO
 
-Create Table PlayerAllocation
+Create Table TeamAllocation
 (
     TeamID INT,
     Year INT, 
     PlayerID INT,
-    FOREIGN KEY(PlayerID, [Year]) REFERENCES Players,
-    FOREIGN KEY(TeamID) REFERENCES Teams
+    FOREIGN KEY(PlayerID, Year) REFERENCES Players (PlayerID,[Year]),
+    FOREIGN KEY(TeamID) REFERENCES Teams (TeamID)
 );
 GO
 
@@ -74,8 +79,14 @@ INSERT INTO Teams (TeamID, TeamName, DateMade)
 VALUES
     (1, 'TestTeam', '2022/3/31'),
     (2, 'TestTeam2','2022/3/31')
+
+Insert INTO TeamAllocation (TeamID, [Year], PlayerID)
+VALUES (1, 2020, 201939),
+       (1, 2020, 203078);
 Select * FROM Teams
---SELECT * FROM Players
+select * from TeamAllocation
+SELECT * FROM Players
+
 
 Insert INTO Players(PlayerName, PlayerId, [Year], Team, Age, GP, Wins, Losses, [Min], Points, FGM, FGA, [FG%], [3PM], [3PA], [3P%], FTM, FTA, [FT%], OREB, DREB, Rebounds, Assists, TOV, Steals, Blocks, PF, FP, DD2, DD3, [+/-], Efficiency)
 VALUES 
