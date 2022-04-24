@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { BannerComponent } from './components/banner/banner.component';
 import { MatButtonModule } from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressBarModule,
     FormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
