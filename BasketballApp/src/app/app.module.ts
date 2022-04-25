@@ -18,7 +18,10 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { BannerComponent } from './components/banner/banner.component';
 import { MatButtonModule } from '@angular/material/button';
-import {MatExpansionModule} from '@angular/material/expansion'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { EditTeamComponent } from './components/edit-team/edit-team.component'
+import {MatGridListModule} from '@angular/material/grid-list'
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import {MatExpansionModule} from '@angular/material/expansion'
     HeaderComponent,
     CreateTeamComponent,
     BannerComponent,
+    EditTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,9 +47,10 @@ import {MatExpansionModule} from '@angular/material/expansion'
     FormsModule,
     MatIconModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

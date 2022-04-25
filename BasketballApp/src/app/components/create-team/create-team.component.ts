@@ -1,6 +1,5 @@
-import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Player } from 'src/app/models/player/player';
+import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
 import {PlayerService} from '../../services/player.service'
 
@@ -14,7 +13,7 @@ export class CreateTeamComponent implements OnInit {
   teams: Team[] = [];
 
 
-  constructor(private _teamService: PlayerService) { }
+  constructor(private _teamService: PlayerService, private router: Router) { }
 
   ngOnInit() {
     // Get all Teams data
@@ -30,5 +29,10 @@ export class CreateTeamComponent implements OnInit {
           this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
         });
     }
+  }
+
+  // navigate to edit-team page with the team ID as the last /
+  editTeam(team:number) {
+    this.router.navigate(["edit-team",team]);
   }
 }

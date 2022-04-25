@@ -36,4 +36,8 @@ export class PlayerService {
     return this._http.get<Team[]>(this.baseUrl+"/TeamAllocation/"+teamID)
   }
 
+  getATeam(teamID:number): Observable<Team>{
+    return this._http.get<Team>(this.baseUrl+'/team/'+teamID)
+  }
+
 }

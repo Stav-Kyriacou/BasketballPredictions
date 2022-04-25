@@ -1,0 +1,33 @@
+.edit-team{
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+
+table {
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+  }
+  
+  .namecolumn {
+    width: 20%;
+  }
+  
+  .statcolumn {
+    width: 8%;
+  }
+  
+  th {
+    text-align: left;
+    padding: 15px;
+  }
+  
+  tr:hover {
+    background-color: rgb(218, 218, 218);
+  }
+
+.table-players{
+    padding: 15px;
+}
+.playerimg{
+    height: 100px;
+}

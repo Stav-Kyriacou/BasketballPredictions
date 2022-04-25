@@ -30,6 +30,7 @@
     <mat-expansion-panel *ngFor="let team of teams">
       <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
       <p *ngFor="let player of team.players">{{player.playerName}}</p>
+      <button (click)="editTeam(team.teamID)">Edit</button>
     </mat-expansion-panel>
   </mat-accordion>
   
