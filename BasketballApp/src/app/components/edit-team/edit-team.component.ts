@@ -79,9 +79,18 @@ export class EditTeamComponent implements OnInit {
   }
 
   addToTeam(playerID:number){
-    let allocation:TeamAllocation = {teamID:this.teamID,playerID:playerID,year:this.team.year};
-    this._playerService.addPlayerToTeam(allocation);
-    window.location.reload();
+    this._playerService.addPlayerToTeam(this.teamID,playerID,this.team.year).subscribe(value => value,
+      ()=>{
+        // Reload list of teams
+        this._playerService.getATeam(this.teamID).subscribe(unpackedTeams => this.team = unpackedTeams,
+          error => console.log("Error" + error),
+          () => {
+            //executed once completed
+            this.currentPlayers = new MatTableDataSource<Player>(this.team.players);
+            this.currentPlayers.sort = this.sort;
+            this.currentPlayertableLoaded = true;
+          });
+      });
   }
 
   removeFromTeam(playerID:number){
