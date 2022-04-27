@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Player } from 'src/app/models/player/player';
 import { Team } from 'src/app/models/team/team';
+import { TeamAllocation } from 'src/app/models/teamAllocation/teamAllocation';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
@@ -78,7 +79,9 @@ export class EditTeamComponent implements OnInit {
   }
 
   addToTeam(playerID:number){
-
+    let allocation:TeamAllocation = {teamID:this.teamID,playerID:playerID,year:this.team.year};
+    this._playerService.addPlayerToTeam(allocation);
+    window.location.reload();
   }
 
   removeFromTeam(playerID:number){
