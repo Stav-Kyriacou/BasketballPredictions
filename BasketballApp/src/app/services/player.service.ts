@@ -13,8 +13,8 @@ import { TemplateBindingIdentifier } from '@angular/compiler';
 })
 
 export class PlayerService {
-  // readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  readonly baseUrl: string = "https://localhost:5001";
+  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  // readonly baseUrl: string = "https://localhost:5001";
   
 
   constructor(private _http: HttpClient) {
