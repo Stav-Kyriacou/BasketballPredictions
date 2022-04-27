@@ -11,8 +11,7 @@ import { Team } from '../models/team/team';
 })
 
 export class PlayerService {
-  // readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  readonly baseUrl: string = "https://localhost:5001"
+  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
   
 
   constructor(private _http: HttpClient) {
