@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Player } from 'src/app/models/player/player';
 import { Team } from 'src/app/models/team/team';
 import { PlayerService } from 'src/app/services/player.service';
@@ -27,7 +26,7 @@ export class EditTeamComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private route: ActivatedRoute, private _playerService: PlayerService, private cookieService: CookieService) { 
+  constructor(private route: ActivatedRoute, private _playerService: PlayerService) { 
 
   }
 

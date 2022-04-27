@@ -21,7 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { EditTeamComponent } from './components/edit-team/edit-team.component'
 import {MatGridListModule} from '@angular/material/grid-list'
-import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,7 @@ import { CookieService } from 'ngx-cookie-service';
     MatExpansionModule,
     MatGridListModule
   ],
-  providers: [CookieService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
