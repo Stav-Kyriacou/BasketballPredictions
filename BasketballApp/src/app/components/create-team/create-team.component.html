@@ -18,13 +18,22 @@
 
   </div>
 
-  <div class="table">
+  <!-- <div class="table">
     <table class="teamNames">
       <th>
         <tr *ngFor="let team of teams">{{team.teamName}}</tr>
       </th>
     </table>
-  </div>
+  </div> -->
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let team of teams">
+      <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
+      <p *ngFor="let player of team.players">{{player.playerName}}</p>
+      <button (click)="editTeam(team.teamID)">Edit</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
 </body>
 
 
