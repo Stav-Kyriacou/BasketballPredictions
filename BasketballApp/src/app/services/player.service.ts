@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player/player';
 import { Team } from '../models/team/team';
@@ -13,8 +13,8 @@ import { TemplateBindingIdentifier } from '@angular/compiler';
 })
 
 export class PlayerService {
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  // readonly baseUrl: string = "https://localhost:5001";
+  // readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  readonly baseUrl: string = "https://localhost:5001";
   
 
   constructor(private _http: HttpClient) {
@@ -42,11 +42,12 @@ export class PlayerService {
     return this._http.get<Team>(this.baseUrl+'/team/'+teamID)
   }
 
-  addPlayerToTeam(allocation:TeamAllocation){
-    const headers = {'content-type':'application/json'}
-    const body = JSON.stringify(allocation)
-    console.log(allocation)
-    return this._http.post<string>(this.baseUrl+'/teamAllocation/',body,{'headers':headers})
+  addPlayerToTeam(teamID:number,playerID:number,year:number): Observable<string>{
+    const params = new HttpParams()
+    .append('TeamID', teamID)
+    .append('PlayerID', playerID)
+    .append('Year',year)
+    const body = ''
+    return this._http.post<string>(this.baseUrl+'/teamAllocation',body,{'params':params})
   }
-
 }
