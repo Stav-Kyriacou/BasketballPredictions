@@ -38,3 +38,33 @@ CREATE SEQUENCE Count.CountBy1
     Start WITH 10
     INCREMENT BY 1;
 
+------------------------------------------------------------
+----------------------ADD TEAMALLOCATION--------------------
+------------------------------------------------------------
+IF OBJECT_ID('ADD_TEAM_ALLOCATION') IS NOT NULL
+    DROP PROCEDURE ADD_TEAM_ALLOCATION;
+GO
+
+CREATE PROCEDURE ADD_TEAM_ALLOCATION
+    @pTeamID INT,
+    @pYear INT,
+    @pPlayerID INT
+AS
+BEGIN
+    DECLARE @TeamID BIGINT;
+    SET @TeamID = NEXT VALUE FOR Count.CountBy1;
+    BEGIN TRY
+        INSERT INTO TeamAllocation
+        (TeamID, Year, PlayerID)
+    VALUES
+        (@pTeamID, @pYear, @pPlayerID)
+    END TRY
+    BEGIN CATCH
+    END CATCH
+END
+GO
+
+
+
+
+
