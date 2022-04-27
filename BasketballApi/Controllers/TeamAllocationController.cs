@@ -24,14 +24,16 @@ namespace BasketballApi
          /// <summary>
         /// Post a new Team Allocation
         /// </summary>
-        /// <param name="allocation"></param>
+        /// <param name="TeamID"></param>
+        /// <param name="PlayerID"></param>
+        /// <param name="Year"></param>
         /// <returns></returns>
         [HttpPost]
         [EnableCors("MyPolicy")]
         [Route("/TeamAllocation")]
-        public string PostTeamAllocation( TeamAllocation allocation)
+        public string PostTeamAllocation(int TeamID, int PlayerID, int Year)
         {
-            return _teamAllocationHandler.AddTeamAllocation(allocation);
+            return _teamAllocationHandler.AddTeamAllocation(TeamID, PlayerID, Year);
         }
     }
 }
