@@ -42,7 +42,7 @@ namespace BasketballApi
         }
 
 
-        public string AddTeamAllocation(int TeamID, int Year, int PlayerID)
+        public string AddTeamAllocation(TeamAllocation allocation)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
@@ -55,9 +55,9 @@ namespace BasketballApi
                     command.Parameters.AddWithValue("@pTeamID", 0);
                     command.Parameters.AddWithValue("@pYear", 0);
                     command.Parameters.AddWithValue("@pPlayerID", 0);
-                    command.Parameters["@pTeamID"].Value = TeamID;
-                    command.Parameters["@pYear"].Value = Year;
-                    command.Parameters["@pPlayerID"].Value = PlayerID;
+                    command.Parameters["@pTeamID"].Value = allocation.TeamID;
+                    command.Parameters["@pYear"].Value = allocation.Year;
+                    command.Parameters["@pPlayerID"].Value = allocation.PlayerID;
                     int rowsAffected = command.ExecuteNonQuery();
                     conn.Close();
 
