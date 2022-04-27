@@ -21,14 +21,22 @@ export class PlayerService {
     return this._http.get<Player[]>(this.baseUrl+"/players");
   }
 
-  GetAllTeams(): Observable<Team[]>{
+  getAllTeams(): Observable<Team[]>{
     return this._http.get<Team[]>(this.baseUrl+"/teams")
   }
 
-  PostATeam(team:string ): Observable<string>{
+  postATeam(team:string ): Observable<string>{
     const headers= {'content-type':'application/json'}
     const body = JSON.stringify(team);
     return this._http.post<string>(this.baseUrl+"/team", body, {'headers':headers})
+  }
+
+  getAllocations(teamID:number ): Observable<Team[]>{
+    return this._http.get<Team[]>(this.baseUrl+"/TeamAllocation/"+teamID)
+  }
+
+  getATeam(teamID:number): Observable<Team>{
+    return this._http.get<Team>(this.baseUrl+'/team/'+teamID)
   }
 
 }
