@@ -202,5 +202,23 @@ namespace BasketballApi
                 }
             }
         }
+
+        public string DeleteTeam(int teamId)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+
+                    using (SqlCommand command = new SqlCommand("DELETE_TEAM", conn))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@pTeamID", 0);
+                        
+                        int rowsAffected = command.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    return "Team removed";
+            }
+        }
     }
 }

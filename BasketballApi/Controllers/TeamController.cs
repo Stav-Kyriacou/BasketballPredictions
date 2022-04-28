@@ -47,5 +47,15 @@ namespace BasketballApi
         {
             return _teamDBHandler.AddTeam(newTeam);
         }
+
+        [HttpDelete]
+        [EnableCors("MyPolicy")]
+        [Route("/team")]
+        public string DeleteTeam(int teamId)
+        {
+            return _teamDBHandler.DeleteTeam(teamId);
+        }
+
+
     }
 }

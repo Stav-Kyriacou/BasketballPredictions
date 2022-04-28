@@ -65,6 +65,24 @@ END
 GO
 
 
+------------------------------------------------------------
+------------------------REMOVE TEAM-------------------------
+------------------------------------------------------------
 
-
-
+IF OBJECT_ID('DELETE_TEAM') IS NOT NULL
+DROP PROCEDURE DELETE_TEAM
+GO
+CREATE PROCEDURE DELETE_TEAM @pTeamID INT AS
+BEGIN
+    BEGIN TRY
+        DELETE FROM Team
+        WHERE TeamID = @pTeamID;
+        IF @@ROWCOUNT = 0
+            THROW 50060, 'Team not found', 1
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() = 50060
+            THROW
+    END CATCH
+END
+GO
