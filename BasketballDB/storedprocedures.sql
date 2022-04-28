@@ -64,7 +64,30 @@ BEGIN
 END
 GO
 
+------------------------------------------------------------
+--------------------REMOVE TEAM ALLOC-----------------------
+------------------------------------------------------------
+IF OBJECT_ID('REMOVE_TEAM_ALLOCATION') IS NOT NULL
+    DROP PROCEDURE REMOVE_TEAM_ALLOCATION
+GO
+CREATE PROCEDURE REMOVE_TEAM_ALLOCATION
+    @pTeamID INT,
+    @pYear INT,
+    @pPlayerID INT
+AS
+BEGIN
+    BEGIN TRY
+    DELETE FROM TeamAllocation
+    WHERE TeamID = @pTeamID
+        AND Year = @pYear
+        AND PlayerID = @pPlayerID
 
-
-
-
+    IF @@ROWCOUNT = 0
+        THROW 51000, 'Could not delete team allocation', 1
+    END TRY
+    BEGIN CATCH
+    IF ERROR_NUMBER() = 51000
+        PRINT ERROR_MESSAGE()
+    END CATCH
+END
+    GO

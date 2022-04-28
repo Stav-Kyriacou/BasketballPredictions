@@ -21,7 +21,7 @@ namespace BasketballApi
         {
             return _teamAllocationHandler.GetTeamAllocations(teamId);
         }
-         /// <summary>
+        /// <summary>
         /// Post a new Team Allocation
         /// </summary>
         /// <param name="TeamID"></param>
@@ -34,6 +34,20 @@ namespace BasketballApi
         public string PostTeamAllocation(int TeamID, int PlayerID, int Year)
         {
             return _teamAllocationHandler.AddTeamAllocation(TeamID, PlayerID, Year);
+        }
+        /// <summary>
+        /// Remove a Team Allocation
+        /// </summary>
+        /// <param name="teamID"></param>
+        /// <param name="playerID"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [EnableCors("MyPolicy")]
+        [Route("/TeamAllocation/{teamID}/{playerID}/{year}")]
+        public string RemoveAllocation(int teamID, int playerID, int year)
+        {
+            return _teamAllocationHandler.RemoveAllocation(teamID, playerID, year);
         }
     }
 }

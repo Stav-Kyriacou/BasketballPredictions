@@ -49,7 +49,7 @@ namespace BasketballApi
                 conn.Open();
 
                 using (SqlCommand command = new SqlCommand("ADD_TEAM_ALLOCATION", conn))
-                
+
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@pTeamID", 0);
@@ -68,6 +68,31 @@ namespace BasketballApi
                     else
                     {
                         return "Team Allocation could not be added";
+                    }
+                }
+            }
+        }
+        public string RemoveAllocation(int teamID, int playerID, int year)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+                using (SqlCommand commnad = new SqlCommand("REMOVE_TEAM_ALLOCATION", conn))
+                {
+                    commnad.CommandType = CommandType.StoredProcedure;
+                    commnad.Parameters.AddWithValue("@pTeamID", teamID);
+                    commnad.Parameters.AddWithValue("@pPlayerID", playerID);
+                    commnad.Parameters.AddWithValue("@pYear", year);
+                    int rowsAffected = commnad.ExecuteNonQuery();
+                    conn.Close();
+
+                    if (rowsAffected >= 1)
+                    {
+                        return "Removed Team Allocation";
+                    }
+                    else
+                    {
+                        return "Team Allocation could not be remomved";
                     }
                 }
             }
