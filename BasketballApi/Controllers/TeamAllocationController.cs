@@ -49,5 +49,15 @@ namespace BasketballApi
         {
             return _teamAllocationHandler.RemoveAllocation(teamID, playerID, year);
         }
+        /// <summary>
+        /// Update players on a team
+        /// </summary>
+        /// <param name="newTeam"></param>
+        [HttpPut]
+        [EnableCors("MyPolicy")]
+        public void UpdateTeamAllocation([FromBody] Team newTeam)
+        {
+            _teamAllocationHandler.UpdateAllocation(newTeam);
+        }
     }
 }

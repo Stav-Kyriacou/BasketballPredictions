@@ -97,5 +97,26 @@ namespace BasketballApi
                 }
             }
         }
+        public void UpdateAllocation(Team newTeam)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand($"DELETE FROM TeamAllocation WHERE TeamID = {newTeam.TeamID}", conn);
+                command.ExecuteNonQuery();
+
+                foreach (var p in newTeam.Players)
+                {
+                    command = new SqlCommand("ADD_TEAM_ALLOCATION", conn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@pTeamID", newTeam.TeamID);
+                    command.Parameters.AddWithValue("@pYear", p.Year);
+                    command.Parameters.AddWithValue("@pPlayerID", p.PlayerID);
+                    command.ExecuteNonQuery();
+                }
+
+                conn.Close();
+            }
+        }
     }
 }
