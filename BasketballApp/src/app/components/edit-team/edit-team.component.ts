@@ -27,7 +27,7 @@ export class EditTeamComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private route: ActivatedRoute, private _playerService: PlayerService) { 
+  constructor( private router: Router,private route: ActivatedRoute, private _playerService: PlayerService) {
 
   }
 
@@ -78,27 +78,26 @@ export class EditTeamComponent implements OnInit {
     }
   }
 
-  addToTeam(playerID:number){
-    this._playerService.addPlayerToTeam(this.teamID,playerID,this.team.year).subscribe(value => value,
-      ()=>{
-        // Reload list of teams
-        this._playerService.getATeam(this.teamID).subscribe(unpackedTeams => this.team = unpackedTeams,
-          error => console.log("Error" + error),
-          () => {
-            //executed once completed
-            this.currentPlayers = new MatTableDataSource<Player>(this.team.players);
-            this.currentPlayers.sort = this.sort;
-            this.currentPlayertableLoaded = true;
-          });
-      });
+  addToTeam(player:Player){
+    if (this.team.players == null) {
+      this.team.players = [];
+      this.team.players.push(player)
+    }else{
+    this.team.players.push(player)
+    }
+    this.currentPlayers = new MatTableDataSource<Player>(this.team.players);
   }
 
-  removeFromTeam(playerID:number){
-
+  removeFromTeam(playerindex:number){
+    this.team.players.splice(playerindex,1);
+    this.currentPlayers = new MatTableDataSource<Player>(this.team.players);
   }
 
   saveTeam(){
-
-  }
+    this._playerService.saveATeam(this.team).subscribe(value => value,
+      ()=>{
+        this.router.navigate(["create-team"]);
+      });
+    }
 
 }
