@@ -38,9 +38,9 @@ export class CreateTeamComponent implements OnInit {
   }
   //deletes a team by their ID from API
   deleteTeam(TeamID: number) {
-    this._teamService.deleteTeam(TeamID).subscribe(data => data,
+    this._playerService.deleteTeam(TeamID).subscribe(data => data,
       () => {
-        this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+        this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
       });
   }
 }
