@@ -34,7 +34,7 @@ namespace BasketballApi
         {
             return _teamDBHandler.GetTeam(teamId);
         }
-        
+
         /// <summary>
         /// Post a new Team
         /// </summary>
@@ -47,7 +47,11 @@ namespace BasketballApi
         {
             return _teamDBHandler.AddTeam(newTeam);
         }
-
+        /// <summary>
+        /// Delete a Team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [EnableCors("MyPolicy")]
         [Route("/team")]
@@ -55,7 +59,5 @@ namespace BasketballApi
         {
             return _teamDBHandler.DeleteTeam(teamId);
         }
-
-
     }
 }
