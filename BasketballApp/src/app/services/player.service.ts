@@ -13,8 +13,8 @@ import { TemplateBindingIdentifier } from '@angular/compiler';
 })
 
 export class PlayerService {
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  // readonly baseUrl: string = "https://localhost:5001";
+  //readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  readonly baseUrl: string = "https://localhost:5001";
 
   
 
@@ -50,5 +50,8 @@ export class PlayerService {
     .append('Year',year)
     const body = ''
     return this._http.post<string>(this.baseUrl+'/teamAllocation',body,{'params':params})
+  }
+  deleteTeam(teamID:number) :Observable<Team>{
+        return this._http.delete<Team>(this.baseUrl+"/team/" + teamID)
   }
 }

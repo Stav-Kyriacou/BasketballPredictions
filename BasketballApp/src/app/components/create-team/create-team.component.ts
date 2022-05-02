@@ -18,6 +18,8 @@ export class CreateTeamComponent implements OnInit {
   ngOnInit() {
     // Get all Teams data
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+    
+
   }
 
   onSubmit() {
@@ -33,6 +35,12 @@ export class CreateTeamComponent implements OnInit {
 
   // navigate to edit-team page with the team ID as the last /
   editTeam(team:number) {
-    this.router.navigate(["edit-team",team]);
+    this.router.navigate(["edit-team",team]);   
+  }
+  //deletes a team by their ID from API
+deleteTeam(TeamID:number) {
+  this._teamService.deleteTeam(TeamID).subscribe(data => {
+    console.log(data);
+    });
   }
 }
