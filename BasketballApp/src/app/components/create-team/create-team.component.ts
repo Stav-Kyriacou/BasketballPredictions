@@ -13,22 +13,21 @@ export class CreateTeamComponent implements OnInit {
   teams: Team[] = [];
 
 
-  constructor(private _teamService: PlayerService, private router: Router) { }
+  constructor(private _playerService: PlayerService, private router: Router) { }
 
   ngOnInit() {
     // Get all Teams data
-    this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
-
+    this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
 
   }
 
   onSubmit() {
     // send POST request with value(name of team) to API
     if (this.value != '') {
-      this._teamService.postATeam(this.value).subscribe(value => value,
-        () => {
+      this._playerService.postATeam(this.value).subscribe(value => value,
+        ()=>{
           // Reload list of teams
-          this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+          this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
         });
     }
   }

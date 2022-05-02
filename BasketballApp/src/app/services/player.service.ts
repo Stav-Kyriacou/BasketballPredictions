@@ -56,4 +56,10 @@ export class PlayerService {
       .append('teamId', teamID)
     return this._http.delete<string>(this.baseUrl + "/team/", { 'params': params })
   }
+
+  saveATeam(team:Team): Observable<string>{
+    const headers= {'content-type':'application/json'};
+    const body = JSON.stringify(team);
+    return this._http.put<string>(this.baseUrl+'/teamAllocation',body, {'headers':headers})
+  }
 }

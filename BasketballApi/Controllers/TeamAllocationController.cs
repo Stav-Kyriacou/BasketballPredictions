@@ -55,9 +55,9 @@ namespace BasketballApi
         /// <param name="newTeam"></param>
         [HttpPut]
         [EnableCors("MyPolicy")]
-        public void UpdateTeamAllocation([FromBody] Team newTeam)
+        public string UpdateTeamAllocation([FromBody] Team newTeam)
         {
-            _teamAllocationHandler.UpdateAllocation(newTeam);
+            return _teamAllocationHandler.UpdateAllocation(newTeam);
         }
     }
 }
