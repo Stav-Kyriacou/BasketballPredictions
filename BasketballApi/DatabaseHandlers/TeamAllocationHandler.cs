@@ -97,13 +97,15 @@ namespace BasketballApi
                 }
             }
         }
-        public void UpdateAllocation(Team newTeam)
+        public string UpdateAllocation(Team newTeam)
         {
+            int rowsAffected = 0;
+
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand($"DELETE FROM TeamAllocation WHERE TeamID = {newTeam.TeamID}", conn);
-                command.ExecuteNonQuery();
+                rowsAffected += command.ExecuteNonQuery();
 
                 foreach (var p in newTeam.Players)
                 {
@@ -112,10 +114,18 @@ namespace BasketballApi
                     command.Parameters.AddWithValue("@pTeamID", newTeam.TeamID);
                     command.Parameters.AddWithValue("@pYear", p.Year);
                     command.Parameters.AddWithValue("@pPlayerID", p.PlayerID);
-                    command.ExecuteNonQuery();
+                    rowsAffected += command.ExecuteNonQuery();
                 }
 
                 conn.Close();
+            }
+            if (rowsAffected > 0)
+            {
+                return "Team Allocations Updated";
+            }
+            else
+            {
+                return "Team Allocations Not Updated";
             }
         }
     }
