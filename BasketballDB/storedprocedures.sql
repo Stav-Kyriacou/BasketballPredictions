@@ -75,7 +75,9 @@ GO
 CREATE PROCEDURE DELETE_TEAM @pTeamID INT AS
 BEGIN
     BEGIN TRY
-        DELETE FROM Team
+        DELETE FROM TeamAllocation
+        WHERE TeamID = @pTeamID;
+        DELETE FROM Teams
         WHERE TeamID = @pTeamID;
         IF @@ROWCOUNT = 0
             THROW 50060, 'Team not found', 1
@@ -86,3 +88,7 @@ BEGIN
     END CATCH
 END
 GO
+
+EXEC DELETE_TEAM @pTeamID = 1;
+
+SELECT * FROM Teams;

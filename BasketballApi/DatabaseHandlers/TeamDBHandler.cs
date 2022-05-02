@@ -213,6 +213,7 @@ namespace BasketballApi
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@pTeamID", 0);
+                        command.Parameters["@pTeamID"].Value = teamId;
                         
                         int rowsAffected = command.ExecuteNonQuery();
                         conn.Close();
