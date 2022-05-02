@@ -20,7 +20,11 @@ import { BannerComponent } from './components/banner/banner.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { EditTeamComponent } from './components/edit-team/edit-team.component'
-import {MatGridListModule} from '@angular/material/grid-list'
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SelectPlayer } from './components/edit-team/edit-team.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import {MatGridListModule} from '@angular/material/grid-list'
     CreateTeamComponent,
     BannerComponent,
     EditTeamComponent,
-  ],
+    SelectPlayer,
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,7 +52,10 @@ import {MatGridListModule} from '@angular/material/grid-list'
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
