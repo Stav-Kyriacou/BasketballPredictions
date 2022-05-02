@@ -16,7 +16,7 @@ export class PlayerService {
   readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
   // readonly baseUrl: string = "https://localhost:5001";
 
-  
+
 
   constructor(private _http: HttpClient) {
   }
@@ -50,5 +50,11 @@ export class PlayerService {
     .append('Year',year)
     const body = ''
     return this._http.post<string>(this.baseUrl+'/teamAllocation',body,{'params':params})
+  }
+
+  saveATeam(team:Team): Observable<string>{
+    const headers= {'content-type':'application/json'};
+    const body = JSON.stringify(team);
+    return this._http.put<string>(this.baseUrl+'/teamAllocation',body, {'headers':headers})
   }
 }
