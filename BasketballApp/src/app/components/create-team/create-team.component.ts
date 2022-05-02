@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
-import {PlayerService} from '../../services/player.service'
+import { PlayerService } from '../../services/player.service'
 
 @Component({
   selector: 'app-create-team',
@@ -18,6 +18,7 @@ export class CreateTeamComponent implements OnInit {
   ngOnInit() {
     // Get all Teams data
     this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+
   }
 
   onSubmit() {
@@ -32,7 +33,14 @@ export class CreateTeamComponent implements OnInit {
   }
 
   // navigate to edit-team page with the team ID as the last /
-  editTeam(team:number) {
-    this.router.navigate(["edit-team",team]);
+  editTeam(team: number) {
+    this.router.navigate(["edit-team", team]);
+  }
+  //deletes a team by their ID from API
+  deleteTeam(TeamID: number) {
+    this._teamService.deleteTeam(TeamID).subscribe(data => data,
+      () => {
+        this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+      });
   }
 }

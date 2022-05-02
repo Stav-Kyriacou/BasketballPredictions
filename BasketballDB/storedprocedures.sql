@@ -82,12 +82,30 @@ BEGIN
         AND Year = @pYear
         AND PlayerID = @pPlayerID
 
-    IF @@ROWCOUNT = 0
-        THROW 51000, 'Could not delete team allocation', 1
+------------------------------------------------------------
+------------------------REMOVE TEAM-------------------------
+------------------------------------------------------------
+
+IF OBJECT_ID('DELETE_TEAM') IS NOT NULL
+DROP PROCEDURE DELETE_TEAM
+GO
+CREATE PROCEDURE DELETE_TEAM @pTeamID INT AS
+BEGIN
+    BEGIN TRY
+        DELETE FROM TeamAllocation
+        WHERE TeamID = @pTeamID;
+        DELETE FROM Teams
+        WHERE TeamID = @pTeamID;
+        IF @@ROWCOUNT = 0
+            THROW 50060, 'Team not found', 1
     END TRY
     BEGIN CATCH
-    IF ERROR_NUMBER() = 51000
-        PRINT ERROR_MESSAGE()
+        IF ERROR_NUMBER() = 50060
+            THROW
     END CATCH
 END
-    GO
+GO
+
+EXEC DELETE_TEAM @pTeamID = 1;
+
+SELECT * FROM Teams;
