@@ -18,13 +18,15 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { BannerComponent } from './components/banner/banner.component';
 import { MatButtonModule } from '@angular/material/button';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { EditTeamComponent } from './components/edit-team/edit-team.component'
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SelectPlayer } from './components/edit-team/edit-team.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PlayerTableComponent } from './components/player-table/player-table.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     BannerComponent,
     EditTeamComponent,
     SelectPlayer,
- ],
+    PlayerTableComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -55,7 +58,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatGridListModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
