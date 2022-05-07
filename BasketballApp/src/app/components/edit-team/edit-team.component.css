@@ -32,3 +32,6 @@ table {
 .playerimg{
     height: 100px;
 }
+.buttonContainer button {
+  margin-right: 5px;
+}
