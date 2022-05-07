@@ -1,9 +1,3 @@
-.edit-team{
-    display:grid;
-    grid-template-columns: 50% 50%;
-    min-width: 2000px;
-}
-
 table {
     font-family: 'Courier New', Courier, monospace;
     width: 100%;
@@ -25,13 +19,7 @@ table {
   tr:hover {
     background-color: rgb(218, 218, 218);
   }
-
-.table-players{
-    padding: 15px;
-}
-.playerimg{
-    height: 100px;
-}
-.buttonContainer button {
-  margin-right: 5px;
-}
+  .playerImage {
+    width: 130px;
+    height: 95px;
+  }
