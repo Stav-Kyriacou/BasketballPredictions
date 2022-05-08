@@ -1,33 +1,41 @@
 .headerBox {
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 0.5px;
-    padding-top: 30px;
-    background: #000000;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 30px;
-    text-align: left;
-    line-height: 1.5em;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-bottom: 0.5px;
+  padding-top: 2vh;
+  background: #000000;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  line-height: 1.5em;
 }
 
-.primaryHeading {
-    width: 10px;
-    height: auto;
-    padding: 0px;
-    margin: 0px;
-    border: 1px solid black;
-}
 
 h1 {
-    text-shadow: 2px 2px red;
-    padding: 0px;
-    margin: 0px;
+  text-shadow: 2px 2px red;
+  padding: 0px;
+  margin: 0px;
+  font-size: 50px;
+  line-height: 1em;
 }
 
 h5 {
-    text-align: right;
-    line-height: .9em;
-    font-weight: 130;
-    text-shadow: 2px 2px red;
+  text-align: right;
+  line-height: .9em;
+  font-weight: 130;
+  text-shadow: 2px 2px red;
+  font-size: 40px;
+}
+
+@media screen and (max-width:900px) {
+h5 {
+  text-align: right;
+  line-height: .9em;
+  font-weight: 130;
+  text-shadow: 2px 2px red;
+  font-size: 20px;
+}
+h1{
+  font-size:30px;
+}
 }

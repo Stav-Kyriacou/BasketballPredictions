@@ -1,6 +1,30 @@
 body {
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: right;
-    color: black;
+  text-align: right;
+  color: black;
+}
+
+button {
+margin-left:5px;
+}
+
+.sidenav{
+background-color: #FAFAFA;
+}
+
+.container {
+flex: 1 0 auto;
+}
+
+.toolbar{
+z-index: 2;
+}
+
+.main-container{
+display: flex;
+flex-direction: column;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
 }

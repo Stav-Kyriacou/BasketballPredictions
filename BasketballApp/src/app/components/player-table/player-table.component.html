@@ -1,4 +1,5 @@
-<mat-form-field appearance="standard">
+<body (resized)="onResize($event)">
+  <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Kevin Durant" #input>
 </mat-form-field>
@@ -8,13 +9,13 @@
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null" 
+            <mat-checkbox (change)="$event ? masterToggle() : null"
                 [checked]="selection.hasValue() && isAllSelected()"
                 [indeterminate]="selection.hasValue() && !isAllSelected()">
             </mat-checkbox>
         </th>
         <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" 
+            <mat-checkbox (click)="$event.stopPropagation()"
                 (change)="$event ? selection.toggle(row) : null"
                 [checked]="selection.isSelected(row)">
             </mat-checkbox>
@@ -100,3 +101,5 @@
 <mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
 <mat-paginator [pageSizeOptions]="[10,100]" showFirstLastButtons aria-label="Select page of players">
 </mat-paginator>
+</body>
+

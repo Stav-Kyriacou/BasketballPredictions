@@ -27,6 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PlayerTableComponent } from './components/player-table/player-table.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AngularResizeEventModule } from 'angular-resize-event';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AngularResizeEventModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

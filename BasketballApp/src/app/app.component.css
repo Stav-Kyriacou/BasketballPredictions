@@ -1,27 +1,25 @@
-
 .headerBox {
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 0.5px;
-    padding-top: 60px;
-    background: #000000;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 30px;
-    text-align: left;
-    line-height: 1.5em;
-  
-  
-  }
-  
-  h1 {
-    text-shadow: 2px 2px red;
-  }
-  
-  h5 {
-    text-align: right;
-    line-height: .9em;
-    font-weight: 130;
-    text-shadow: 2px 2px red;
-  }
-  
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 0.5px;
+  padding-top: 60px;
+  background: #000000;
+  color: #FAFAFA;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  text-align: left;
+  line-height: 1.5em;
+
+
+}
+
+h1 {
+  text-shadow: 2px 2px red;
+}
+
+h5 {
+  text-align: right;
+  line-height: .9em;
+  font-weight: 130;
+  text-shadow: 2px 2px red;
+}
