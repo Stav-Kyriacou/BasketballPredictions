@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
+import { TeamService } from 'src/app/services/team/team.service';
 import { PlayerService } from '../../services/player.service'
 
 @Component({
@@ -13,21 +14,21 @@ export class CreateTeamComponent implements OnInit {
   teams: Team[] = [];
 
 
-  constructor(private _playerService: PlayerService, private router: Router) { }
+  constructor(private _teamService: TeamService, private router: Router) { }
 
   ngOnInit() {
     // Get all Teams data
-    this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+    this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
 
   }
 
   onSubmit() {
     // send POST request with value(name of team) to API
     if (this.value != '') {
-      this._playerService.postATeam(this.value).subscribe(value => value,
+      this._teamService.postATeam(this.value).subscribe(value => value,
         ()=>{
           // Reload list of teams
-          this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+          this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
         });
     }
   }
@@ -38,9 +39,9 @@ export class CreateTeamComponent implements OnInit {
   }
   //deletes a team by their ID from API
   deleteTeam(TeamID: number) {
-    this._playerService.deleteTeam(TeamID).subscribe(data => data,
+    this._teamService.deleteTeam(TeamID).subscribe(data => data,
       () => {
-        this._playerService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+        this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
       });
   }
 }
