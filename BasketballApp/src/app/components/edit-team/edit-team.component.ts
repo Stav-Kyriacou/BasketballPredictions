@@ -6,6 +6,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PlayerTableComponent } from '../player-table/player-table.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TeamService } from 'src/app/services/team/team.service';
 
 export interface AddPlayer {
   playerList: Player[];
@@ -25,14 +26,14 @@ export class EditTeamComponent implements OnInit {
 
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
 
-  constructor(private router: Router, private route: ActivatedRoute, private _playerService: PlayerService, public dialog: MatDialog) { }
+  constructor(private router: Router, private route: ActivatedRoute, private _playerService: PlayerService, public dialog: MatDialog, private _teamService: TeamService) { }
 
   ngOnInit() {
     // get team ID from URL
     this.route.paramMap.subscribe(params => { this.teamID = Number(params.get("teamID")) })
 
     // Get team data from API using teamID
-    this._playerService.getATeam(this.teamID).subscribe(unpackedTeams => team = unpackedTeams,
+    this._teamService.getATeam(this.teamID).subscribe(unpackedTeams => team = unpackedTeams,
       error => console.log("Error" + error),
       () => {
         this.playerTable.setupTable(team.players);
@@ -55,7 +56,7 @@ export class EditTeamComponent implements OnInit {
   }
 
   saveTeam() {
-    this._playerService.saveATeam(team).subscribe(value => value,
+    this._teamService.saveATeam(team).subscribe(value => value,
       () => {
         this.router.navigate(["create-team"]);
       });
