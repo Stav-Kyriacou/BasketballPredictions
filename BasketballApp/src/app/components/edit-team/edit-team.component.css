@@ -32,6 +32,10 @@ table {
 .playerimg{
     height: 100px;
 }
-.buttonContainer button {
+.buttonContainer {
+  display: flex;
+}
+.buttonContainer > * {
   margin-right: 5px;
+  height: 40px;
 }
