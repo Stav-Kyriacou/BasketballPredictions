@@ -16,6 +16,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class PlayerTableComponent implements OnInit {
   @Input() displayCheckbox: boolean;
+  @Input() itemsPerPage: number[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
