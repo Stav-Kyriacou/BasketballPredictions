@@ -38,7 +38,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) { }
-  
+
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
     return this.saved;
@@ -69,16 +69,19 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
       return !selectedPlayers.includes(player);
     });
     this.saved = false;
+    this.playerTable.selection.clear();
     this.playerTable.setupTable(team.players);
   }
 
   saveTeam() {
+    if (this.saved) return;
     this.saving = true;
     this._teamService.saveATeam(team).subscribe(value => value,
       () => {
         // this.router.navigate(["create-team"]);
         this.saving = false;
         this.saved = true;
+        this._snackBar.open("Team Saved!", "Okay", { duration: 3000 })
       });
   }
 
