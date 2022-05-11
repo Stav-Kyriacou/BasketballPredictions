@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TeamService } from 'src/app/services/team/team.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { Observable } from 'rxjs';
+import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 
 export interface AddPlayer {
   playerList: Player[];
@@ -98,6 +99,24 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
       }
     });
   }
+
+  confirmDialog(): void {
+    const message = `Are you sure you want to do this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult ==true) {
+        this.removePlayers()
+      }
+    });
+  }
+
 }
 
 @Component({

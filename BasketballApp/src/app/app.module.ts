@@ -14,6 +14,7 @@ import { SelectPlayer } from './components/edit-team/edit-team.component';
 import { PlayerTableComponent } from './components/player-table/player-table.component';
 import { AngularResizeEventModule } from 'angular-resize-event';
 import { MaterialModule } from './material.module';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MaterialModule } from './material.module';
     EditTeamComponent,
     SelectPlayer,
     PlayerTableComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
