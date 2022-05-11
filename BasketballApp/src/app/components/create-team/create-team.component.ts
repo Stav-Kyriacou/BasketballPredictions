@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
 import { PlayerService } from '../../services/player.service'
+import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 
 @Component({
   selector: 'app-create-team',
@@ -14,7 +16,7 @@ export class CreateTeamComponent implements OnInit {
   teams: Team[] = [];
 
 
-  constructor(private _teamService: TeamService, private router: Router) { }
+  constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     // Get all Teams data
@@ -43,5 +45,21 @@ export class CreateTeamComponent implements OnInit {
       () => {
         this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
       });
+  }
+  confirmDialog(TeamID: number): void {
+    const message = `Are you sure you want to do this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult ==true) {
+        this.deleteTeam(TeamID)
+      }
+    });
   }
 }

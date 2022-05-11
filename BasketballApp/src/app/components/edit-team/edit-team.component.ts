@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { PlayerTableComponent } from '../player-table/player-table.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TeamService } from 'src/app/services/team/team.service';
+import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 
 export interface AddPlayer {
   playerList: Player[];
@@ -23,6 +24,7 @@ let team: Team;
 export class EditTeamComponent implements OnInit {
   teamID: number;
   playerList: Player[] = [];
+  
 
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
 
@@ -72,6 +74,24 @@ export class EditTeamComponent implements OnInit {
       this.playerTable.setupTable(team.players);
     });
   }
+
+  confirmDialog(): void {
+    const message = `Are you sure you want to do this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult ==true) {
+        this.removePlayers()
+      }
+    });
+  }
+
 }
 
 @Component({
