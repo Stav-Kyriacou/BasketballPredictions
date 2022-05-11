@@ -98,7 +98,7 @@
             </tr>
         </table>
         <mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
-        <mat-paginator [pageSizeOptions]="[10,100]" showFirstLastButtons aria-label="Select page of players">
+        <mat-paginator [pageSizeOptions]="itemsPerPage" showFirstLastButtons aria-label="Select page of players">
         </mat-paginator>
     </div>
 </body>
