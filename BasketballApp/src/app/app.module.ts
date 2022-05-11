@@ -25,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SelectPlayer } from './components/edit-team/edit-team.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     BannerComponent,
     EditTeamComponent,
     SelectPlayer,
+    ConfirmationComponent,
  ],
   imports: [
     BrowserModule,

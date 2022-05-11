@@ -8,6 +8,7 @@ import { Team } from 'src/app/models/team/team';
 import { PlayerService } from 'src/app/services/player.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationComponent, ConfirmDialogModel } from '../confirmation/confirmation.component';
 
 export interface AddPlayer{
   dataSource: MatTableDataSource<Player>;
@@ -34,6 +35,7 @@ export class EditTeamComponent implements OnInit {
   playerList: Player[] = [];
   dataSource!: MatTableDataSource<Player>;
   currentPlayers!: MatTableDataSource<Player>;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -91,8 +93,11 @@ export class EditTeamComponent implements OnInit {
   }
 
   removeFromTeam(playerindex:number){
-    team.players.splice(playerindex,1);
-    this.currentPlayers = new MatTableDataSource<Player>(team.players);
+    if (this.confirmDialog()) {
+      team.players.splice(playerindex,1);
+      this.currentPlayers = new MatTableDataSource<Player>(team.players);
+    }
+    
   }
 
   saveTeam(){
@@ -113,6 +118,28 @@ export class EditTeamComponent implements OnInit {
       this.currentPlayers = new MatTableDataSource<Player>(team.players);
     });
 
+  }
+
+  confirmDialog(): boolean {
+    let result: boolean;
+    const message = `Are you sure you want to do this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      result = dialogResult;
+    });
+
+    if (result) {
+      return true
+    }else{
+      return false
+    }
   }
 
 }
