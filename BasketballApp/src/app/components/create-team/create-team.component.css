@@ -26,3 +26,6 @@ tr {
     display: flex;
     justify-content: center;
 }
+.buttonContainer button {
+    margin-right: 5px;
+}

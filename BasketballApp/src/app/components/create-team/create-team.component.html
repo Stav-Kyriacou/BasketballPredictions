@@ -25,14 +25,15 @@
       </th>
     </table>
   </div> -->
-
+<br>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let team of teams">
       <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
       <p *ngFor="let player of team.players">{{player.playerName}}</p>
-      <button (click)="editTeam(team.teamID)">Edit</button>
-      <br>
-      <button (click)="confirmDialog(team.teamID)">Delete Team</button>
+      <div class="buttonContainer">
+        <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
+        <button mat-raised-button color="primary" (click)="confirmDialog(team.teamID)">Delete Team</button>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </body>
