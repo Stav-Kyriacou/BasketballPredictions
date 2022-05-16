@@ -1,10 +1,7 @@
-
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { Player } from 'src/app/models/player';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Player } from 'src/app/models/player/player';
 import { PlayerService } from '../../services/player.service';
+import { PlayerTableComponent } from '../player-table/player-table.component';
 
 @Component({
   selector: 'app-player',
@@ -12,35 +9,17 @@ import { PlayerService } from '../../services/player.service';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
-  columnsToDisplay: string[] = ['name', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoals', 'freeThrows', 'efficiency'];
-  tableLoaded: boolean = false;
+  @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
   playerList: Player[] = [];
-  dataSource!: MatTableDataSource<Player>;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private _playerService: PlayerService) {
-  }
+  constructor(private _playerService: PlayerService) { }
 
   ngOnInit(): void {
     this._playerService.getAllPlayers().subscribe(unpackedPlayers => this.playerList = unpackedPlayers,
       error => console.log("Error" + error),
       () => {
         //executed once completed
-        this.dataSource = new MatTableDataSource<Player>(this.playerList);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.tableLoaded = true;
+        this.playerTable.setupTable(this.playerList);
       });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }
