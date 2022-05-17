@@ -1,14 +1,16 @@
 <body>
     <app-banner h1="EDIT" h2="YOUR" h3="TEAM"></app-banner><br>
     <div class="buttonContainer">
-        <button mat-raised-button color="primary" (click)="saveTeam()">Save Team</button>
-        <button mat-raised-button color="primary" (click)="removePlayers()">Remove Players</button>
         <button mat-raised-button color="primary" (click)="addplayers()">Add New Players</button>
+        <button mat-raised-button color="primary" (click)="confirmDialog()">Remove Players</button>
+        <button mat-raised-button *ngIf="saved" color="primary" (click)="saveTeam()">Save Team</button>
+        <button mat-raised-button *ngIf="!saved" color="accent" (click)="saveTeam()">Save Team</button>
+        <mat-spinner *ngIf="saving" color="accent" [diameter]="40"></mat-spinner>
     </div>
     <div class="edit-team">
         <div class="table-players">
             <h1>Current Team</h1>
-            <app-player-table [displayCheckbox]="true"></app-player-table>
+            <app-player-table [displayCheckbox]="true" [itemsPerPage]=[10,20,50,100]></app-player-table>
         </div>
     </div>
 </body>
