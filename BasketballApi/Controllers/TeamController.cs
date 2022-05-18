@@ -59,5 +59,29 @@ namespace BasketballApi
         {
             return _teamDBHandler.DeleteTeam(teamId);
         }
+
+        /// <summary>
+        /// Compare teams' win rate %
+        /// </summary>
+        /// <param name="teams"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [EnableCors("MyPolicy")]
+        [Route("/compare")]
+        public float CompareTeam([FromBody] List<Team> teams)
+        {
+            float teamAEfficiency = teams[0].GetEfficiency();
+            float teamBEfficiency = teams[1].GetEfficiency();
+
+            if (teamAEfficiency <= 0 && teamBEfficiency <= 0)
+            {
+                return 50;
+            }
+
+            float result = 0;
+            result = (teamAEfficiency / (teamAEfficiency + teamBEfficiency)) * 100;
+
+            return result;
+        }
     }
 }
