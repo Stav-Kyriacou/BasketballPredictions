@@ -2,31 +2,29 @@
   <app-banner h1="CREATE" h2="NEW" h3="TEAM"></app-banner>
   <br>
 
+<!---->
+<!--Stepper 1 Create Team-->
+
+
+<div class="teamInputArea">
 <mat-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Enter your team name</ng-template>
-
-      <div class="teamInputArea">
-
-        <mat-form-field class="createTeam-full-width" appearance="fill">
-          <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
+      <mat-form-field class="createTeam-full-width" appearance="fill">
+        <ng-template matStepLabel>Enter your team name</ng-template>
+          <mat-label><i>Enter your teams name</i></mat-label>
           <input matInput type="text" [(ngModel)]="value">
           <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-            <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
-
-        <br>
+      <br>
         <button mat-raised-button color="primary" (click)="onSubmit()">CREATE TEAM</button>
-        <br>
+      <br>
+      <br>
+        <button mat-raised-button color="primary" matStepperNext>NEXT</button>
+      <br>
 
-      </div>
-
-
-
-
-
+<!--Stepper 2 Add players-->
   <mat-step [stepControl]="secondFormGroup" label="Add players">
     <form [formGroup]="secondFormGroup">
       <mat-form-field appearance="fill">
@@ -35,16 +33,22 @@
                required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-raised-button color="primary" matStepperNext>NEXT</button>
       </div>
     </form>
   </mat-step>
+
+  <!--Stepper 3 View Team-->
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <p>Team Created</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-raised-button color="primary" routerLink="/create-team">View Teams</button>
+      <br>
+      <br>
+      <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
+
+
+
