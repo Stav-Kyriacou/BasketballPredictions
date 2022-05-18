@@ -8,8 +8,10 @@ import { Team } from 'src/app/models/team/team';
 })
 export class TeamService {
 
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  // readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  readonly baseUrl: string = "https://localhost:5001";
   
+
   constructor(private _http: HttpClient) { }
 
 
@@ -40,9 +42,17 @@ export class TeamService {
     return this._http.delete<string>(this.baseUrl + "/team/", { 'params': params })
   }
 
-  saveATeam(team:Team): Observable<string>{
-    const headers= {'content-type':'application/json'};
+  saveATeam(team: Team): Observable<string> {
+    const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(team);
-    return this._http.put<string>(this.baseUrl+'/teamAllocation',body, {'headers':headers})
+    return this._http.put<string>(this.baseUrl + '/teamAllocation', body, { 'headers': headers })
+  }
+  compareTeams(teamAId: number, teamBId: number): Observable<number> {
+    // const headers = { 'content-type': 'application/json' };
+    // const body = JSON.stringify(teams);
+    const params = new HttpParams()
+      .append('teamAId', teamAId)
+      .append('teamBId', teamBId);
+    return this._http.get<number>(this.baseUrl + '/compare', { 'params': params });
   }
 }

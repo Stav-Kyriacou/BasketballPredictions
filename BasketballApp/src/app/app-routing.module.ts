@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { PlayerComponent } from './components/player/player.component';
@@ -10,6 +11,7 @@ const appRoutes: Routes = [
   { path: '', component: PlayerComponent },
   { path: 'player', component: PlayerComponent },
   { path: 'create-team', component: CreateTeamComponent },
+  { path: 'compare-teams', component: CompareTeamsComponent },
   { path: 'edit-team/:teamID', component: EditTeamComponent, canDeactivate: [SaveCheckGuard] }
 ];
 
