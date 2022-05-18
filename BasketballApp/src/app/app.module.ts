@@ -7,7 +7,7 @@ import { PlayerComponent } from './components/player/player.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './components/banner/banner.component';
 import { EditTeamComponent } from './components/edit-team/edit-team.component'
 import { SelectPlayer } from './components/edit-team/edit-team.component';
@@ -15,6 +15,7 @@ import { PlayerTableComponent } from './components/player-table/player-table.com
 import { AngularResizeEventModule } from 'angular-resize-event';
 import { MaterialModule } from './material.module';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { CreateNewTeamComponent } from './components/create-new-team/create-new-team.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     SelectPlayer,
     PlayerTableComponent,
     ConfirmComponent,
+    CreateNewTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     BrowserAnimationsModule,
     FormsModule,
     AngularResizeEventModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
