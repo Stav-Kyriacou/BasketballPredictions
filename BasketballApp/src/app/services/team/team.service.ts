@@ -8,8 +8,8 @@ import { Team } from 'src/app/models/team/team';
 })
 export class TeamService {
 
-  // readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  readonly baseUrl: string = "https://localhost:5001";
+  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  // readonly baseUrl: string = "https://localhost:5001";
   
 
   constructor(private _http: HttpClient) { }
