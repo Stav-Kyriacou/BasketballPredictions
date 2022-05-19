@@ -37,6 +37,7 @@ export class CreateNewTeamComponent implements OnInit {
     });
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
   }
+
   // navigate to edit-team page with the team ID as the last /
   editTeam(team: number) {
     this.router.navigate(["edit-team", team]);
