@@ -103,7 +103,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   confirmDialog(): void {
     const message = `Are you sure you want to do this?`;
 
-    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel("Removing Player", message);
 
     const dialogRef = this.dialog.open(ConfirmComponent, {
       maxWidth: "400px",
