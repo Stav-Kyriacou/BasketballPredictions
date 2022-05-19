@@ -61,25 +61,28 @@ namespace BasketballApi
         }
 
         /// <summary>
-        /// Compare teams' win rate %
+        /// Compare two teams' win rate %
         /// </summary>
-        /// <param name="teams"></param>
+        /// <param name="teamAId"></param>
+        /// <param name="teamBId"></param>
         /// <returns></returns>
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/compare")]
-        public float CompareTeam([FromBody] List<Team> teams)
+        public float CompareTeam(int teamAId, int teamBId)
         {
-            float teamAEfficiency = teams[0].GetEfficiency();
-            float teamBEfficiency = teams[1].GetEfficiency();
+            var teamA = _teamDBHandler.GetTeam(teamAId);
+            var teamB = _teamDBHandler.GetTeam(teamBId);
+
+            var teamAEfficiency = teamA.GetEfficiency();
+            var teamBEfficiency = teamB.GetEfficiency();
 
             if (teamAEfficiency <= 0 && teamBEfficiency <= 0)
             {
                 return 50;
             }
 
-            float result = 0;
-            result = (teamAEfficiency / (teamAEfficiency + teamBEfficiency)) * 100;
+            var result = (teamAEfficiency / (teamAEfficiency + teamBEfficiency)) * 100;
 
             return result;
         }

@@ -1,0 +1,6 @@
+.teamsContainer {
+    display: flex;
+}
+.teamSelect {
+ padding: 10px;
+}

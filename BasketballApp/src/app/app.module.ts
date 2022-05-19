@@ -15,6 +15,7 @@ import { PlayerTableComponent } from './components/player-table/player-table.com
 import { AngularResizeEventModule } from 'angular-resize-event';
 import { MaterialModule } from './material.module';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     SelectPlayer,
     PlayerTableComponent,
     ConfirmComponent,
+    CompareTeamsComponent,
   ],
   imports: [
     BrowserModule,

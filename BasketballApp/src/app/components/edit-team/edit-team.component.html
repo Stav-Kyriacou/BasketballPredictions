@@ -2,7 +2,7 @@
     <app-banner h1="EDIT" h2="YOUR" h3="TEAM"></app-banner><br>
     <div class="buttonContainer">
         <button mat-raised-button color="primary" (click)="addplayers()">Add New Players</button>
-        <button mat-raised-button color="primary" (click)="confirmDialog()">Remove Players</button>
+        <button mat-raised-button color="warn" (click)="confirmDialog()">Remove Players</button>
         <button mat-raised-button *ngIf="saved" color="primary" (click)="saveTeam()">Save Team</button>
         <button mat-raised-button *ngIf="!saved" color="accent" (click)="saveTeam()">Save Team</button>
         <mat-spinner *ngIf="saving" color="accent" [diameter]="40"></mat-spinner>
