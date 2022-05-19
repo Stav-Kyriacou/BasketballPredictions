@@ -4,6 +4,8 @@ trigger:
     - main
     - staging
 
+pr: none
+
 pool:
   vmImage: ubuntu-latest
 
