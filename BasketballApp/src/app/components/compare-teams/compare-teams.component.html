@@ -1,0 +1,27 @@
+<app-banner h1="COMPARE" h2="TWO" h3="TEAMS"></app-banner>
+<div class="teamsContainer">
+    <div class="teamSelect">
+        <mat-form-field appearance="fill">
+            <mat-label>Teams</mat-label>
+            <mat-select [(value)]="teamAId">
+                <mat-option *ngFor="let team of teams" [value]="team.teamID">
+                    {{team.teamName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <h2>{{winRate}}%</h2>
+    </div>
+    
+    <div class="teamSelect">
+        <mat-form-field appearance="fill">
+            <mat-label>Teams</mat-label>
+            <mat-select [(value)]="teamBId">
+                <mat-option *ngFor="let team of teams" [value]="team.teamID">
+                    {{team.teamName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <h2>{{100 - winRate}}%</h2>
+    </div>
+</div>
+<button mat-raised-button color="primary" (click)="onCompare()">Compare</button>
