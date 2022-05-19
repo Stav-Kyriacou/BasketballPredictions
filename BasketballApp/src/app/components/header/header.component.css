@@ -9,14 +9,18 @@ margin-left:5px;
 
 .sidenav{
 background-color: #FAFAFA;
+position: fixed;
+top:54px;
 }
 
 .container {
 flex: 1 0 auto;
+top:64px;
 }
 
 .toolbar{
 z-index: 2;
+position: fixed;
 }
 
 .main-container{
