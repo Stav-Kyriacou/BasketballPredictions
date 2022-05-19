@@ -32,7 +32,7 @@
       <p *ngFor="let player of team.players">{{player.playerName}}</p>
       <div class="buttonContainer">
         <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
-        <button mat-raised-button color="primary" (click)="confirmDialog(team.teamID)">Delete Team</button>
+        <button mat-raised-button color="warn" (click)="confirmDialog(team.teamID)">Delete Team</button>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
