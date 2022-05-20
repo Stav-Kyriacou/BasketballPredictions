@@ -1,8 +1,26 @@
 <body (resized)="onResize($event)">
-    <mat-form-field appearance="standard">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Kevin Durant" #input>
-    </mat-form-field>
+    <div class="headers">
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Kevin Durant" #input>
+        </mat-form-field>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>help</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <div class="acronyms">
+                <h3><b>Glossary</b></h3>
+                <p>PTS = Points Per Game</p>
+                <p>REB = Rebounds Per Game</p>
+                <p>BLK = Blocks Per Game</p>
+                <p>STL = Steals Per Game</p>
+                <p>AST = Assists Per Game</p>
+                <p>FG = Field Goals Per Game</p>
+                <p>FT = Free Throws Per Game</p>
+                <p>EFF = Player Efficiency calculated with the player's statistics</p>
+            </div>
+        </mat-menu>
+    </div>
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="playerDataSource"  matSort>
 
