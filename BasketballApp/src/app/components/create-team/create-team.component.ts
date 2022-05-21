@@ -49,7 +49,7 @@ export class CreateTeamComponent implements OnInit {
   confirmDialog(TeamID: number): void {
     const message = `Are you sure you want to do this?`;
 
-    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel("Deleting Team", message);
 
     const dialogRef = this.dialog.open(ConfirmComponent, {
       maxWidth: "400px",

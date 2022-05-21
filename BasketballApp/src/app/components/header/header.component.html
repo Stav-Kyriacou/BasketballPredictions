@@ -6,10 +6,9 @@
   <mat-sidenav-container class="container">
     <mat-sidenav #sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">
       <mat-nav-list>
-        <!-- <mat-list-item><button mat-raised-button color="primary" routerLink='/player'>Player Stats</button></mat-list-item> -->
-        <!-- <mat-list-item><button mat-raised-button color="primary" routerLink='/create-team'>Create a Team</button></mat-list-item> -->
         <mat-list-item routerLink="/player">Player Stats</mat-list-item>
         <mat-list-item routerLink="/create-team">Create a Team</mat-list-item>
+        <mat-list-item routerLink="/compare-teams">Compare Teams</mat-list-item>
       </mat-nav-list>
 
     </mat-sidenav>
