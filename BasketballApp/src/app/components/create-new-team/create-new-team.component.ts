@@ -11,36 +11,25 @@ import { TeamService } from 'src/app/services/team/team.service';
   styleUrls: ['./create-new-team.component.css'],
 })
 export class CreateNewTeamComponent implements OnInit {
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+
   value: string = '';
   teams: Team[] = [];
+  teamid: number;
 
   constructor(private _formBuilder: FormBuilder, private _teamService: TeamService, private router: Router, public dialog: MatDialog) {}
   onSubmit() {
     // send POST request with value(name of team) to API
     if (this.value != '') {
-      this._teamService.postATeam(this.value).subscribe(value => value,
+      this._teamService.postATeam(this.value).subscribe(value => console.log(value),
         ()=>{
-          this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+          console.log(this.teamid)
+            this.router.navigate(["edit-team",this.teamid]);
         });
     }
   }
-
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
   }
 
-  // navigate to edit-team page with the team ID as the last /
-  editTeam(team: number) {
-    this.router.navigate(["edit-team", team]);
-  }
 }
 

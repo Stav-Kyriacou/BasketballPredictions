@@ -221,5 +221,38 @@ namespace BasketballApi
                     return "Team removed";
             }
         }
+        
+        //returns a value with stored procedure
+          public int AddTeam2(string newTeam)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand("ADD_TEAM2", conn))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@pTeamID", 0);
+                    command.Parameters.AddWithValue("@pTeamName", newTeam);
+                    command.Parameters.AddWithValue("@pDateMade", System.DateTime.Now);
+
+                    var returnParameter = command.Parameters.Add("@ADD_TEAM2", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
+                    
+                    int rowsAffected = command.ExecuteNonQuery();
+                    var result = returnParameter.Value;
+                    conn.Close();
+
+                    if (rowsAffected >= 1)
+                    {
+                        return (int)result;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                }
+            }
+        }
     }
 }

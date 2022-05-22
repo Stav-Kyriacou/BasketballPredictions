@@ -8,8 +8,9 @@ import { Team } from 'src/app/models/team/team';
 })
 export class TeamService {
 
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  
+  //readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  readonly baseUrl: string = "https://localhost:5001";
+
   constructor(private _http: HttpClient) { }
 
 
@@ -17,10 +18,10 @@ export class TeamService {
     return this._http.get<Team[]>(this.baseUrl + "/teams")
   }
 
-  postATeam(team: string): Observable<string> {
+  postATeam(team: string): Observable<number> {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(team);
-    return this._http.post<string>(this.baseUrl + "/team", body, { 'headers': headers })
+    return this._http.post<number>(this.baseUrl + "/team2", body, { 'headers': headers })
   }
   getATeam(teamID: number): Observable<Team> {
     return this._http.get<Team>(this.baseUrl + '/team/' + teamID)

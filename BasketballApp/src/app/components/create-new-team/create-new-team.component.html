@@ -2,68 +2,20 @@
   <app-banner h1="CREATE" h2="NEW" h3="TEAM"></app-banner>
   <br>
 
+  <div class="teamInputArea">
 
+    <mat-form-field class="createTeam-full-width" appearance="fill">
+      <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
+      <input matInput type="text" [(ngModel)]="value">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="onSubmit()">CREATE TEAM</button>
 
-
-
-
-
-
-<div class="teamInputArea">
-<!--Stepper 1-->
-
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <mat-form-field class="createTeam-full-width" appearance="fill">
-        <ng-template matStepLabel>Enter your team name</ng-template>
-          <mat-label><i>Enter your teams name</i></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-          </button>
-        </mat-form-field>
-      <br>
-        <button mat-raised-button color="primary" (click)="onSubmit()">CREATE TEAM</button>
-      <br>
-      <br>
-        <button mat-raised-button color="primary" matStepperNext>NEXT</button>
-      <br>
-<!--Stepper 2-->
-  <mat-step [stepControl]="secondFormGroup" label="Add players">
-    <form [formGroup]="secondFormGroup">
-      <mat-form-field appearance="fill">
-        <mat-label>Add Players</mat-label>
-
-        <input matInput formControlName="secondCtrl" placeholder="Lebron James"
-               required>
-      </mat-form-field>
-      <br>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let team of teams">
-      <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
-      <p *ngFor="let player of team.players">{{player.playerName}}</p>
-      <div class="buttonContainer">
-        <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-      <div>
-        <br>
-        <button mat-raised-button color="primary" matStepperNext>NEXT</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>Team Created</p>
-    <div>
-      <button mat-raised-button color="primary" routerLink="/create-team">View Teams</button>
-      <br>
-      <br>
-      <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
+    <br>
+    
 
 
 
