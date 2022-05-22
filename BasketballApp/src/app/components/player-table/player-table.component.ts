@@ -1,4 +1,4 @@
-import { Component,ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,7 +7,6 @@ import { PlayerService } from 'src/app/services/player.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Input } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
-import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-player-table',
@@ -21,8 +20,8 @@ export class PlayerTableComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   columnsToDisplay: string[] = ['select', 'image', 'playerName', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoalsMade', 'freeThrowsMade', 'efficiency'];
-  largeRescolumnsToDisplay: string[] = ['select','image','playerName', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoalsMade', 'freeThrowsMade', 'efficiency'];
-  smallResColumnsToDisplay: string[] = ['select','image','playerName', 'efficiency'];
+  largeRescolumnsToDisplay: string[] = ['select', 'image', 'playerName', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoalsMade', 'freeThrowsMade', 'efficiency'];
+  smallResColumnsToDisplay: string[] = ['select', 'image', 'playerName', 'efficiency'];
   playerDataSource: MatTableDataSource<Player>;
   tableLoaded: boolean = false;
   playerList: Player[] = [];
@@ -32,7 +31,9 @@ export class PlayerTableComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.displayCheckbox) {
-      this.columnsToDisplay = this.columnsToDisplay.slice(1, 12);
+      this.columnsToDisplay.splice(0, 1);
+      this.largeRescolumnsToDisplay.splice(0, 1);
+      this.smallResColumnsToDisplay.splice(0, 1);
     }
   }
 
@@ -67,18 +68,11 @@ export class PlayerTableComponent implements OnInit {
     this.selection.select(...this.playerDataSource.data);
   }
 
-  onResize(event:ResizedEvent){
+  onResize(event: ResizedEvent) {
     if (event.newRect.width < 690) {
       this.columnsToDisplay = this.smallResColumnsToDisplay
-    }else{
-      this.columnsToDisplay = this.largeRescolumnsToDisplay}
+    } else {
+      this.columnsToDisplay = this.largeRescolumnsToDisplay
+    }
   }
-
-  /** The label for the checkbox on the passed row */
-  // checkboxLabel(row?: Player): string {
-  //   if (!row) {
-  //     return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-  //   }
-  //   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  // }
 }
