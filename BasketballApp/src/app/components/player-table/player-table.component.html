@@ -1,9 +1,26 @@
 <body (resized)="onResize($event)">
     <div class="headers">
+        <!--Filter-->
         <mat-form-field appearance="standard">
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Kevin Durant" #input>
         </mat-form-field>
+
+        <!--Advanced Filter-->
+        <button mat-icon-button [matMenuTriggerFor]="filterMenu">
+            <mat-icon>filter_list</mat-icon>
+        </button>
+        <mat-menu #filterMenu="matMenu">
+            <h3><b>Filter by:</b></h3>
+            <mat-radio-group class="filter-radio-group" [(ngModel)]="filter">
+                <mat-radio-button class="filter-radio-button" *ngFor="let filter of filters" [value]="filter"
+                    (change)="radioChanged($event)" [checked]="filter === 'Name'">
+                    {{filter}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </mat-menu>
+
+        <!--Glossary-->
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>help</mat-icon>
         </button>
@@ -22,7 +39,7 @@
         </mat-menu>
     </div>
     <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="playerDataSource"  matSort>
+        <table mat-table [dataSource]="playerDataSource" matSort>
 
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
