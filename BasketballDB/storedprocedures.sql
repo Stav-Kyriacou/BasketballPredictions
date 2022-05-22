@@ -24,12 +24,15 @@ BEGIN
 END
 GO
 
+------------------------------------------------------------
+----------------------------Counter-------------------------
+------------------------------------------------------------
+
 IF OBJECT_ID('CountBy1') IS NOT NULL
     DROP SEQUENCE Count.CountBy1;
 
 IF OBJECT_ID('Count') IS NOT NULL
     DROP SCHEMA Count;
-
 
 Create SCHEMA Count;
 GO

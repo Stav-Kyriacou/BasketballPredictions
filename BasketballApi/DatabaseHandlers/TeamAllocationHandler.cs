@@ -104,7 +104,7 @@ namespace BasketballApi
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"DELETE FROM TeamAllocation WHERE TeamID = {newTeam.TeamID}", conn);
+                SqlCommand command = new SqlCommand($"DELETE FROM TeamAllocation WHERE TeamID = {newTeam.TeamID} UPDATE Teams SET TeamName = '{newTeam.TeamName}' Where TeamID = {newTeam.TeamID}", conn);
                 rowsAffected += command.ExecuteNonQuery();
 
                 foreach (var p in newTeam.Players)
