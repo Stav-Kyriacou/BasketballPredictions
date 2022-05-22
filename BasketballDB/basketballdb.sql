@@ -1,4 +1,3 @@
-
 IF OBJECT_ID('TeamAllocation', 'U') IS NOT NULL
 DROP TABLE TeamAllocation
 GO
