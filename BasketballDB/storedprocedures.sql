@@ -31,7 +31,7 @@ IF OBJECT_ID('CountBy1') IS NOT NULL
 IF OBJECT_ID('Count') IS NOT NULL
     DROP SCHEMA Count;
 
-
+GO
 Create SCHEMA Count;
 GO
 
@@ -82,7 +82,11 @@ BEGIN
     WHERE TeamID = @pTeamID
         AND Year = @pYear
         AND PlayerID = @pPlayerID
-
+    END TRY
+    BEGIN CATCH
+    END CATCH
+END
+GO
 ------------------------------------------------------------
 ------------------------REMOVE TEAM-------------------------
 ------------------------------------------------------------
@@ -107,9 +111,6 @@ BEGIN
 END
 GO
 
-EXEC DELETE_TEAM @pTeamID = 1;
-
-SELECT * FROM Teams;
 ------------------------------------------------------------
 --------------------------ADD TEAM V2-----------------------
 ------------------------------------------------------------
@@ -118,13 +119,14 @@ IF OBJECT_ID('ADD_TEAM2') IS NOT NULL
 GO
 
 CREATE PROCEDURE ADD_TEAM2
-    @pTeamID INT,
+    @pTeamID INT OUTPUT,
     @pTeamName NVARCHAR(100),
     @pDateMade DATE
 AS
 BEGIN
     DECLARE @ID BIGINT;
     SET @ID = NEXT VALUE FOR Count.CountBy1;
+    SET @pTeamID = @ID
     BEGIN TRY
         INSERT INTO Teams
         (TeamID, TeamName, DateMade)
