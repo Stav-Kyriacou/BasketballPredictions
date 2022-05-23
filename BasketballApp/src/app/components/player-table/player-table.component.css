@@ -1,10 +1,11 @@
 table {
   font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
   width: 100%;
 }
-
 td, th {
-  font-size: larger !important;
+  font-weight: bold;
+  font-size:larger!important;
 }
 
 .namecolumn {
