@@ -20,10 +20,10 @@ export class CreateNewTeamComponent implements OnInit {
   onSubmit() {
     // send POST request with value(name of team) to API
     if (this.value != '') {
-      this._teamService.postATeam(this.value).subscribe(value => console.log(value),
+      this._teamService.postATeam(this.value).subscribe(value => this.teamid,
         ()=>{
           console.log(this.teamid)
-            this.router.navigate(["edit-team",this.teamid]);
+            this.router.navigate(["edit-team", this.value]);
         });
     }
   }
