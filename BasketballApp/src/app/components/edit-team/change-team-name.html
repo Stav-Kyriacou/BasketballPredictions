@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{data.team.teamName}}</h1>
+<div mat-dialog-content>
+  <p>What would you like to change to?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>New Team Name</mat-label>
+    <input matInput [(ngModel)]="data.team.teamName">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Discard</button>
+  <button mat-button color="accent" [mat-dialog-close]="data.team.teamName" cdkFocusInitial>Update</button>
+</div>

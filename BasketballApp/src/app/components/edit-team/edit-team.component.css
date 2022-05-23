@@ -28,6 +28,7 @@ table {
 }
 .buttonContainer {
   display: flex;
+  justify-content: flex-end;
 }
 .buttonContainer > * {
   margin-right: 5px;
