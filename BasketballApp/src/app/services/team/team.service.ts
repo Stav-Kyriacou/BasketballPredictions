@@ -21,6 +21,7 @@ export class TeamService {
   postATeam(team: string): Observable<number> {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(team);
+    console.log(body);
     return this._http.post<number>(this.baseUrl + "/team2", body, { 'headers': headers })
   }
   getATeam(teamID: number): Observable<Team> {
