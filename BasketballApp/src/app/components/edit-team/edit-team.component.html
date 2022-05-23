@@ -3,11 +3,17 @@
     <div class="buttonContainer">
         <button mat-raised-button color="primary" (click)="addplayers()">Add New Players</button>
         <button mat-raised-button color="warn" (click)="confirmDialog()">Remove Players</button>
-        <button mat-raised-button *ngIf="saved" color="primary" (click)="saveTeam()">Save Team</button>
-        <button mat-raised-button *ngIf="!saved" color="accent" (click)="saveTeam()">Save Team</button>
         <button mat-raised-button color="primary" (click)="editNameDialog()">Edit Team Name</button>
-        <mat-spinner *ngIf="saving" color="accent" [diameter]="40"></mat-spinner>
-    </div>   
+        <button mat-raised-button *ngIf="saved && !saving" color="primary" (click)="saveTeam()">Save Team</button>
+        <button mat-raised-button *ngIf="!saved && !saving" color="accent" (click)="saveTeam()">Save Team</button>
+        <button mat-raised-button *ngIf="saving" color="accent" (click)="saveTeam()" class="save-button">
+            <div class="saving-status">
+                <p>Saving</p>
+                <mat-spinner [diameter]="20"></mat-spinner>
+            </div>
+        </button>
+
+    </div>
     <div class="edit-team">
         <div class="table-players">
             <h1>{{teamName}}</h1>
