@@ -5,6 +5,7 @@ import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
 import { PlayerService } from '../../services/player.service'
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-view-all-teams',
@@ -14,7 +15,8 @@ import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.compone
 export class ViewAllTeamsComponent implements OnInit {
   value: string = '';
   teams: Team[] = [];
-
+  tableLoaded: boolean = false;
+  TeamDataSource: MatTableDataSource<Team>;
 
   constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
 
@@ -22,6 +24,12 @@ export class ViewAllTeamsComponent implements OnInit {
     // Get all Teams data
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
 
+  }
+  setupTable(teams: Team[]) {
+    this.tableLoaded = true;
+    setTimeout(() => {
+      this.tableLoaded = false
+    }, 5000)
   }
 
   // navigate to edit-team page with the team ID as the last /

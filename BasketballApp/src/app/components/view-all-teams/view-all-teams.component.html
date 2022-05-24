@@ -11,6 +11,9 @@
       </th>
     </table>
   </div> -->
+
+<mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
+
 <br>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let team of teams">
@@ -23,7 +26,6 @@
     </mat-expansion-panel>
   </mat-accordion>
 </body>
-
 
 
 
