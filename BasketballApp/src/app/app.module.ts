@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { PlayerComponent } from './components/player/player.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CreateTeamComponent } from './components/create-team/create-team.component';
+import { ViewAllTeamsComponent } from './components/view-all-teams/view-all-teams.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './components/banner/banner.component';
 import { EditTeamComponent } from './components/edit-team/edit-team.component'
@@ -22,7 +22,7 @@ import { CreateNewTeamComponent } from './components/create-new-team/create-new-
     AppComponent,
     PlayerComponent,
     HeaderComponent,
-    CreateTeamComponent,
+    ViewAllTeamsComponent,
     BannerComponent,
     EditTeamComponent,
     SelectPlayer,
