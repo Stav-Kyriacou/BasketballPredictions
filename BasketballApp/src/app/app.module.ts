@@ -16,6 +16,8 @@ import { AngularResizeEventModule } from 'angular-resize-event';
 import { MaterialModule } from './material.module';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { CreateNewTeamComponent } from './components/create-new-team/create-new-team.component';
+import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
+import { EditTeamName } from './components/edit-team/edit-team.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { CreateNewTeamComponent } from './components/create-new-team/create-new-
     PlayerTableComponent,
     ConfirmComponent,
     CreateNewTeamComponent,
+    CompareTeamsComponent,
+    EditTeamName
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
@@ -16,20 +16,18 @@ export class CreateNewTeamComponent implements OnInit {
   teams: Team[] = [];
   teamid: number;
 
-  constructor(private _formBuilder: FormBuilder, private _teamService: TeamService, private router: Router, public dialog: MatDialog) {}
+  constructor(private _formBuilder: FormBuilder, private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
   onSubmit() {
     // send POST request with value(name of team) to API
     if (this.value != '') {
       this._teamService.postATeam(this.value).subscribe(value => this.teamid = value, null,
-        ()=>{
+        () => {
           console.log(this.teamid)
-            this.router.navigate(["edit-team", this.teamid]);
+          this.router.navigate(["edit-team", this.teamid]);
         });
     }
   }
   ngOnInit() {
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
   }
-
 }
-

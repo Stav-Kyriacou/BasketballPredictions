@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { Player } from 'src/app/models/player/player';
 import { Team } from 'src/app/models/team/team';
 import { PlayerService } from 'src/app/services/player.service';
@@ -16,8 +16,6 @@ export interface AddPlayer {
   team: Team;
 }
 
-let team: Team;
-
 @Component({
   selector: 'app-edit-team',
   templateUrl: './edit-team.component.html',
@@ -28,11 +26,12 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   playerList: Player[] = [];
   saving: boolean = false;
   saved: boolean = true;
+  currentTeam: Team;
+  teamName: string;
 
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private _teamService: TeamService,
     private _playerService: PlayerService,
@@ -50,10 +49,11 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
     this.route.paramMap.subscribe(params => { this.teamID = Number(params.get("teamID")) })
 
     // Get team data from API using teamID
-    this._teamService.getATeam(this.teamID).subscribe(unpackedTeams => team = unpackedTeams,
+    this._teamService.getATeam(this.teamID).subscribe(unpackedTeams => this.currentTeam = unpackedTeams,
       error => console.log("Error" + error),
       () => {
-        this.playerTable.setupTable(team.players);
+        this.playerTable.setupTable(this.currentTeam.players);
+        this.teamName = this.currentTeam.teamName;
       });
 
     // Get all players
@@ -66,18 +66,18 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
     if (selectedPlayers.length <= 0) return;
 
     //Remove all selected players from the current team
-    team.players = team.players.filter(function (player) {
+    this.currentTeam.players = this.currentTeam.players.filter(function (player) {
       return !selectedPlayers.includes(player);
     });
     this.saved = false;
     this.playerTable.selection.clear();
-    this.playerTable.setupTable(team.players);
+    this.playerTable.setupTable(this.currentTeam.players);
   }
 
   saveTeam() {
     if (this.saved) return;
     this.saving = true;
-    this._teamService.saveATeam(team).subscribe(value => value,
+    this._teamService.saveATeam(this.currentTeam).subscribe(value => value,
       () => {
         // this.router.navigate(["create-team"]);
         this.saving = false;
@@ -90,10 +90,10 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
     const dialogRef = this.dialog.open(SelectPlayer, {
       width: '60vw',
       height: '600px',
-      data: { playerList: this.playerList },
+      data: { playerList: this.playerList, team: this.currentTeam },
     })
     dialogRef.afterClosed().subscribe(result => {
-      this.playerTable.setupTable(team.players);
+      this.playerTable.setupTable(this.currentTeam.players);
       if (result.event > 0) {
         this.saved = false;
       }
@@ -103,7 +103,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   confirmDialog(): void {
     const message = `Are you sure you want to do this?`;
 
-    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel("Removing Player", message);
 
     const dialogRef = this.dialog.open(ConfirmComponent, {
       maxWidth: "400px",
@@ -115,6 +115,26 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
         this.removePlayers()
       }
     });
+  }
+
+  editNameDialog(): void {
+    const dialogRef = this.dialog.open(EditTeamName, {
+      width: '250px',
+      data: {playerList: this.playerList, team: this.currentTeam},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result != '' && result != undefined) {
+        this.currentTeam.teamName = result;
+        this.teamName = this.currentTeam.teamName;
+        this.saved = false;
+      }
+    });
+  }
+
+  changeTeamName(teamName:string): void{
+    this.currentTeam.teamName = teamName;
   }
 
 }
@@ -149,15 +169,15 @@ export class SelectPlayer {
     let duplicatePlayers = 0;
     let message = "";
 
-    if (team.players == null) {
-      team.players = [];
+    if (this.data.team.players == null) {
+      this.data.team.players = [];
     }
 
     selectedPlayers.forEach(player => {
-      if (team.players.some(p => p.playerID === player.playerID)) {
+      if (this.data.team.players.some(p => p.playerID === player.playerID)) {
         duplicatePlayers++;
       } else {
-        team.players.push(player);
+        this.data.team.players.push(player);
         playersAdded++;
       }
     });
@@ -174,5 +194,20 @@ export class SelectPlayer {
     });
 
     this.dialogRef.close({ event: playersAdded });
+  }
+}
+
+@Component({
+  selector: 'edit-team-name',
+  templateUrl: 'change-team-name.html',
+})
+export class EditTeamName {
+  constructor(
+    public dialogRef: MatDialogRef<EditTeamName>,
+    @Inject(MAT_DIALOG_DATA) public data: AddPlayer,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

@@ -1,0 +1,30 @@
+.teamsContainer {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.teamSelect {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 30px;
+    font-size: 15px;
+ 
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    font-weight: 550;
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.progSpinner {
+    display: flex;
+    justify-content: center;
+}

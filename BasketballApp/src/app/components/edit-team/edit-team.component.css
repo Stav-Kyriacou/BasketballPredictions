@@ -1,35 +1,70 @@
 table {
-    font-family: 'Courier New', Courier, monospace;
-    width: 100%;
-  }
-  
-  .namecolumn {
-    width: 20%;
-  }
-  
-  .statcolumn {
-    width: 8%;
-  }
-  
-  th {
-    text-align: left;
-    padding: 15px;
-  }
-  
-  tr:hover {
-    background-color: rgb(218, 218, 218);
-  }
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+}
 
-.table-players{
-    padding: 15px;
+.namecolumn {
+  width: 20%;
 }
-.playerimg{
-    height: 100px;
+
+.statcolumn {
+  width: 8%;
 }
+
+th {
+  text-align: left;
+  padding: 15px;
+}
+
+tr:hover {
+  background-color: rgb(218, 218, 218);
+}
+
+.table-players {
+  padding: 15px;
+}
+
+.playerimg {
+  height: 100px;
+}
+
 .buttonContainer {
   display: flex;
+  justify-content: flex-end;
 }
-.buttonContainer > * {
+
+.buttonContainer>* {
   margin-right: 5px;
-  height: 40px;
+  height: 38px;
 }
+
+.save-button div {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.save-button p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.save-button {
+  min-width: unset !important;
+}
+
+.saving-status ::ng-deep .mat-progress-spinner {
+  margin-left: 5px;
+}
+
+.saving-status ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #ffffff;
+}
+
+@media screen and (max-width:900px) {
+  .buttonContainer button {
+    font-size: 11px;
+  }
+  }

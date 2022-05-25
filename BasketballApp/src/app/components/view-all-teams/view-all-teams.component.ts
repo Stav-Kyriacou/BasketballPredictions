@@ -15,21 +15,16 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ViewAllTeamsComponent implements OnInit {
   value: string = '';
   teams: Team[] = [];
-  tableLoaded: boolean = false;
-  TeamDataSource: MatTableDataSource<Team>;
+  teamsLoaded: boolean = false;
 
   constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     // Get all Teams data
-    this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+    this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams, null, () => {
+      this.teamsLoaded = true;
+    });
 
-  }
-  setupTable(teams: Team[]) {
-    this.tableLoaded = true;
-    setTimeout(() => {
-      this.tableLoaded = false
-    }, 5000)
   }
 
   // navigate to edit-team page with the team ID as the last /
@@ -46,7 +41,7 @@ export class ViewAllTeamsComponent implements OnInit {
   confirmDialog(TeamID: number): void {
     const message = `Are you sure you want to do this?`;
 
-    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel("Deleting Team", message);
 
     const dialogRef = this.dialog.open(ConfirmComponent, {
       maxWidth: "400px",
@@ -54,7 +49,7 @@ export class ViewAllTeamsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if (dialogResult ==true) {
+      if (dialogResult == true) {
         this.deleteTeam(TeamID)
       }
     });

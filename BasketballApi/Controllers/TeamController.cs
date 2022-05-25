@@ -42,7 +42,7 @@ namespace BasketballApi
         /// <returns></returns>
         [HttpPost]
         [EnableCors("MyPolicy")]
-        [Route("/team2")]
+        [Route("/create-team")]
         public int PostTeam([FromBody] string newTeam)
         {
             return _teamDBHandler.AddTeam(newTeam);
@@ -59,7 +59,32 @@ namespace BasketballApi
         {
             return _teamDBHandler.DeleteTeam(teamId);
         }
-        
-        
+
+        /// <summary>
+        /// Compare two teams' win rate %
+        /// </summary>
+        /// <param name="teamAId"></param>
+        /// <param name="teamBId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [EnableCors("MyPolicy")]
+        [Route("/compare")]
+        public float CompareTeam(int teamAId, int teamBId)
+        {
+            var teamA = _teamDBHandler.GetTeam(teamAId);
+            var teamB = _teamDBHandler.GetTeam(teamBId);
+
+            var teamAEfficiency = teamA.GetEfficiency();
+            var teamBEfficiency = teamB.GetEfficiency();
+
+            if (teamAEfficiency <= 0 && teamBEfficiency <= 0)
+            {
+                return 50;
+            }
+
+            var result = (teamAEfficiency / (teamAEfficiency + teamBEfficiency)) * 100;
+
+            return result;
+        }
     }
 }

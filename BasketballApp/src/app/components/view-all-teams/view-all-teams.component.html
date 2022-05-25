@@ -1,39 +1,18 @@
 <body>
-
   <app-banner h1="VIEW" h2="ALL" h3="TEAMS"></app-banner><br>
+  <div *ngIf="!teamsLoaded">Fetching teams...
+    <mat-progress-bar mode="query"></mat-progress-bar>
+  </div>
 
-
-
-  <!-- <div class="table">
-    <table class="teamNames">
-      <th>
-        <tr *ngFor="let team of teams">{{team.teamName}}</tr>
-      </th>
-    </table>
-  </div> -->
-
-<mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
-
-<br>
+  <br>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let team of teams">
       <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
       <p *ngFor="let player of team.players">{{player.playerName}}</p>
       <div class="buttonContainer">
         <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
-        <button mat-raised-button color="primary" (click)="confirmDialog(team.teamID)">Delete Team</button>
+        <button mat-raised-button color="warn" (click)="confirmDialog(team.teamID)">Delete Team</button>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
 </body>
-
-
-
-
-<!-- <div class="teamInputArea"> -->
-<!-- <form class="createTeam-form">
-    <mat-form-field class="createTeam-full-width" appearance="fill">
-      <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
-      <input matInput placeholder="Eg. East Beasts" value="">
-    </mat-form-field> -->
-<!-- </div> -->
