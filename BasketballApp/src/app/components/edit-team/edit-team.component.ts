@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Player } from 'src/app/models/player/player';
 import { Team } from 'src/app/models/team/team';
 import { PlayerService } from 'src/app/services/player.service';
@@ -10,6 +10,7 @@ import { TeamService } from 'src/app/services/team/team.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { Observable } from 'rxjs';
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
+import { ResizedEvent } from 'angular-resize-event';
 
 export interface AddPlayer {
   playerList: Player[];
@@ -28,9 +29,10 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   saved: boolean = true;
   currentTeam: Team;
   teamName: string;
+  pageSmall: boolean;
 
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
-
+  
   constructor(
     private route: ActivatedRoute,
     private _teamService: TeamService,
@@ -111,7 +113,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if (dialogResult ==true) {
+      if (dialogResult == true) {
         this.removePlayers()
       }
     });
@@ -120,7 +122,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   editNameDialog(): void {
     const dialogRef = this.dialog.open(EditTeamName, {
       width: '250px',
-      data: {playerList: this.playerList, team: this.currentTeam},
+      data: { playerList: this.playerList, team: this.currentTeam },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -133,11 +135,20 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
     });
   }
 
-  changeTeamName(teamName:string): void{
+  changeTeamName(teamName: string): void {
     this.currentTeam.teamName = teamName;
   }
-
+  onResize(event: ResizedEvent) {
+    if (event.newRect.width < 690) {
+      this.pageSmall = true;
+    }
+    else {
+      this.pageSmall = false;
+    }
+  }
 }
+
+// new dialog-box component : select player //
 
 @Component({
   selector: 'select-player',
@@ -205,7 +216,7 @@ export class EditTeamName {
   constructor(
     public dialogRef: MatDialogRef<EditTeamName>,
     @Inject(MAT_DIALOG_DATA) public data: AddPlayer,
-  ) {}
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();

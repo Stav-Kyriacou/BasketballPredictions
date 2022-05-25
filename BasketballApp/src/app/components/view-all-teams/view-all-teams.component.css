@@ -1,13 +1,7 @@
 .teamInputArea {
-    width: 100%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
-
-.createTeam-full-width {
-    width: 500px;
-    text-align: center;
 }
 
 .teamNames {
@@ -28,4 +22,5 @@ tr {
 }
 .buttonContainer button {
     margin-right: 5px;
+    
 }
