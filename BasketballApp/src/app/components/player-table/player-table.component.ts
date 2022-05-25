@@ -1,4 +1,4 @@
-import { Component,ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,7 +7,8 @@ import { PlayerService } from 'src/app/services/player.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Input } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { MatInput } from '@angular/material/input';
+import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
   selector: 'app-player-table',
@@ -19,10 +20,13 @@ export class PlayerTableComponent implements OnInit {
   @Input() itemsPerPage: number[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatInput) filterInut: MatInput;
 
   columnsToDisplay: string[] = ['select', 'image', 'playerName', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoalsMade', 'freeThrowsMade', 'efficiency'];
-  largeRescolumnsToDisplay: string[] = ['select','image','playerName', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoalsMade', 'freeThrowsMade', 'efficiency'];
-  smallResColumnsToDisplay: string[] = ['select','image','playerName', 'efficiency'];
+  largeRescolumnsToDisplay: string[] = ['select', 'image', 'playerName', 'team', 'points', 'rebounds', 'blocks', 'steals', 'assists', 'fieldGoalsMade', 'freeThrowsMade', 'efficiency'];
+  smallResColumnsToDisplay: string[] = ['select', 'image', 'playerName', 'efficiency'];
+  filters: string[] = ['Name', 'Team', 'PTS', 'REB', 'BLK', 'STL', 'AST', 'FGM', 'FTM', 'EFF'];
+  filter: string = this.filters[0];
   playerDataSource: MatTableDataSource<Player>;
   tableLoaded: boolean = false;
   playerList: Player[] = [];
@@ -32,13 +36,18 @@ export class PlayerTableComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.displayCheckbox) {
-      this.columnsToDisplay = this.columnsToDisplay.slice(1, 12);
+      this.columnsToDisplay.splice(0, 1);
+      this.largeRescolumnsToDisplay.splice(0, 1);
+      this.smallResColumnsToDisplay.splice(0, 1);
     }
   }
 
   setupTable(playerList: Player[]) {
     this.playerDataSource = new MatTableDataSource<Player>(playerList);
     this.playerDataSource.paginator = this.paginator;
+    this.playerDataSource.filterPredicate = (data: Player, filter: string) => {
+      return data.playerName.trim().toLowerCase().indexOf(filter) != -1;
+    }
     this.playerDataSource.sort = this.sort;
     this.tableLoaded = true;
   }
@@ -67,18 +76,61 @@ export class PlayerTableComponent implements OnInit {
     this.selection.select(...this.playerDataSource.data);
   }
 
-  onResize(event:ResizedEvent){
+  onResize(event: ResizedEvent) {
     if (event.newRect.width < 690) {
       this.columnsToDisplay = this.smallResColumnsToDisplay
-    }else{
-      this.columnsToDisplay = this.largeRescolumnsToDisplay}
+    } else {
+      this.columnsToDisplay = this.largeRescolumnsToDisplay
+    }
   }
+  radioChanged(event: MatRadioChange): void {
+    this.playerDataSource.filterPredicate = (data: Player, filter: string) => {
+      var match;      
 
-  /** The label for the checkbox on the passed row */
-  // checkboxLabel(row?: Player): string {
-  //   if (!row) {
-  //     return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-  //   }
-  //   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  // }
+      switch (event.value) {
+        case 'Name':
+          match = data.playerName.trim().toLowerCase().indexOf(filter) != -1;
+          break;
+        case 'Team':
+          match = data.team.trim().toLowerCase().indexOf(filter) != -1;
+          break;
+        case 'PTS':
+          match = data.points == parseFloat(filter);
+          break;
+        case 'REB':
+          match = data.rebounds == parseFloat(filter);
+          break;
+        case 'BLK':
+          match = data.blocks == parseFloat(filter);
+          break;
+        case 'STL':
+          match = data.steals == parseFloat(filter);
+          break;
+        case 'AST':
+          match = data.assists == parseFloat(filter);
+          break;
+        case 'FGM':
+          match = data.fieldGoalsMade == parseFloat(filter);
+          break;
+        case 'FTM':
+          match = data.freeThrowsMade == parseFloat(filter);
+          break;
+        case 'EFF':
+          match = data.efficiency == parseFloat(filter);
+          break;
+        default:
+          break;
+      }
+      return match;
+    }
+
+    var filterValue = this.filterInut.value.trim().toLowerCase();
+    if (filterValue.length > 0) {
+      this.playerDataSource.filter = filterValue;
+
+      if (this.playerDataSource.paginator) {
+        this.playerDataSource.paginator.firstPage();
+      }
+    }
+  }
 }
