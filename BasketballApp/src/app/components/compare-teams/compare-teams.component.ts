@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
+import { PlayerTableComponent } from '../player-table/player-table.component';
 
 @Component({
   selector: 'app-compare-teams',
@@ -13,6 +14,9 @@ export class CompareTeamsComponent implements OnInit {
   teamBId: number;
   winRate: number = 50;
   generated: boolean = true;
+  
+  @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
+
 
   constructor(private _teamService: TeamService) { }
 
