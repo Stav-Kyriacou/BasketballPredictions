@@ -21,6 +21,7 @@ BEGIN
     END TRY
     BEGIN CATCH
     END CATCH
+
 END
 GO
 
@@ -84,7 +85,11 @@ BEGIN
     WHERE TeamID = @pTeamID
         AND Year = @pYear
         AND PlayerID = @pPlayerID
-
+    END TRY
+    BEGIN CATCH
+    END CATCH
+END
+GO
 ------------------------------------------------------------
 ------------------------REMOVE TEAM-------------------------
 ------------------------------------------------------------
@@ -109,6 +114,32 @@ BEGIN
 END
 GO
 
-EXEC DELETE_TEAM @pTeamID = 1;
+------------------------------------------------------------
+--------------------------ADD TEAM V2-----------------------
+------------------------------------------------------------
+IF OBJECT_ID('ADD_TEAM2') IS NOT NULL
+    DROP PROCEDURE ADD_TEAM2;
+GO
 
-SELECT * FROM Teams;
+CREATE PROCEDURE ADD_TEAM2
+    @pTeamID INT OUTPUT,
+    @pTeamName NVARCHAR(100),
+    @pDateMade DATE
+AS
+BEGIN
+    DECLARE @ID BIGINT;
+    SET @ID = NEXT VALUE FOR Count.CountBy1;
+    SET @pTeamID = @ID
+    BEGIN TRY
+        INSERT INTO Teams
+        (TeamID, TeamName, DateMade)
+    VALUES
+        (@ID, @pTeamName, @pDateMade)
+    END TRY
+    BEGIN CATCH
+    END CATCH
+
+    Return @pTeamID
+    
+END
+GO
