@@ -2,8 +2,8 @@ import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Player } from 'src/app/models/player/player';
 import { Team } from 'src/app/models/team/team';
-import { TeamService } from 'src/app/services/team/team.service';
 import { SelectPlayer, AddPlayer } from '../edit-team/edit-team.component';
+import { TeamService } from 'src/app/services/team/team.service';
 import { PlayerTableComponent } from '../player-table/player-table.component';
 
 @Component({
