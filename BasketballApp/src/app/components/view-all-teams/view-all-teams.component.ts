@@ -24,7 +24,6 @@ export class ViewAllTeamsComponent implements OnInit {
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams, null, () => {
       this.teamsLoaded = true;
     });
-
   }
 
   // navigate to edit-team page with the team ID as the last /

@@ -205,17 +205,17 @@ namespace BasketballApi
             {
                 conn.Open();
 
-                using (SqlCommand command = new SqlCommand("DELETE_TEAM", conn))
-                {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@pTeamID", 0);
-                    command.Parameters["@pTeamID"].Value = teamId;
-
-                    int rowsAffected = command.ExecuteNonQuery();
-                    conn.Close();
-                }
-                return "Team removed";
+                    using (SqlCommand command = new SqlCommand("DELETE_TEAM", conn))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@pTeamID", 0);
+                        command.Parameters["@pTeamID"].Value = teamId;
+                        
+                        int rowsAffected = command.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    return "Team removed";
             }
-        }
+        } 
     }
 }

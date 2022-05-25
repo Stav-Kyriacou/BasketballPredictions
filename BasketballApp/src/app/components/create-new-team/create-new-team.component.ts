@@ -16,7 +16,8 @@ export class CreateNewTeamComponent implements OnInit {
   teams: Team[] = [];
   teamid: number;
 
-  constructor(private _formBuilder: FormBuilder, private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
+
+  constructor(private _formBuilder: FormBuilder, private _teamService: TeamService, private router: Router, public dialog: MatDialog) {}
   onSubmit() {
     // send POST request with value(name of team) to API
     if (this.value != '') {
@@ -27,6 +28,7 @@ export class CreateNewTeamComponent implements OnInit {
         });
     }
   }
+
   ngOnInit() {
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
   }
