@@ -1,5 +1,4 @@
 <body>
-
   <app-banner h1="CREATE" h2="YOUR OWN" h3="TEAM"></app-banner><br>
 
   <div class="teamInputArea">
@@ -18,13 +17,6 @@
 
   </div>
 
-  <!-- <div class="table">
-    <table class="teamNames">
-      <th>
-        <tr *ngFor="let team of teams">{{team.teamName}}</tr>
-      </th>
-    </table>
-  </div> -->
 <br>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let team of teams">
@@ -37,15 +29,3 @@
     </mat-expansion-panel>
   </mat-accordion>
 </body>
-
-
-
-
-
-<!-- <div class="teamInputArea"> -->
-<!-- <form class="createTeam-form">
-    <mat-form-field class="createTeam-full-width" appearance="fill">
-      <mat-label><i>ENTER YOUR TEAM'S NAME</i></mat-label>
-      <input matInput placeholder="Eg. East Beasts" value="">
-    </mat-form-field> -->
-<!-- </div> -->
