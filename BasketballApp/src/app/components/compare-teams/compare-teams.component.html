@@ -13,8 +13,9 @@
                 </mat-select>
             </mat-form-field>
             <h2>{{winRate | number : '1.2-2'}}%</h2>
+            <app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table>
         </div>
-
+        
         <div class="teamSelect">
             <mat-form-field appearance="fill">
                 <mat-label>Teams</mat-label>
@@ -25,6 +26,7 @@
                 </mat-select>
             </mat-form-field>
             <h2>{{100 - winRate | number : '1.2-2'}}%</h2>
+            <app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table>
         </div>
 
     </div>
