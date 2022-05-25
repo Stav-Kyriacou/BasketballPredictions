@@ -148,6 +148,8 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   }
 }
 
+// new dialog-box component : select player //
+
 @Component({
   selector: 'select-player',
   templateUrl: 'select-player.html',

@@ -6,37 +6,41 @@
         <div class="teamSelect">
             <mat-form-field appearance="fill">
                 <mat-label>Teams</mat-label>
-                <mat-select [(value)]="teamAId">
+                <mat-select [(value)]="teamAId" (selectionChange)="onChangeTeam($event)">
                     <mat-option *ngFor="let team of teams" [value]="team.teamID">
                         {{team.teamName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <h2>{{winRate | number : '1.2-2'}}%</h2>
-            <app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table>
+            <div>
+                <button mat-raised-button color="primary" (click)="onViewTeam(1)">View Players</button>
+            </div>
+            <br>
+            <br>
+            <h2 *ngIf="showWinRate">{{winRate | number : '1.2-2'}}%</h2>
         </div>
         
         <div class="teamSelect">
             <mat-form-field appearance="fill">
                 <mat-label>Teams</mat-label>
-                <mat-select [(value)]="teamBId">
+                <mat-select [(value)]="teamBId" (selectionChange)="onChangeTeam($event)">
                     <mat-option *ngFor="let team of teams" [value]="team.teamID">
                         {{team.teamName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <h2>{{100 - winRate | number : '1.2-2'}}%</h2>
-            <app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table>
+                <div>
+                    <button mat-raised-button color="primary" (click)="onViewTeam(2)">View Players</button>
+                </div>
+            <br>
+            <br>
+            <h2 *ngIf="showWinRate">{{100 - winRate | number : '1.2-2'}}%</h2>
         </div>
 
     </div>
 
     <div class="buttonContainer">
         <button mat-raised-button color="primary" (click)="onCompare()">Compare</button>
-        <!-- <div class="generating-status">
-        <p>Generating</p>
-        <mat-spinner [diameter]="20"></mat-spinner>
-    </div> -->
     </div>
     <br>
     <div class="progSpinner">

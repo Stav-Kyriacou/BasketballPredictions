@@ -18,6 +18,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { CreateNewTeamComponent } from './components/create-new-team/create-new-team.component';
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 import { EditTeamName } from './components/edit-team/edit-team.component';
+import { ViewTeam } from './components/compare-teams/compare-teams.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EditTeamName } from './components/edit-team/edit-team.component';
     ConfirmComponent,
     CreateNewTeamComponent,
     CompareTeamsComponent,
-    EditTeamName
+    EditTeamName,
+    ViewTeam
   ],
   imports: [
     BrowserModule,
