@@ -6,15 +6,18 @@
 }
 
 .teamSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     font-family: 'Courier New', Courier, monospace;
     padding: 30px;
     font-size: 15px;
- 
+
 }
 
 h2 {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 25px;
+    font-size: 50px;
     font-weight: 550;
     text-align: center;
 }
@@ -24,7 +27,35 @@ h2 {
     justify-content: center;
 }
 
+.teamSelect div button {
+    margin: 0 auto;
+    display: block;
+}
+
 .progSpinner {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width:900px) {
+    h2 {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: calc(26px + 4vw);
+        font-weight: 550;
+        text-align: center;
+    }
+
+    .teamsContainer {
+        font-family: 'Courier New', Courier, monospace;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .teamSelect {
+        font-family: 'Courier New', Courier, monospace;
+        padding: 30px;
+        font-size: 15px;
+
+    }
 }
