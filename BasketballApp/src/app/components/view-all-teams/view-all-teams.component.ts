@@ -15,21 +15,16 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ViewAllTeamsComponent implements OnInit {
   value: string = '';
   teams: Team[] = [];
-  tableLoaded: boolean = false;
-  TeamDataSource: MatTableDataSource<Team>;
+  teamsLoaded: boolean = false;
+
 
   constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     // Get all Teams data
-    this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
-
-  }
-  setupTable(teams: Team[]) {
-    this.tableLoaded = true;
-    setTimeout(() => {
-      this.tableLoaded = false
-    }, 5000)
+    this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams, null, () => {
+      this.teamsLoaded = true;
+    });
   }
 
   // navigate to edit-team page with the team ID as the last /

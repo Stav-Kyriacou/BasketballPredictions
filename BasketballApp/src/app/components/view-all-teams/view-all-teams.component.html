@@ -12,13 +12,17 @@
     </table>
   </div> -->
 
-<mat-progress-bar *ngIf="!tableLoaded" mode="query"></mat-progress-bar>
+<div *ngIf="!teamsLoaded" >Fetching Teams...
+<mat-progress-bar mode="query"></mat-progress-bar>
+</div>
 
+<br>
 <br>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let team of teams">
-      <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
+      <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>    
       <p *ngFor="let player of team.players">{{player.playerName}}</p>
+      
       <div class="buttonContainer">
         <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
         <button mat-raised-button color="primary" (click)="confirmDialog(team.teamID)">Delete Team</button>
