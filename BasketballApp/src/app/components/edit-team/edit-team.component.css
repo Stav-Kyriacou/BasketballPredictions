@@ -21,19 +21,36 @@ tr:hover {
 }
 
 .table-players {
-  padding: 15px;
+  /* padding: 15px; */
+}
+.container {
+  
+}
+.team-name {
+  
+  float: left;
+}
+.team-name h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-container-outer {
+  float: right;
 }
 
 .playerimg {
   height: 100px;
 }
 
-.buttonContainer {
+.button-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.buttonContainer>* {
+.button-container>* {
   margin-right: 5px;
   height: 38px;
 }
@@ -67,4 +84,4 @@ tr:hover {
   .buttonContainer button {
     font-size: 11px;
   }
-  }
+}

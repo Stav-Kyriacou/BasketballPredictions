@@ -1,21 +1,28 @@
 <body>
-    <app-banner h1="EDIT" h2="YOUR" h3="TEAM - {{teamName}}"></app-banner><br>
-    <div class="buttonContainer">
-        <button mat-raised-button color="primary" (click)="addplayers()">Add New Players</button>
-        <button mat-raised-button color="warn" (click)="confirmDialog()">Remove Players</button>
-        <button mat-raised-button color="primary" (click)="editNameDialog()">Edit Team Name</button>
-        <button mat-raised-button *ngIf="!saved && !saving" color="accent" (click)="saveTeam()">Save Team</button>
-        <button mat-raised-button *ngIf="saving" color="accent" (click)="saveTeam()" class="save-button">
-            <div class="saving-status">
-                <p>Saving</p>
-                <mat-spinner [diameter]="20"></mat-spinner>
+    <app-banner h1="EDIT" h2="YOUR" h3="TEAM"></app-banner><br>
+    <div class="container">
+        <div class="team-name">
+            <h1>{{teamName}}</h1>
+        </div>
+        <div class="button-container-outer">
+            <div class="button-container">
+                <button mat-raised-button color="primary" (click)="addplayers()">Add New Players</button>
+                <button mat-raised-button color="warn" (click)="confirmDialog()">Remove Players</button>
+                <button mat-raised-button color="primary" (click)="editNameDialog()">Edit Team Name</button>
+                <button mat-raised-button *ngIf="!saved && !saving" color="accent" (click)="saveTeam()">Save
+                    Team</button>
+                <button mat-raised-button *ngIf="saving" color="accent" (click)="saveTeam()" class="save-button">
+                    <div class="saving-status">
+                        <p>Saving</p>
+                        <mat-spinner [diameter]="20"></mat-spinner>
+                    </div>
+                </button>
             </div>
-        </button>
-
+        </div>
+        <div style="clear: both;"></div>
     </div>
     <div class="edit-team">
         <div class="table-players">
-            <h1>{{teamName}}</h1>
             <app-player-table [displayCheckbox]="true" [itemsPerPage]=[10,20,50,100]></app-player-table>
         </div>
     </div>
