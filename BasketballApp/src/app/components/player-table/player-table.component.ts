@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Player } from 'src/app/models/player/player';
-import { PlayerService } from 'src/app/services/player.service';
+import { PlayerService } from 'src/app/services/player/player.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Input } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
@@ -85,7 +85,7 @@ export class PlayerTableComponent implements OnInit {
   }
   radioChanged(event: MatRadioChange): void {
     this.playerDataSource.filterPredicate = (data: Player, filter: string) => {
-      var match;      
+      var match;
 
       switch (event.value) {
         case 'Name':

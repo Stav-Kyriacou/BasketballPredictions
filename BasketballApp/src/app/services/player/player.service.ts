@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Player } from '../models/player/player';
-import { Team } from '../models/team/team';
-import { TeamAllocation } from '../models/teamAllocation/teamAllocation';
+import { Player } from '../../models/player/player';
+import { Team } from '../../models/team/team';
+import { TeamAllocation } from '../../models/teamAllocation/teamAllocation';
 import { TemplateBindingIdentifier } from '@angular/compiler';
 
 
