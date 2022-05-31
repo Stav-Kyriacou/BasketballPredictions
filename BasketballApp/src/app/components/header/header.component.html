@@ -2,6 +2,18 @@
   <mat-toolbar class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1>Dod&Gy Basketball Prediction</h1>
+    <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+      <button (click)="auth.logout({ returnTo: document.location.origin })">
+        Log out
+      </button>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <button (click)="auth.loginWithRedirect()">Log in</button>
+    </ng-template>
+    <ul *ngIf="auth.user$ | async as user">
+      <li>{{ user.email }}</li>
+    </ul>
   </mat-toolbar>
   <mat-sidenav-container class="container">
     <mat-sidenav #sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">

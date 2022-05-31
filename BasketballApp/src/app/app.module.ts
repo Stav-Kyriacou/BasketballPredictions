@@ -19,6 +19,7 @@ import { CreateNewTeamComponent } from './components/create-new-team/create-new-
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 import { EditTeamName } from './components/edit-team/edit-team.component';
 import { ViewTeam } from './components/compare-teams/compare-teams.component';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,11 @@ import { ViewTeam } from './components/compare-teams/compare-teams.component';
     FormsModule,
     AngularResizeEventModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-0sne3sh6.us.auth0.com',
+      clientId: 'D8GKUcGq1z2KPkbm9jSoen4WnmRjsqvE'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
