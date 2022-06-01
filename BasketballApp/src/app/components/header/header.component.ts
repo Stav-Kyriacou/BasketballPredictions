@@ -12,6 +12,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('sidenav') sidenav: MatSidenav;
   mobileQuery: MediaQueryList;
+
   private _mobileQueryListener: () => void;
 
   //

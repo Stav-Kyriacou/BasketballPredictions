@@ -4,9 +4,10 @@
     <h1>Dod&Gy Basketball Prediction</h1>
     <span class="spacer"></span>
 
-    <ul *ngIf="auth.user$ | async as user">
-      <h3>{{ user.email }}</h3>
-    </ul>
+    <div class="user-details" *ngIf="auth.user$ | async as user">
+      <h2 class="user-email">{{ user.name }}</h2>
+      <button class="user-profile" mat-button><mat-icon>person</mat-icon></button>
+    </div>
 
     <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
       <button mat-button (click)="auth.logout({ returnTo: document.location.origin })">
