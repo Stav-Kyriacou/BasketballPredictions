@@ -1,0 +1,44 @@
+.logo-container {
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    width: 100px;
+    height: 100px;
+}
+.login-container {
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.feature-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.feature-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.feature h2 {
+    text-align: center;
+}
+.feature {
+    width: 20vw;
+}
+.feature ::ng-deep .mat-icon {
+    width: 100px;
+    height: 100px;
+    font-size: 100px;
+}
