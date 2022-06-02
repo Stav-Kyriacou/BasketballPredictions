@@ -5,7 +5,7 @@
 
         <div class="teamSelect">
             <mat-form-field appearance="fill">
-                <mat-label>Teams</mat-label>
+                <mat-label>Team 1</mat-label>
                 <mat-select [(value)]="teamAId" (selectionChange)="onChangeTeam($event)">
                     <mat-option *ngFor="let team of teams" [value]="team.teamID">
                         {{team.teamName}}
@@ -13,7 +13,7 @@
                 </mat-select>
             </mat-form-field>
             <div>
-                <button mat-raised-button color="primary" (click)="onViewTeam(1)">View Players</button>
+                <button mat-raised-button color="primary" (click)="onViewTeam(1)">View Players of team 1</button>
             </div>
             <br>
             <br>
@@ -22,7 +22,7 @@
         
         <div class="teamSelect">
             <mat-form-field appearance="fill">
-                <mat-label>Teams</mat-label>
+                <mat-label>Team 2</mat-label>
                 <mat-select [(value)]="teamBId" (selectionChange)="onChangeTeam($event)">
                     <mat-option *ngFor="let team of teams" [value]="team.teamID">
                         {{team.teamName}}
@@ -30,7 +30,7 @@
                 </mat-select>
             </mat-form-field>
                 <div>
-                    <button mat-raised-button color="primary" (click)="onViewTeam(2)">View Players</button>
+                    <button mat-raised-button color="primary" (click)="onViewTeam(2)">View Players of team 2</button>
                 </div>
             <br>
             <br>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="buttonContainer">
-        <button mat-raised-button color="primary" (click)="onCompare()">Compare</button>
+        <button mat-raised-button color="warn" (click)="onCompare()">Compare</button>
     </div>
     <br>
     <div class="progSpinner">

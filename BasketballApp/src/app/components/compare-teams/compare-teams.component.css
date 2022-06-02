@@ -47,14 +47,14 @@ h2 {
 
     .teamsContainer {
         font-family: 'Courier New', Courier, monospace;
-        padding: 20px;
-        display: flex;
+        padding: 10px;
+        display: inline;
         justify-content: center;
     }
 
     .teamSelect {
         font-family: 'Courier New', Courier, monospace;
-        padding: 30px;
+        padding: 10px;
         font-size: 15px;
 
     }
