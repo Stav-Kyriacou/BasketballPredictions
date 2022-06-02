@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
-import { PlayerService } from '../../services/player.service'
+import { PlayerService } from '../../services/player/player.service'
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 import { MatTableDataSource } from '@angular/material/table';
 

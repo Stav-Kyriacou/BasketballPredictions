@@ -2,7 +2,7 @@ import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { Player } from 'src/app/models/player/player';
 import { Team } from 'src/app/models/team/team';
-import { PlayerService } from 'src/app/services/player.service';
+import { PlayerService } from 'src/app/services/player/player.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PlayerTableComponent } from '../player-table/player-table.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -32,7 +32,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   pageSmall: boolean;
 
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
-  
+
   constructor(
     private route: ActivatedRoute,
     private _teamService: TeamService,

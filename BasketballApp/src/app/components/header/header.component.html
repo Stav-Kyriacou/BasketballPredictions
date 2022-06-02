@@ -1,12 +1,29 @@
 <div class="main-container">
   <mat-toolbar class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1>Dod&Gy Basketball Prediction</h1>
+    <h1 class="large-header">Dod&Gy Basketball Prediction</h1>
+    <h1 class="small-header">Dod&Gy</h1>
+    <span class="spacer"></span>
+
+    <div class="user-details" *ngIf="auth.user$ | async as user">
+      <h2 class="user-email">{{ user.name }}</h2>
+      <button class="user-profile" mat-button><mat-icon>person</mat-icon></button>
+    </div>
+
+    <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+      <button mat-button (click)="auth.logout({ returnTo: document.location.origin })">
+        <mat-icon>logout</mat-icon> Logout
+      </button>
+    </ng-container>
+    <ng-template #loggedOut>
+      <button mat-button (click)="auth.loginWithRedirect()"><mat-icon>login</mat-icon> Login</button>
+    </ng-template>
+
   </mat-toolbar>
   <mat-sidenav-container class="container">
     <mat-sidenav #sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">
-      <mat-nav-list>
-        <mat-list-item routerLink="/player">Player Stats</mat-list-item>
+      <mat-nav-list >
+        <mat-list-item  routerLink="/player">Player Stats</mat-list-item>
         <mat-list-item routerLink="/view-teams">View Teams</mat-list-item>
         <mat-list-item routerLink="/create-new-team">Create a Team</mat-list-item>
         <mat-list-item routerLink="/compare-teams">Compare Teams</mat-list-item>

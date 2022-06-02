@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BasketballApi
 {
@@ -14,6 +15,7 @@ namespace BasketballApi
         /// Get all Teams
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/teams")]
