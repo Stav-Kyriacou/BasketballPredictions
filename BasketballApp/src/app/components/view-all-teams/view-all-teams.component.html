@@ -1,19 +1,52 @@
 <body>
   <app-banner h1="VIEW" h2="ALL" h3="TEAMS"></app-banner><br>
-  <div *ngIf="!teamsLoaded">Fetching teams...
-    <mat-progress-bar mode="query"></mat-progress-bar>
-  </div>
 
-  <br>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let team of teams">
-      <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
-      <p *ngFor="let player of team.players">{{player.playerName}}</p>
-
-      <div class="buttonContainer">
-        <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
-        <button mat-raised-button color="warn" (click)="confirmDialog(team.teamID)">Delete Team</button>
+  <mat-tab-group>
+    <mat-tab label="My Teams">
+    <table>
+      <tr>
+        <th>Team Name</th>
+        <th>Creator</th>
+        <th>Creation Date</th>
+        <th>Functions</th>
+      </tr>
+      <tr *ngFor="let team of teams">
+        <td>
+          <mat-list-item>{{team.teamName}}</mat-list-item>
+        </td>
+        <td>
+          <mat-list-item>owner</mat-list-item>
+        </td>
+        <td>
+          <mat-list-item>dd/mm/yyyy</mat-list-item>
+        </td>
+        <td>
+         <mat-icon (click)="null">info</mat-icon>
+          <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon>
+          <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon>
+        </td>
+      </tr>
+      </table>
+    </mat-tab>
+    
+    <mat-tab label="All Teams"> 
+      <div *ngIf="!teamsLoaded">Fetching all teams...
+        <mat-progress-bar mode="query"></mat-progress-bar>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let team of teams">
+          <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
+          <p *ngFor="let player of team.players">{{player.playerName}}</p>
+    
+          <div class="buttonContainer">
+            <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
+            <button mat-raised-button color="warn" (click)="confirmDialog(team.teamID)">Delete Team</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion> 
+    </mat-tab>
+  </mat-tab-group>
+
 </body>
