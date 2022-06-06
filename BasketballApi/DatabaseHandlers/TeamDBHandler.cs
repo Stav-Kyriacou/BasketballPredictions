@@ -27,6 +27,7 @@ namespace BasketballApi
                             List<Player> players = new List<Player>();
                             team.TeamID = reader.GetInt32(0);
                             team.DateMade = reader.GetDateTime(2);
+                            team.UserID = reader.GetString(3);
                             team.TeamName = reader.GetString(1);
                             team.Year = 2020;
 
@@ -44,38 +45,38 @@ namespace BasketballApi
                                         {
                                             players.Add(new Player()
                                             {
-                                                PlayerName = readerPlayer.GetString(3),
-                                                PlayerID = readerPlayer.GetInt32(4),
-                                                Team = readerPlayer.GetString(5),
-                                                Age = readerPlayer.GetInt32(6),
-                                                Year = readerPlayer.GetInt32(7),
-                                                GamesPlayed = readerPlayer.GetInt32(8),
-                                                Wins = readerPlayer.GetInt32(9),
-                                                Losses = readerPlayer.GetInt32(10),
-                                                MinutesPlayed = readerPlayer.GetDouble(11),
-                                                Points = readerPlayer.GetDouble(12),
-                                                FieldGoalsMade = readerPlayer.GetDouble(13),
-                                                FieldGoalsAttempted = readerPlayer.GetDouble(14),
-                                                FieldGoalPercentage = readerPlayer.GetDouble(15),
-                                                ThreePointsMade = readerPlayer.GetDouble(16),
-                                                ThreePointsAttempted = readerPlayer.GetDouble(17),
-                                                ThreePointsPercentage = readerPlayer.GetDouble(18),
-                                                FreeThrowsMade = readerPlayer.GetDouble(19),
-                                                FreeThrowsAttempted = readerPlayer.GetDouble(20),
-                                                FreeThrowsPercentage = readerPlayer.GetDouble(21),
-                                                OffensiveRebounds = readerPlayer.GetDouble(22),
-                                                DefensiveRebounds = readerPlayer.GetDouble(23),
-                                                Rebounds = readerPlayer.GetDouble(24),
-                                                Assists = readerPlayer.GetDouble(25),
-                                                Turnovers = readerPlayer.GetDouble(26),
-                                                Steals = readerPlayer.GetDouble(27),
-                                                Blocks = readerPlayer.GetDouble(28),
-                                                PersonalFouls = readerPlayer.GetDouble(29),
-                                                FantasyPoints = readerPlayer.GetDouble(30),
-                                                DoubleDouble = readerPlayer.GetDouble(31),
-                                                TripleDouble = readerPlayer.GetDouble(32),
-                                                PlusMinus = readerPlayer.GetDouble(33),
-                                                Efficiency = readerPlayer.GetDouble(34)
+                                                PlayerName = readerPlayer.GetString(4),
+                                                PlayerID = readerPlayer.GetInt32(5),
+                                                Team = readerPlayer.GetString(6),
+                                                Age = readerPlayer.GetInt32(7),
+                                                Year = readerPlayer.GetInt32(8),
+                                                GamesPlayed = readerPlayer.GetInt32(9),
+                                                Wins = readerPlayer.GetInt32(10),
+                                                Losses = readerPlayer.GetInt32(11),
+                                                MinutesPlayed = readerPlayer.GetDouble(12),
+                                                Points = readerPlayer.GetDouble(13),
+                                                FieldGoalsMade = readerPlayer.GetDouble(14),
+                                                FieldGoalsAttempted = readerPlayer.GetDouble(15),
+                                                FieldGoalPercentage = readerPlayer.GetDouble(16),
+                                                ThreePointsMade = readerPlayer.GetDouble(17),
+                                                ThreePointsAttempted = readerPlayer.GetDouble(18),
+                                                ThreePointsPercentage = readerPlayer.GetDouble(19),
+                                                FreeThrowsMade = readerPlayer.GetDouble(20),
+                                                FreeThrowsAttempted = readerPlayer.GetDouble(21),
+                                                FreeThrowsPercentage = readerPlayer.GetDouble(22),
+                                                OffensiveRebounds = readerPlayer.GetDouble(23),
+                                                DefensiveRebounds = readerPlayer.GetDouble(24),
+                                                Rebounds = readerPlayer.GetDouble(25),
+                                                Assists = readerPlayer.GetDouble(26),
+                                                Turnovers = readerPlayer.GetDouble(27),
+                                                Steals = readerPlayer.GetDouble(28),
+                                                Blocks = readerPlayer.GetDouble(29),
+                                                PersonalFouls = readerPlayer.GetDouble(30),
+                                                FantasyPoints = readerPlayer.GetDouble(31),
+                                                DoubleDouble = readerPlayer.GetDouble(32),
+                                                TripleDouble = readerPlayer.GetDouble(33),
+                                                PlusMinus = readerPlayer.GetDouble(34),
+                                                Efficiency = readerPlayer.GetDouble(35)
                                             });
                                             team.Players = players;
                                         }
@@ -129,38 +130,38 @@ namespace BasketballApi
                                         {
                                             players.Add(new Player()
                                             {
-                                                PlayerName = readerPlayer.GetString(3),
-                                                PlayerID = readerPlayer.GetInt32(4),
-                                                Team = readerPlayer.GetString(5),
-                                                Age = readerPlayer.GetInt32(6),
-                                                Year = readerPlayer.GetInt32(7),
-                                                GamesPlayed = readerPlayer.GetInt32(8),
-                                                Wins = readerPlayer.GetInt32(9),
-                                                Losses = readerPlayer.GetInt32(10),
-                                                MinutesPlayed = readerPlayer.GetDouble(11),
-                                                Points = readerPlayer.GetDouble(12),
-                                                FieldGoalsMade = readerPlayer.GetDouble(13),
-                                                FieldGoalsAttempted = readerPlayer.GetDouble(14),
-                                                FieldGoalPercentage = readerPlayer.GetDouble(15),
-                                                ThreePointsMade = readerPlayer.GetDouble(16),
-                                                ThreePointsAttempted = readerPlayer.GetDouble(17),
-                                                ThreePointsPercentage = readerPlayer.GetDouble(18),
-                                                FreeThrowsMade = readerPlayer.GetDouble(19),
-                                                FreeThrowsAttempted = readerPlayer.GetDouble(20),
-                                                FreeThrowsPercentage = readerPlayer.GetDouble(21),
-                                                OffensiveRebounds = readerPlayer.GetDouble(22),
-                                                DefensiveRebounds = readerPlayer.GetDouble(23),
-                                                Rebounds = readerPlayer.GetDouble(24),
-                                                Assists = readerPlayer.GetDouble(25),
-                                                Turnovers = readerPlayer.GetDouble(26),
-                                                Steals = readerPlayer.GetDouble(27),
-                                                Blocks = readerPlayer.GetDouble(28),
-                                                PersonalFouls = readerPlayer.GetDouble(29),
-                                                FantasyPoints = readerPlayer.GetDouble(30),
-                                                DoubleDouble = readerPlayer.GetDouble(31),
-                                                TripleDouble = readerPlayer.GetDouble(32),
-                                                PlusMinus = readerPlayer.GetDouble(33),
-                                                Efficiency = readerPlayer.GetDouble(34)
+                                                PlayerName = readerPlayer.GetString(4),
+                                                PlayerID = readerPlayer.GetInt32(5),
+                                                Team = readerPlayer.GetString(6),
+                                                Age = readerPlayer.GetInt32(7),
+                                                Year = readerPlayer.GetInt32(8),
+                                                GamesPlayed = readerPlayer.GetInt32(9),
+                                                Wins = readerPlayer.GetInt32(10),
+                                                Losses = readerPlayer.GetInt32(11),
+                                                MinutesPlayed = readerPlayer.GetDouble(12),
+                                                Points = readerPlayer.GetDouble(13),
+                                                FieldGoalsMade = readerPlayer.GetDouble(14),
+                                                FieldGoalsAttempted = readerPlayer.GetDouble(15),
+                                                FieldGoalPercentage = readerPlayer.GetDouble(16),
+                                                ThreePointsMade = readerPlayer.GetDouble(17),
+                                                ThreePointsAttempted = readerPlayer.GetDouble(18),
+                                                ThreePointsPercentage = readerPlayer.GetDouble(19),
+                                                FreeThrowsMade = readerPlayer.GetDouble(20),
+                                                FreeThrowsAttempted = readerPlayer.GetDouble(21),
+                                                FreeThrowsPercentage = readerPlayer.GetDouble(22),
+                                                OffensiveRebounds = readerPlayer.GetDouble(23),
+                                                DefensiveRebounds = readerPlayer.GetDouble(24),
+                                                Rebounds = readerPlayer.GetDouble(25),
+                                                Assists = readerPlayer.GetDouble(26),
+                                                Turnovers = readerPlayer.GetDouble(27),
+                                                Steals = readerPlayer.GetDouble(28),
+                                                Blocks = readerPlayer.GetDouble(29),
+                                                PersonalFouls = readerPlayer.GetDouble(30),
+                                                FantasyPoints = readerPlayer.GetDouble(31),
+                                                DoubleDouble = readerPlayer.GetDouble(32),
+                                                TripleDouble = readerPlayer.GetDouble(33),
+                                                PlusMinus = readerPlayer.GetDouble(34),
+                                                Efficiency = readerPlayer.GetDouble(35)
                                             });
                                             team.Players = players;
                                         }
@@ -175,15 +176,16 @@ namespace BasketballApi
             }
             return team;
         }
-        public int AddTeam(string newTeam)
+        public int AddTeam(string newTeam, string userID)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 conn.Open();
 
-                using (SqlCommand command = new SqlCommand("ADD_TEAM2", conn))
+                using (SqlCommand command = new SqlCommand("ADD_TEAM", conn))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@pUserID", userID);
                     command.Parameters.AddWithValue("@pTeamID", 0);
                     command.Parameters.AddWithValue("@pTeamName", newTeam);
                     command.Parameters.AddWithValue("@pDateMade", System.DateTime.Now);
