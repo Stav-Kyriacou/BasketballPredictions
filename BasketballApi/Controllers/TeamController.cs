@@ -29,6 +29,7 @@ namespace BasketballApi
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/team/{teamId}")]
@@ -43,6 +44,7 @@ namespace BasketballApi
         /// <param name="newTeam"></param>
         /// <param name="userID"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         [EnableCors("MyPolicy")]
         [Route("/create-team")]
@@ -55,6 +57,7 @@ namespace BasketballApi
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete]
         [EnableCors("MyPolicy")]
         [Route("/team")]
@@ -69,6 +72,7 @@ namespace BasketballApi
         /// <param name="teamAId"></param>
         /// <param name="teamBId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/compare")]
