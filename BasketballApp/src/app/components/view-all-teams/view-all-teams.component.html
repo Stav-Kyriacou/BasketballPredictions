@@ -3,25 +3,29 @@
 
   <mat-tab-group>
     <mat-tab label="My Teams">
+      <div *ngIf="!teamsLoaded">Fetching your teams...
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </div>
     <table>
-      <tr>
+      <!-- table headers -->
+      <tr *ngIf="teamsLoaded">
         <th>Team Name</th>
-        <th>Creator</th>
         <th>Creation Date</th>
         <th>Functions</th>
       </tr>
+      <!-- list all teams -->
       <tr *ngFor="let team of teams">
+        <!-- team name -->
         <td>
           <mat-list-item>{{team.teamName}}</mat-list-item>
         </td>
-        <td>
-          <mat-list-item>owner</mat-list-item>
+        <!-- temp owners and creation date -->
+        <td style="text-align: center;">
+          <mat-list-item>date</mat-list-item>
         </td>
-        <td>
-          <mat-list-item>dd/mm/yyyy</mat-list-item>
-        </td>
-        <td>
-         <mat-icon (click)="null">info</mat-icon>
+        <!-- icon buttons -->
+        <td style="text-align: center;">
+          <mat-icon (click)="onViewTeam(team.teamID)">info</mat-icon>
           <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon>
           <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon>
         </td>
