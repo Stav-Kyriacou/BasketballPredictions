@@ -41,13 +41,14 @@ namespace BasketballApi
         /// Post a new Team
         /// </summary>
         /// <param name="newTeam"></param>
+        /// <param name="userID"></param>
         /// <returns></returns>
         [HttpPost]
         [EnableCors("MyPolicy")]
         [Route("/create-team")]
-        public int PostTeam([FromBody] string newTeam)
+        public int PostTeam(string newTeam, string userID)
         {
-            return _teamDBHandler.AddTeam(newTeam);
+            return _teamDBHandler.AddTeam(newTeam, userID);
         }
         /// <summary>
         /// Delete a Team
