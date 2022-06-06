@@ -3,7 +3,7 @@
         <img src="../../favicon.ico" class="logo">
     </div>
     <div class="login-container">
-        <button mat-raised-button color="primary">Login/Sign-up</button>
+        <button mat-raised-button color="primary" (click)="auth.loginWithRedirect()">Login/Sign-up</button>
     </div>
     <h1>Features</h1>
     <div class="feature-container">
@@ -25,6 +25,5 @@
             </div>
             <h2>Compare team win rates</h2>
         </div>
-
     </div>
 </body>

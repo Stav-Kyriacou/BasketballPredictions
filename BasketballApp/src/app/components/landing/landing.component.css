@@ -1,5 +1,6 @@
 .logo-container {
     height: 25vh;
+    min-height: 160px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,9 +37,64 @@ h1 {
 }
 .feature {
     width: 20vw;
+    min-width: 200px;
 }
 .feature ::ng-deep .mat-icon {
     width: 100px;
     height: 100px;
     font-size: 100px;
 }
+@media screen and (max-width:900px) {
+    .feature-container {
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+    }
+    .logo-container {
+        height: 15vh;
+        min-height: 150px;
+    }
+    .login-container {
+        height: 10vh;
+    }
+    .feature {
+        width: 20vw;
+        min-width: 200px;
+    }
+    .feature ::ng-deep .mat-icon {
+        width: 90px;
+        height: 90px;
+        font-size: 90px;
+    }
+    .feature h2 {
+        text-align: center;
+        font-size: 18px;
+    }
+  }
+  @media screen and (max-width:600px) {
+    .feature-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo-container {
+        height: 15vh;
+        min-height: 150px;
+    }
+    .login-container {
+        height: 10vh;
+    }
+    .feature {
+        width: 20vw;
+        min-width: 200px;
+    }
+    .feature ::ng-deep .mat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+    }
+    .feature h2 {
+        text-align: center;
+        font-size: 18px;
+    }
+  }
