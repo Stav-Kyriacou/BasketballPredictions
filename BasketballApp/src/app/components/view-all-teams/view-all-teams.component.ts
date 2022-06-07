@@ -1,14 +1,11 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
-import { PlayerService } from '../../services/player/player.service'
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { PlayerTableComponent } from '../player-table/player-table.component';
-import { SelectPlayer } from '../edit-team/edit-team.component';
 import { Player } from 'src/app/models/player/player';
+import { ViewTeamPlayersComponent } from '../view-team-players/view-team-players.component';
 
 @Component({
   selector: 'app-view-all-teams',
@@ -20,7 +17,8 @@ export class ViewAllTeamsComponent implements OnInit {
   teams: Team[] = [];
   players: Player[] =[];
   teamsLoaded: boolean = false;
-
+  selectedTeam: Team;
+  
   constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -30,8 +28,24 @@ export class ViewAllTeamsComponent implements OnInit {
     });
   }
 
-
-
+  onViewTeam(id: number) {
+    this._teamService.getATeam(id).subscribe(unpackedTeams => this.selectedTeam = unpackedTeams, null, () => {});
+    let teamToView;
+      if (id == null)
+        return;
+      for (let i = 0; i < this.teams.length; i++) {
+        const element = this.teams[i];
+        if (element.teamID == id) {
+          teamToView = element;
+          break;
+        }
+      }
+    const dialogRef = this.dialog.open(ViewTeamPlayersComponent, {
+      width: '80vw',
+      height: '80vh',
+      data: teamToView,
+    });
+  }
   // navigate to edit-team page with the team ID as the last /
   editTeam(team: number) {
     this.router.navigate(["edit-team", team]);
@@ -59,27 +73,4 @@ export class ViewAllTeamsComponent implements OnInit {
       }
     });
   }
-}
-@Component({
-  selector: 'view-team',
-  templateUrl: '../compare-teams/view-team.html',
-  styleUrls: ['../compare-teams/view-team.css']
-})
-
-export class ViewTeam {
-  @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
-
-  constructor(
-    public dialogRef: MatDialogRef<SelectPlayer>,
-    @Inject(MAT_DIALOG_DATA) public data: Team
-  ) { }
-
-  ngAfterViewInit() {
-    this.playerTable.setupTable(this.data.players);
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }
