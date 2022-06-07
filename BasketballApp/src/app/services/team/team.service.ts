@@ -21,11 +21,12 @@ export class TeamService {
     return this._http.get<Team[]>(this.baseUrl + "/teams")
   }
 
-  postATeam(team: string): Observable<number> {
-    const headers = { 'content-type': 'application/json' }
-    const body = JSON.stringify(team);
-    console.log(body);
-    return this._http.post<number>(this.baseUrl + "/create-team", body, { 'headers': headers })
+  postATeam(teamName: string, userId: string): Observable<number> {
+    const body = "";
+    const params = new HttpParams()
+      .append('newTeam', teamName)
+      .append('userID', userId);
+    return this._http.post<number>(this.baseUrl + "/create-team", body, { 'params': params })
   }
   getATeam(teamID: number): Observable<Team> {
     return this._http.get<Team>(this.baseUrl + '/team/' + teamID)
