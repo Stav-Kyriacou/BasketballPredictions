@@ -23,7 +23,6 @@
   <mat-sidenav-container class="container">
     <mat-sidenav #sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">
       <mat-nav-list >
-        <mat-list-item routerLink="/landing">Home</mat-list-item>
         <mat-list-item routerLink="/player">Player Stats</mat-list-item>
         <mat-list-item routerLink="/view-teams">View Teams</mat-list-item>
         <mat-list-item routerLink="/create-new-team">Create a Team</mat-list-item>

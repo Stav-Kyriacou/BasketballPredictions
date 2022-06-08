@@ -1,1 +1,6 @@
-<app-header></app-header>
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+    <app-header></app-header>
+</ng-container>
+<ng-template #loggedOut>
+    <app-landing></app-landing>
+</ng-template>
