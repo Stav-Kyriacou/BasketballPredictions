@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BasketballApi
 {
@@ -14,6 +15,7 @@ namespace BasketballApi
         /// Get all Team Allocations
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/TeamAllocation/{teamId}")]
@@ -28,6 +30,7 @@ namespace BasketballApi
         /// <param name="PlayerID"></param>
         /// <param name="Year"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         [EnableCors("MyPolicy")]
         [Route("/TeamAllocation")]
@@ -42,6 +45,7 @@ namespace BasketballApi
         /// <param name="playerID"></param>
         /// <param name="year"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete]
         [EnableCors("MyPolicy")]
         [Route("/TeamAllocation/{teamID}/{playerID}/{year}")]
@@ -53,6 +57,7 @@ namespace BasketballApi
         /// Update players on a team
         /// </summary>
         /// <param name="newTeam"></param>
+        [Authorize]
         [HttpPut]
         [EnableCors("MyPolicy")]
         public string UpdateTeamAllocation([FromBody] Team newTeam)

@@ -21,6 +21,8 @@ import { EditTeamName } from './components/edit-team/edit-team.component';
 import { ViewTeam } from './components/compare-teams/compare-teams.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { ViewTeamPlayersComponent } from './components/view-team-players/view-team-players.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,13 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     EditTeamComponent,
     SelectPlayer,
     PlayerTableComponent,
+    ViewTeamPlayersComponent,
     ConfirmComponent,
     CreateNewTeamComponent,
     CompareTeamsComponent,
     EditTeamName,
-    ViewTeam
+    ViewTeam,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

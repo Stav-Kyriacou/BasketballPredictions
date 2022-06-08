@@ -1,31 +1,4 @@
 ------------------------------------------------------------
---------------------------ADD TEAM--------------------------
-------------------------------------------------------------
-IF OBJECT_ID('ADD_TEAM') IS NOT NULL
-    DROP PROCEDURE ADD_TEAM;
-
-GO
-CREATE PROCEDURE ADD_TEAM
-    @pTeamID INT,
-    @pTeamName NVARCHAR(100),
-    @pDateMade DATE
-AS
-BEGIN
-    DECLARE @ID BIGINT;
-    SET @ID = NEXT VALUE FOR Count.CountBy1;
-    BEGIN TRY
-        INSERT INTO Teams
-        (TeamID, TeamName, DateMade)
-    VALUES
-        (@ID, @pTeamName, @pDateMade)
-    END TRY
-    BEGIN CATCH
-    END CATCH
-
-END
-GO
-
-------------------------------------------------------------
 ----------------------------Counter-------------------------
 ------------------------------------------------------------
 
@@ -117,29 +90,36 @@ GO
 ------------------------------------------------------------
 --------------------------ADD TEAM V2-----------------------
 ------------------------------------------------------------
-IF OBJECT_ID('ADD_TEAM2') IS NOT NULL
-    DROP PROCEDURE ADD_TEAM2;
+IF OBJECT_ID('ADD_TEAM') IS NOT NULL
+    DROP PROCEDURE ADD_TEAM;
 GO
 
-CREATE PROCEDURE ADD_TEAM2
+CREATE PROCEDURE ADD_TEAM
     @pTeamID INT OUTPUT,
     @pTeamName NVARCHAR(100),
-    @pDateMade DATE
+    @pDateMade DATE,
+    @pUserID NVARCHAR(200)
 AS
 BEGIN
     DECLARE @ID BIGINT;
     SET @ID = NEXT VALUE FOR Count.CountBy1;
     SET @pTeamID = @ID
     BEGIN TRY
-        INSERT INTO Teams
-        (TeamID, TeamName, DateMade)
-    VALUES
-        (@ID, @pTeamName, @pDateMade)
+        IF @pUserID = (SELECT UserID FROM [User] WHERE UserID = @pUserID)
+            INSERT INTO Teams
+            (TeamID, TeamName, DateMade, UserID)
+            VALUES (@ID, @pTeamName, @pDateMade, @pUserID)
+        ELSE
+            INSERT INTO [User]
+            VALUES (@pUserID)
+            INSERT INTO Teams
+            (TeamID, TeamName, DateMade, UserID)
+            VALUES (@ID, @pTeamName, @pDateMade, @pUserID)
     END TRY
     BEGIN CATCH
     END CATCH
 
-    Return @pTeamID
+    RETURN @pTeamID
     
 END
 GO
