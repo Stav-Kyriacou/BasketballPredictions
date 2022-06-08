@@ -6,15 +6,18 @@ import { CompareTeamsComponent } from './components/compare-teams/compare-teams.
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { PlayerComponent } from './components/player/player.component';
 import { SaveCheckGuard } from './guards/save-check.guard';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { LandingComponent } from './components/landing/landing.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: PlayerComponent },
-  { path: 'player', component: PlayerComponent },
-  { path: 'create-new-team', component: CreateNewTeamComponent },
-  { path: 'view-teams', component: ViewAllTeamsComponent },
-  { path: 'compare-teams', component: CompareTeamsComponent },
-  { path: 'edit-team/:teamID', component: EditTeamComponent, canDeactivate: [SaveCheckGuard] }
+  { path: 'landing', component: LandingComponent },
+  { path: 'player', component: PlayerComponent, canActivate: [AuthGuard] },
+  { path: 'create-new-team', component: CreateNewTeamComponent, canActivate: [AuthGuard] },
+  { path: 'view-teams', component: ViewAllTeamsComponent, canActivate: [AuthGuard] },
+  { path: 'compare-teams', component: CompareTeamsComponent, canActivate: [AuthGuard] },
+  { path: 'edit-team/:teamID', component: EditTeamComponent, canDeactivate: [SaveCheckGuard], canActivate: [AuthGuard] }
 ];
 
 @NgModule({

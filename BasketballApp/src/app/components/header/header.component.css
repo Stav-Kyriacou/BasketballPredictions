@@ -23,6 +23,10 @@ z-index: 2;
 position: fixed;
 }
 
+.spacer{
+  flex: 1 1 auto;
+}
+
 .main-container{
 display: flex;
 flex-direction: column;
@@ -31,4 +35,31 @@ top: 0;
 bottom: 0;
 left: 0;
 right: 0;
+}
+
+.user-details{
+  display: flex;
+}
+.small-header{
+  visibility: hidden;
+}
+
+.large-header{
+  visibility: visible;
+}
+
+@media screen and (max-width:900px) {
+  .user-email{
+    display: none;
+  }
+
+  .small-header{
+    visibility: visible;
+  }
+  
+  .large-header{
+    visibility: hidden;
+    width: 0px;
+  }
+
 }

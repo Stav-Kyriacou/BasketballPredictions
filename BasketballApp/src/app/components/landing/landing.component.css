@@ -1,0 +1,160 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    background-color: black;
+}
+
+.logo-container {
+    height: 10vh;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+.login-container {
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* margin-top: 100px; */
+    /* height: 30vh; */
+}
+
+.feature-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 2px 2px red;
+}
+h2 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 48px;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 2px 2px red;
+}
+.heading-container {
+    margin-top: 40px;
+    /* margin-bottom: 40px; */
+    min-height: 15vh;
+}
+
+.feature h3 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.feature {
+    width: 20vw;
+    min-width: 200px;
+}
+
+.feature ::ng-deep .mat-icon {
+    width: 100px;
+    height: 100px;
+    font-size: 100px;
+}
+
+@media screen and (max-width:900px) {
+    h1 {
+        font-size: 40px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    .heading-container {
+        margin-top: 20px;
+    }
+    .feature-container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo-container {
+        height: 15vh;
+        min-height: 60px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .login-container {
+        height: 10vh;
+    }
+
+    .feature {
+        width: 20vw;
+        min-width: 200px;
+    }
+
+    .feature ::ng-deep .mat-icon {
+        width: 90px;
+        height: 90px;
+        font-size: 90px;
+    }
+
+    .feature h3 {
+        text-align: center;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .feature-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo-container {
+        height: 10vh;
+        min-height: 100px;
+    }
+
+    .login-container {
+        height: 10vh;
+    }
+
+    .feature {
+        width: 20vw;
+        min-width: 200px;
+    }
+
+    .feature ::ng-deep .mat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+    }
+
+    .feature h3 {
+        text-align: center;
+        font-size: 18px;
+    }
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlayerComponent } from './components/player/player.component';
@@ -19,6 +19,10 @@ import { CreateNewTeamComponent } from './components/create-new-team/create-new-
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 import { EditTeamName } from './components/edit-team/edit-team.component';
 import { ViewTeam } from './components/compare-teams/compare-teams.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { ViewTeamPlayersComponent } from './components/view-team-players/view-team-players.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +34,13 @@ import { ViewTeam } from './components/compare-teams/compare-teams.component';
     EditTeamComponent,
     SelectPlayer,
     PlayerTableComponent,
+    ViewTeamPlayersComponent,
     ConfirmComponent,
     CreateNewTeamComponent,
     CompareTeamsComponent,
     EditTeamName,
-    ViewTeam
+    ViewTeam,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +50,39 @@ import { ViewTeam } from './components/compare-teams/compare-teams.component';
     FormsModule,
     AngularResizeEventModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-0sne3sh6.us.auth0.com',
+      clientId: 'D8GKUcGq1z2KPkbm9jSoen4WnmRjsqvE',
+
+      // Request this audience at user authentication time
+      audience: 'https://teameastbasketball.azurewebsites.net/',
+
+      // Request this scope at user authentication time
+      scope: 'read:current_user',
+
+      // Specify configuration for the interceptor
+      httpInterceptor: {
+        allowedList: [
+          {
+            // Match any request that starts 'https://dev-0sne3sh6.us.auth0.com/api/v2/' (note the asterisk)
+            uri: 'https://teameastbasketball.azurewebsites.net/*',
+            tokenOptions: {
+              // The attached token should target this audience
+              audience: 'https://teameastbasketball.azurewebsites.net/',
+
+              // The attached token should have these scopes
+              scope: 'read:current_user'
+            }
+          }
+        ]
+      }
+    }),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

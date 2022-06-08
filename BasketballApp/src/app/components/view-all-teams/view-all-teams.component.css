@@ -11,16 +11,29 @@
     align-self: center;
 }
 
+table {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    width: 100%;
+    justify-content: center;
+  }
+td, th {
+    font-weight: bold;
+    font-size:larger!important;
+  }
+
 tr {
-    text-transform: uppercase;
     line-height: 70px;
 }
 
 .table {
-    display: flex;
     justify-content: center;
 }
 .buttonContainer button {
     margin-right: 5px;
     
 }
+.mat-icon:hover{
+    color: grey;
+    cursor: pointer;
+  }

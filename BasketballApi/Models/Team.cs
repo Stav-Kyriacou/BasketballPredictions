@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BasketballApi
 {
@@ -8,6 +9,7 @@ namespace BasketballApi
         public int TeamID { get; set; }
         public string TeamName { get; set; }
         public DateTime DateMade { get; set; }
+        public string UserID { get; set; }
         public int? Year { get; internal set; }
         public List<Player> Players { get; set; }
     
@@ -17,13 +19,31 @@ namespace BasketballApi
             {
                 return 0f;
             }
+            // return 0f;
 
             float result = 0f;
-            foreach (var p in this.Players)
+            float subs = 0f;
+            int numSubs = 0;
+            List<Player> playerByEfficiency = this.Players.OrderByDescending(Player => Player.Efficiency).ToList();
+            foreach (var (p,index) in playerByEfficiency.Select((value, i ) => (value, i)))
             {
-                result += (float)p.Efficiency;
+                if(index < 5){
+                    result += (float)p.Efficiency;
+                }else{
+                    subs += (float)p.Efficiency;
+                    numSubs+=1;
+                }
             }
-            return result;
+            if (numSubs != 0)
+            {
+                return result+(subs/numSubs);
+                
+            }
+            else
+            {
+                return result;
+            }
+            
         }
         
     }

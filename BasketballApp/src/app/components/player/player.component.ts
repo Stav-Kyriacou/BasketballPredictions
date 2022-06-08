@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Player } from 'src/app/models/player/player';
-import { PlayerService } from '../../services/player.service';
+import { PlayerService } from '../../services/player/player.service';
 import { PlayerTableComponent } from '../player-table/player-table.component';
 
 @Component({
