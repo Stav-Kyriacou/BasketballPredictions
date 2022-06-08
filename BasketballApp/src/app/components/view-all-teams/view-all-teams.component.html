@@ -16,7 +16,7 @@
         </tr>
         <tr *ngFor="let team of localTeams">
           <td>
-            <mat-list-item>{{team.teamID}}</mat-list-item>
+            <mat-list-item>{{team.teamName}}</mat-list-item>
           </td>
           <td style="text-align: center;">
             <mat-list-item>{{team.dateMade | date: 'dd/MM/yyyy'}}</mat-list-item>
@@ -39,7 +39,7 @@
         </tr>
         <tr *ngFor="let team of teams">
           <td>
-            <mat-list-item>{{team.teamID}}</mat-list-item>
+            <mat-list-item>{{team.teamName}}</mat-list-item>
           </td>
           <td style="text-align: center;">
             <mat-list-item>{{team.dateMade | date: 'dd/MM/yyyy'}}</mat-list-item>
