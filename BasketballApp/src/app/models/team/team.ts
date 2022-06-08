@@ -6,4 +6,5 @@ export interface Team {
     dateMade:Date;
     year:number;
     players:Player[];
+    userID: string
   }
