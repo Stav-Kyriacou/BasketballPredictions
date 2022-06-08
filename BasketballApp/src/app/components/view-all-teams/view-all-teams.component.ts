@@ -68,7 +68,10 @@ export class ViewAllTeamsComponent implements OnInit {
   deleteTeam(TeamID: number) {
     this._teamService.deleteTeam(TeamID).subscribe(data => data,
       () => {
-        this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams);
+        this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams, null, () => {
+          this.localTeams = this.teams.filter(team => team.userID === this.userId);
+          this.teams = this.teams.filter(team => team.userID !== this.userId);
+        });
       });
   }
   confirmDialog(TeamID: number): void {
