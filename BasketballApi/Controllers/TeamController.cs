@@ -29,6 +29,7 @@ namespace BasketballApi
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/team/{teamId}")]
@@ -41,19 +42,22 @@ namespace BasketballApi
         /// Post a new Team
         /// </summary>
         /// <param name="newTeam"></param>
+        /// <param name="userID"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         [EnableCors("MyPolicy")]
         [Route("/create-team")]
-        public int PostTeam([FromBody] string newTeam)
+        public int PostTeam(string newTeam, string userID)
         {
-            return _teamDBHandler.AddTeam(newTeam);
+            return _teamDBHandler.AddTeam(newTeam, userID);
         }
         /// <summary>
         /// Delete a Team
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete]
         [EnableCors("MyPolicy")]
         [Route("/team")]
@@ -68,6 +72,7 @@ namespace BasketballApi
         /// <param name="teamAId"></param>
         /// <param name="teamBId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [EnableCors("MyPolicy")]
         [Route("/compare")]
