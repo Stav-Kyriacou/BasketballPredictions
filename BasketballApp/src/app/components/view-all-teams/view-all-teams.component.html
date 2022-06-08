@@ -22,7 +22,7 @@
             <mat-list-item>{{team.dateMade | date: 'dd/MM/yyyy'}}</mat-list-item>
           </td>
           <td style="text-align: center;">
-            <mat-icon (click)="onViewTeam(team.teamID)">info</mat-icon>
+            <mat-icon (click)="onViewTeam(team.teamID, true)">info</mat-icon>
             <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon>
             <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon>
           </td>
@@ -46,7 +46,7 @@
           </td>
           <!-- icon buttons -->
           <td style="text-align: center;">
-            <mat-icon (click)="onViewTeam(team.teamID)">info</mat-icon>
+            <mat-icon (click)="onViewTeam(team.teamID, false)">info</mat-icon>
             <!-- <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon> -->
             <!-- <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon> -->
           </td>

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team/team';
@@ -16,18 +16,18 @@ import { AuthService } from '@auth0/auth0-angular';
 export class ViewAllTeamsComponent implements OnInit {
   value: string = '';
   teams: Team[] = [];
-  players: Player[] =[];
+  players: Player[] = [];
   teamsLoaded: boolean = false;
   selectedTeam: Team;
   userId: string;
   localTeams: Team[] = [];
-  
+
   constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog, public auth: AuthService) { }
 
   ngOnInit() {
     // Get all Teams data
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams, null, () => {
-      this.auth.getUser().subscribe(data => this.userId = data.sub,null,() =>{
+      this.auth.getUser().subscribe(data => this.userId = data.sub, null, () => {
         this.localTeams = this.teams.filter(team => team.userID === this.userId);
         this.teams = this.teams.filter(team => team.userID !== this.userId);
         this.teamsLoaded = true;
@@ -35,18 +35,25 @@ export class ViewAllTeamsComponent implements OnInit {
     });
   }
 
-  onViewTeam(id: number) {
-    this._teamService.getATeam(id).subscribe(unpackedTeams => this.selectedTeam = unpackedTeams, null, () => {});
+  onViewTeam(id: number, localTeams: boolean) {
+    let teamList: Team[] = [];
+    if (localTeams) {
+      teamList = this.localTeams;
+    }
+    else {
+      teamList = this.teams;
+    }
+
     let teamToView;
-      if (id == null)
-        return;
-      for (let i = 0; i < this.teams.length; i++) {
-        const element = this.teams[i];
-        if (element.teamID == id) {
-          teamToView = element;
-          break;
-        }
+    if (id == null)
+      return;
+    for (let i = 0; i < teamList.length; i++) {
+      const element = teamList[i];
+      if (element.teamID == id) {
+        teamToView = element;
+        break;
       }
+    }
     const dialogRef = this.dialog.open(ViewTeamPlayersComponent, {
       width: '80vw',
       height: '80vh',
