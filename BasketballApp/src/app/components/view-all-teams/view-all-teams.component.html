@@ -1,56 +1,57 @@
 <body>
   <app-banner h1="VIEW" h2="ALL" h3="TEAMS"></app-banner><br>
 
-  <mat-tab-group>
+  <div *ngIf="!teamsLoaded">Fetching teams...
+    <mat-progress-bar mode="query"></mat-progress-bar>
+  </div>
+
+  <mat-tab-group *ngIf="teamsLoaded">
+    <!-- View user's team -->
     <mat-tab label="My Teams">
-      <div *ngIf="!teamsLoaded">Fetching your teams...
-        <mat-progress-bar mode="query"></mat-progress-bar>
-      </div>
-    <table>
-      <!-- table headers -->
-      <tr *ngIf="teamsLoaded">
-        <th>Team Name</th>
-        <th>Creation Date</th>
-        <th>Functions</th>
-      </tr>
-      <!-- list all teams -->
-      <tr *ngFor="let team of teams">
-        <!-- team name -->
-        <td>
-          <mat-list-item>{{team.teamName}}</mat-list-item>
-        </td>
-        <!-- temp owners and creation date -->
-        <td style="text-align: center;">
-          <mat-list-item>date</mat-list-item>
-        </td>
-        <!-- icon buttons -->
-        <td style="text-align: center;">
-          <mat-icon (click)="onViewTeam(team.teamID)">info</mat-icon>
-          <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon>
-          <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon>
-        </td>
-      </tr>
+      <table>
+        <tr>
+          <th>Team Name</th>
+          <th>Creation Date</th>
+          <th>Functions</th>
+        </tr>
+        <tr *ngFor="let team of localTeams">
+          <td>
+            <mat-list-item>{{team.teamID}}</mat-list-item>
+          </td>
+          <td style="text-align: center;">
+            <mat-list-item>{{team.dateMade | date: 'dd/MM/yyyy'}}</mat-list-item>
+          </td>
+          <td style="text-align: center;">
+            <mat-icon (click)="onViewTeam(team.teamID)">info</mat-icon>
+            <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon>
+            <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon>
+          </td>
+        </tr>
       </table>
     </mat-tab>
-    
-    <mat-tab label="All Teams"> 
-      <div *ngIf="!teamsLoaded">Fetching all teams...
-        <mat-progress-bar mode="query"></mat-progress-bar>
-      </div>
-
-
-      <mat-accordion>
-        <mat-expansion-panel *ngFor="let team of teams">
-          <mat-expansion-panel-header>{{team.teamName}}</mat-expansion-panel-header>
-          <p *ngFor="let player of team.players">{{player.playerName}}</p>
-    
-          <div class="buttonContainer">
-            <button mat-raised-button color="primary" (click)="editTeam(team.teamID)">Edit</button>
-            <button mat-raised-button color="warn" (click)="confirmDialog(team.teamID)">Delete Team</button>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion> 
+    <!-- View other user's teams -->
+    <mat-tab label="Other Teams"> 
+      <table>
+        <tr>
+          <th>Team Name</th>
+          <th>Creation Date</th>
+          <th>Functions</th>
+        </tr>
+        <tr *ngFor="let team of teams">
+          <td>
+            <mat-list-item>{{team.teamID}}</mat-list-item>
+          </td>
+          <td style="text-align: center;">
+            <mat-list-item>{{team.dateMade | date: 'dd/MM/yyyy'}}</mat-list-item>
+          </td>
+          <!-- icon buttons -->
+          <td style="text-align: center;">
+            <mat-icon (click)="onViewTeam(team.teamID)">info</mat-icon>
+            <!-- <mat-icon (click)="editTeam(team.teamID)">edit</mat-icon> -->
+            <!-- <mat-icon (click)="confirmDialog(team.teamID)">delete</mat-icon> -->
+          </td>
+        </tr>
+      </table>
     </mat-tab>
   </mat-tab-group>
-
 </body>

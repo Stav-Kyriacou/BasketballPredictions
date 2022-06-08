@@ -6,6 +6,7 @@ import { TeamService } from 'src/app/services/team/team.service';
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 import { Player } from 'src/app/models/player/player';
 import { ViewTeamPlayersComponent } from '../view-team-players/view-team-players.component';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-view-all-teams',
@@ -18,13 +19,19 @@ export class ViewAllTeamsComponent implements OnInit {
   players: Player[] =[];
   teamsLoaded: boolean = false;
   selectedTeam: Team;
+  userId: string;
+  localTeams: Team[] = [];
   
-  constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog) { }
+  constructor(private _teamService: TeamService, private router: Router, public dialog: MatDialog, public auth: AuthService) { }
 
   ngOnInit() {
     // Get all Teams data
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams, null, () => {
-      this.teamsLoaded = true;
+      this.auth.getUser().subscribe(data => this.userId = data.sub,null,() =>{
+        this.localTeams = this.teams.filter(team => team.userID === this.userId);
+        this.teams = this.teams.filter(team => team.userID !== this.userId);
+        this.teamsLoaded = true;
+      })
     });
   }
 
