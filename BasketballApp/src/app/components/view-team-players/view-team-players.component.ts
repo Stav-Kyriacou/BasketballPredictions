@@ -18,7 +18,7 @@ export class ViewTeamPlayersComponent implements OnInit {
     public dialogRef: MatDialogRef<SelectPlayer>,
     @Inject(MAT_DIALOG_DATA) public data: Team
   ) { }
-  
+
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
 
   ngAfterViewInit() {
@@ -29,7 +29,6 @@ export class ViewTeamPlayersComponent implements OnInit {
     this.dialogRef.close();
   }
   ngOnInit(): void {
-    throw new Error('Function not implemented.');
   }
 }
 
