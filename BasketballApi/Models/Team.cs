@@ -40,7 +40,7 @@ namespace BasketballApi
             }
             if(result < 0)
             {
-                return 6;
+                return 0;
             }else{
                 return result;
             }
