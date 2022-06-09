@@ -88,9 +88,8 @@ namespace BasketballApi
             {
                 return 50;
             }
-
+            
             var result = (teamAEfficiency / (teamAEfficiency + teamBEfficiency)) * 100;
-
             return result;
         }
     }
