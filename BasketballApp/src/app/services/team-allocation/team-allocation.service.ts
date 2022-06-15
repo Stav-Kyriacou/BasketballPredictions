@@ -2,16 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Team } from 'src/app/models/team/team';
+import { BaseService } from '../base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamAllocationService {
+export class TeamAllocationService extends BaseService {
 
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
+  constructor(private _http: HttpClient) {
+    super();
+  }
 
-  constructor(private _http: HttpClient) { }
-  
   getAllocations(teamID: number): Observable<Team[]> {
     return this._http.get<Team[]>(this.baseUrl + "/TeamAllocation/" + teamID)
   }

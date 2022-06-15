@@ -2,20 +2,16 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Team } from 'src/app/models/team/team';
-import { AuthService } from '@auth0/auth0-angular';
+import { BaseService } from '../base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamService {
+export class TeamService extends BaseService {
 
-
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  // readonly baseUrl: string = "https://localhost:5001";
-
-
-  constructor(private _http: HttpClient) { }
-
+  constructor(private _http: HttpClient) {
+    super();
+  }
 
   getAllTeams(): Observable<Team[]> {
     return this._http.get<Team[]>(this.baseUrl + "/teams")
