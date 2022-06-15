@@ -56,7 +56,7 @@ import { LandingComponent } from './components/landing/landing.component';
       clientId: 'D8GKUcGq1z2KPkbm9jSoen4WnmRjsqvE',
 
       // Request this audience at user authentication time
-      audience: 'https://teameastbasketball.azurewebsites.net/',
+      audience: 'https://teameast-api-staging.azurewebsites.net/',
 
       // Request this scope at user authentication time
       scope: 'read:current_user',
@@ -66,10 +66,10 @@ import { LandingComponent } from './components/landing/landing.component';
         allowedList: [
           {
             // Match any request that starts 'https://dev-0sne3sh6.us.auth0.com/api/v2/' (note the asterisk)
-            uri: 'https://teameastbasketball.azurewebsites.net/*',
+            uri: 'https://teameast-api-staging.azurewebsites.net/*',
             tokenOptions: {
               // The attached token should target this audience
-              audience: 'https://teameastbasketball.azurewebsites.net/',
+              audience: 'https://teameast-api-staging.azurewebsites.net/',
 
               // The attached token should have these scopes
               scope: 'read:current_user'
