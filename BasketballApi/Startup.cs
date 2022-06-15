@@ -18,10 +18,12 @@ namespace BasketballApi
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
+            CurrentEnvironment = env;
             Configuration = configuration;
         }
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,27 +43,27 @@ namespace BasketballApi
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    In = ParameterLocation.Header, 
+                    In = ParameterLocation.Header,
                     Description = "Please insert JWT with Bearer into field",
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey 
+                    Type = SecuritySchemeType.ApiKey
                 });
-                
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { 
-                        new OpenApiSecurityScheme 
-                        { 
-                            Reference = new OpenApiReference 
-                            { 
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
                                 Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer" 
-                            } 
+                                Id = "Bearer"
+                            }
                         },
-                        new string[] { } 
-                    } 
+                        new string[] { }
+                    }
                 });
             });
 
@@ -71,7 +73,14 @@ namespace BasketballApi
                 .AddJwtBearer(options =>
                 {
                     options.Authority = domain;
-                    options.Audience = Configuration["Auth0:AudienceStaging"];
+                    if (CurrentEnvironment.IsStaging() || CurrentEnvironment.IsDevelopment())
+                    {
+                        options.Audience = Configuration["Auth0:AudienceStaging"];
+                    }
+                    else if (CurrentEnvironment.IsProduction())
+                    {
+                        options.Audience = Configuration["Auth0:AudienceProduction"];
+                    }
                     // If the access token does not have a `sub` claim, `User.Identity.Name` will be `null`. Map it to a different claim by setting the NameClaimType below.
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -96,7 +105,7 @@ namespace BasketballApi
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BasketballApi v1");
-                    
+
                     // Display Swagger as the default webpage
                     c.RoutePrefix = "";
                 });
