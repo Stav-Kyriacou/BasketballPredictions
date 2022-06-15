@@ -23,6 +23,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { ViewTeamPlayersComponent } from './components/view-team-players/view-team-players.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { LandingComponent } from './components/landing/landing.component';
       clientId: 'D8GKUcGq1z2KPkbm9jSoen4WnmRjsqvE',
 
       // Request this audience at user authentication time
-      audience: 'https://teameast-api-staging.azurewebsites.net/',
+      audience: environment.api_url,
 
       // Request this scope at user authentication time
       scope: 'read:current_user',
@@ -66,10 +67,10 @@ import { LandingComponent } from './components/landing/landing.component';
         allowedList: [
           {
             // Match any request that starts 'https://dev-0sne3sh6.us.auth0.com/api/v2/' (note the asterisk)
-            uri: 'https://teameast-api-staging.azurewebsites.net/*',
+            uri: environment.api_url + '*',
             tokenOptions: {
               // The attached token should target this audience
-              audience: 'https://teameast-api-staging.azurewebsites.net/',
+              audience: environment.api_url,
 
               // The attached token should have these scopes
               scope: 'read:current_user'
