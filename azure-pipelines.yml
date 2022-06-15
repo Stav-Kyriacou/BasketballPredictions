@@ -1,0 +1,41 @@
+trigger:
+  branches:
+    include:
+    - main
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+  displayName: 'Install Node.js 16.x'
+
+#Build
+- script: |
+    cd BasketballPredictions
+    npm install -g @angular/cli
+    npm install
+    ng build --configuration production
+  displayName: 'npm install and build'
+  workingDirectory: '$(Build.SourcesDirectory)/BasketballApp'
+
+#Zip files
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/BasketballApp/dist/basketball-app/'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
+
+#Create artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
