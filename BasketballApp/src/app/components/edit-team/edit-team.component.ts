@@ -89,6 +89,11 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   }
 
   addplayers(): void {
+    if(this.currentTeam.players)
+    {
+      this.playerTable.currentLength(this.currentTeam.players.length);
+    }
+   
     const dialogRef = this.dialog.open(SelectPlayer, {
       width: '60vw',
       height: '600px',
