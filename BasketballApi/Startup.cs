@@ -71,7 +71,7 @@ namespace BasketballApi
                 .AddJwtBearer(options =>
                 {
                     options.Authority = domain;
-                    options.Audience = Configuration["Auth0:Audience"];
+                    options.Audience = Configuration["Auth0:AudienceStaging"];
                     // If the access token does not have a `sub` claim, `User.Identity.Name` will be `null`. Map it to a different claim by setting the NameClaimType below.
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
