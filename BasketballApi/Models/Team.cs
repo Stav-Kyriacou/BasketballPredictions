@@ -36,11 +36,12 @@ namespace BasketballApi
             }
             if (numSubs != 0)
             {
-                return result+(subs/numSubs);
-                
+                result+=(subs/numSubs);
             }
-            else
+            if(result < 0)
             {
+                return 0;
+            }else{
                 return result;
             }
             
