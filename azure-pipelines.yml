@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - staging
+    - main
 
 pr: none
 
@@ -19,7 +19,7 @@ steps:
     cd BasketballPredictions
     npm install -g @angular/cli
     npm install
-    ng build --configuration staging
+    ng build --configuration production
   displayName: 'npm install and build'
   workingDirectory: '$(Build.SourcesDirectory)/BasketballApp'
 
