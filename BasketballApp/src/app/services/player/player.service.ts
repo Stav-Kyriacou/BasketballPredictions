@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../../models/player/player';
-import { Team } from '../../models/team/team';
-import { TeamAllocation } from '../../models/teamAllocation/teamAllocation';
-import { TemplateBindingIdentifier } from '@angular/compiler';
-
-
+import { BaseService } from '../base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class PlayerService {
-  readonly baseUrl: string = "https://teameastbasketball.azurewebsites.net";
-  //  readonly baseUrl: string = "https://localhost:5001";
+export class PlayerService extends BaseService {
 
   constructor(private _http: HttpClient) {
+    super();
   }
 
   getAllPlayers(): Observable<Player[]> {
