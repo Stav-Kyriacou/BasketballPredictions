@@ -157,6 +157,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
 })
 export class SelectPlayer {
   @ViewChild(PlayerTableComponent) playerTable: PlayerTableComponent;
+  maxTeamSize: number = 15;
 
   constructor(
     public dialogRef: MatDialogRef<SelectPlayer>,
@@ -184,15 +185,35 @@ export class SelectPlayer {
       this.data.team.players = [];
     }
 
+    let playersToAdd: Player[] = [];
+
     selectedPlayers.forEach(player => {
       if (this.data.team.players.some(p => p.playerID === player.playerID)) {
         duplicatePlayers++;
       } else {
+        playersToAdd.push(player);
+      }
+    });
+
+    let playersDiscarded: boolean = false;
+    for (let i = 0; i < playersToAdd.length; i++) {
+      const player = playersToAdd[i];
+
+      if (this.data.team.players.length < this.maxTeamSize) {
         this.data.team.players.push(player);
         playersAdded++;
       }
-    });
-    if (playersAdded > 0 && duplicatePlayers > 0) {
+      else {
+        playersDiscarded = true;
+        break;
+      }
+    }
+
+    if (playersAdded > 0 && playersDiscarded) {
+      message = "Players added. Excess players discarded. Can't exceed " + this.maxTeamSize + " players";
+    } else if (playersAdded === 0 && playersDiscarded) {
+      message = "Team at max size, can't exceed " + this.maxTeamSize + " players";
+    } else if (playersAdded > 0 && duplicatePlayers > 0) {
       message = "Players have been added, list contained some duplicate players";
     } else if (playersAdded === 0 && duplicatePlayers > 0) {
       message = "Can't add duplicate players";
@@ -201,7 +222,7 @@ export class SelectPlayer {
     }
 
     this._snackBar.open(message, 'Okay', {
-      duration: 3000
+      duration: 4000
     });
 
     this.dialogRef.close({ event: playersAdded });
