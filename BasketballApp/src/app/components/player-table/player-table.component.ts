@@ -31,10 +31,6 @@ export class PlayerTableComponent implements OnInit {
   tableLoaded: boolean = false;
   playerList: Player[] = [];
   selection = new SelectionModel<Player>(true, []);
-  playerAmt: number;
-  checkAmt: number = 0;
-  maxNo: boolean;
-  limit: number = 10;
 
   constructor(private _playerService: PlayerService) { }
 
@@ -45,28 +41,14 @@ export class PlayerTableComponent implements OnInit {
       this.smallResColumnsToDisplay.splice(0, 1);
     }
   }
-  
-  //disables unselected checkboxes when max amount of players have been selected
-  onChange(isChecked: boolean) {
-    isChecked ? this.checkAmt++ : this.checkAmt--;
-    // let total = this.playerAmt + this.checkAmt;
-    this.maxNo = this.checkAmt === this.limit ? true : false;
-    
-  }
 
-  //gets the length of the currently selected team from editt team component
-  currentLength(length: number){
-    this.playerAmt = length;
-    console.log(this.playerAmt);
-  }
-
-  setupTable(playerList: Player[]) {  
+  setupTable(playerList: Player[]) {
     this.playerDataSource = new MatTableDataSource<Player>(playerList);
     this.playerDataSource.paginator = this.paginator;
     this.playerDataSource.filterPredicate = (data: Player, filter: string) => {
       return data.playerName.trim().toLowerCase().indexOf(filter) != -1;
     }
-    this.playerDataSource.sort = this.sort;    
+    this.playerDataSource.sort = this.sort;
     this.tableLoaded = true;
   }
 
