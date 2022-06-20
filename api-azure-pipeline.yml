@@ -6,7 +6,6 @@
 trigger:
   branches:
     include:
-    - main
     - staging
 
 pr: none
@@ -17,7 +16,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--output $(Build.ArtifactStagingDirectory)'
+    arguments: '--output $(Build.ArtifactStagingDirectory) /p:Configuration=Release /p:EnvironmentName=Staging'
     workingDirectory: '$(System.DefaultWorkingDirectory)/BasketballApi'
 
 - task: PublishPipelineArtifact@1
