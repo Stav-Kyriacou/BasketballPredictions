@@ -1,9 +1,8 @@
 <body>
-    <app-banner h1="COMPARE" h2="TWO" h3="TEAMS"></app-banner>
+  <app-banner h1="COMPARE" h2="TWO" h3="TEAMS"></app-banner>
 
-    <div class="teamsContainer">
-
-        <div class="teamSelect">
+  <div class="teamsContainer">
+    <!-- <div class="teamSelect">
             <mat-form-field appearance="fill">
                 <mat-label>Team 1</mat-label>
                 <mat-select [(value)]="teamAId" (selectionChange)="onChangeTeam($event)">
@@ -18,32 +17,60 @@
             <br>
             <br>
             <h2 *ngIf="showWinRate">{{winRate | number : '1.2-2'}}%</h2>
-        </div>
-        
-        <div class="teamSelect">
-            <mat-form-field appearance="fill">
-                <mat-label>Team 2</mat-label>
-                <mat-select [(value)]="teamBId" (selectionChange)="onChangeTeam($event)">
-                    <mat-option *ngFor="let team of teams" [value]="team.teamID">
-                        {{team.teamName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-                <div>
-                    <button mat-raised-button color="primary" (click)="onViewTeam(2)">View Players of team 2</button>
-                </div>
-            <br>
-            <br>
-            <h2 *ngIf="showWinRate">{{100 - winRate | number : '1.2-2'}}%</h2>
-        </div>
+        </div> -->
 
+    <div class="teamSelect">
+      <mat-label>team A</mat-label>
+      <button mat-raised-button color="primary" (click)="ViewAllTeams()"[disabled]="!loaded">
+        Change Team 1
+      </button>
+      <mat-select [(value)]="teamAId" (selectionChange)="onChangeTeam($event)">
+        <mat-option *ngFor="let team of teams" [value]="team.teamID">
+            {{team.teamName}}
+        </mat-option>
+    </mat-select>
+      <br />
+      <br />
     </div>
 
-    <div class="buttonContainer">
-        <button mat-raised-button color="warn" (click)="onCompare()">Compare</button>
+    <div class="teamSelect">
+      <mat-label>team B</mat-label>
+      <button mat-raised-button color="primary" (click)="ViewAllTeams()">
+        Change Team 2
+      </button>
+      <mat-select [(value)]="teamBId" (selectionChange)="onChangeTeam($event)">
+        <mat-option *ngFor="let team of teams" [value]="team.teamID">
+            {{team.teamName}}
+        </mat-option>
+    </mat-select>
+      <br />
+      <br />
     </div>
-    <br>
-    <div class="progSpinner">
-        <mat-progress-spinner [diameter]=20 *ngIf="!generated" mode="indeterminate"></mat-progress-spinner>
-    </div>
+
+    <body>
+      <h2 *ngIf="showWinRate">{{ 100 - winRate | number: "1.2-2" }}%</h2>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onViewTeam(2)"
+      ></button>
+      <br />
+      <br />
+
+      <div class="buttonContainer">
+        <button mat-raised-button color="warn" (click)="onCompare()">
+          Compare
+        </button>
+      </div>
+      <br />
+      <div class="progSpinner">
+        <mat-progress-spinner
+          [diameter]="20"
+          *ngIf="!generated"
+          mode="indeterminate"
+        ></mat-progress-spinner>
+      </div>
+    </body>
+  </div>
 </body>
