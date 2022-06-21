@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from '@auth0/auth0-angular';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
 
@@ -20,8 +21,7 @@ export class CompareTeamsComponent implements OnInit {
 
   constructor(
     private _teamService: TeamService,
-    public dialog: MatDialog
-
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -97,7 +97,8 @@ export class CompareTeamsComponent implements OnInit {
 export class ViewTeam {
   constructor(
     public dialogRef: MatDialogRef<ViewTeam>,
-    @Inject(MAT_DIALOG_DATA) public data: Team[]
+    @Inject(MAT_DIALOG_DATA) public data: Team[],
+    public auth: AuthService
 
   ) { }
 

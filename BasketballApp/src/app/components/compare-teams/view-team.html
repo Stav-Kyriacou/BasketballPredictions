@@ -1,5 +1,26 @@
-<div *ngFor="let team of data">
-  {{team.teamName}}
-  <!-- mat dialog close closes dialog box and sends value to result variable -->
-  <button [mat-dialog-close]="team">Select</button>
-</div>
+<mat-tab-group>
+  <mat-tab label="My Teams">
+    <div *ngFor="let team of data">
+      <!-- access auth info and if statement to find owners teams -->
+      <div *ngIf="auth.user$ | async as user">
+        <div *ngIf="user.sub == team.userID">
+          {{team.teamName}}
+          <!-- mat dialog close closes dialog box and sends value to result variable -->
+          <button [mat-dialog-close]="team">Select</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="All Teams">
+    <div *ngFor="let team of data">
+      <!-- access auth info and if statement to find all but owners teams -->
+      <div *ngIf="auth.user$ | async as user">
+        <div *ngIf="user.sub != team.userID">
+          {{team.teamName}}
+          <!-- mat dialog close closes dialog box and sends value to result variable -->
+          <button [mat-dialog-close]="team">Select</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
