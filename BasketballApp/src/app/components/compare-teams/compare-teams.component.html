@@ -21,28 +21,34 @@
 
     <div class="teamSelect">
       <mat-label>team A</mat-label>
-      <button mat-raised-button color="primary" (click)="ViewAllTeams()"[disabled]="!loaded">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="ViewAllTeams(true)"
+        [disabled]="!loaded"
+      >
         Change Team 1
       </button>
-      <mat-select [(value)]="teamAId" (selectionChange)="onChangeTeam($event)">
-        <mat-option *ngFor="let team of teams" [value]="team.teamID">
-            {{team.teamName}}
-        </mat-option>
-    </mat-select>
+      <div *ngIf="teamA">
+        {{ teamA.teamName }}
+      </div>
       <br />
       <br />
     </div>
 
     <div class="teamSelect">
       <mat-label>team B</mat-label>
-      <button mat-raised-button color="primary" (click)="ViewAllTeams()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="ViewAllTeams(false)"
+        [disabled]="!loaded"
+      >
         Change Team 2
       </button>
-      <mat-select [(value)]="teamBId" (selectionChange)="onChangeTeam($event)">
-        <mat-option *ngFor="let team of teams" [value]="team.teamID">
-            {{team.teamName}}
-        </mat-option>
-    </mat-select>
+      <div *ngIf="teamB">
+        {{ teamB.teamName }}
+      </div>
       <br />
       <br />
     </div>

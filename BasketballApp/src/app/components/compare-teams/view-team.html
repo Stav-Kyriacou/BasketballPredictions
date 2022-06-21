@@ -1,9 +1,5 @@
-<!-- <h1><b><i>{{data.teamName}}</i></b></h1>
-
-<app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table> -->
-<div *ngFor="let team of data.teamList">
-1
-</div>
-<div>
-{{data.teamList[0]}}
+<div *ngFor="let team of data">
+  {{team.teamName}}
+  <!-- mat dialog close closes dialog box and sends value to result variable -->
+  <button [mat-dialog-close]="team">Select</button>
 </div>
