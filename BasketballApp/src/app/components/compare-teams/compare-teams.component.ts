@@ -2,10 +2,7 @@ import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
-export interface DialogData{
-  teamList: Team[]
-  teamId: number;
-}
+
 
 @Component({
   selector: 'app-compare-teams',
