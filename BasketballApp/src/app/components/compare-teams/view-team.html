@@ -1,3 +1,38 @@
-<h1><b><i>{{data.teamName}}</i></b></h1>
-
-<app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table>
+<mat-tab-group>
+  <mat-tab label="My Teams">
+    <div *ngIf="auth.user$ | async as user">
+      <br>
+      <table class="team-table">
+        <thead>
+          <th>Team Name</th>
+          <th>Players</th>
+        </thead>
+        <tbody>
+          <!-- mat dialog close closes dialog box and sends value to result variable -->
+          <tr *ngFor="let team of localTeams" class="border-bottom" [mat-dialog-close]="team">
+            <td>{{team.teamName}}</td>
+            <td>{{team.players.length}}/15</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="All Teams">
+    <div *ngIf="auth.user$ | async as user">
+      <br>
+      <table class="team-table">
+        <thead>
+          <th>Team Name</th>
+          <th>Players</th>
+        </thead>
+        <tbody>
+          <!-- mat dialog close closes dialog box and sends value to result variable -->
+          <tr *ngFor="let team of teams" class="border-bottom" [mat-dialog-close]="team">
+            <td>{{team.teamName}}</td>
+            <td>{{team.players.length}}/15</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>
