@@ -127,6 +127,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(result);
       if (result != '' && result != undefined) {
         this.currentTeam.teamName = result;
         this.teamName = this.currentTeam.teamName;

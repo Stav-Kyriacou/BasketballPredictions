@@ -1,9 +1,26 @@
-<!-- <h1><b><i>{{data.teamName}}</i></b></h1>
-
-<app-player-table [displayCheckbox]="false" [itemsPerPage]=[10,20,50,100]></app-player-table> -->
-<div *ngFor="let team of data.teamList">
-1
-</div>
-<div>
-{{data.teamList[0]}}
-</div>
+<mat-tab-group>
+  <mat-tab label="My Teams">
+    <div *ngFor="let team of data">
+      <!-- access auth info and if statement to find owners teams -->
+      <div *ngIf="auth.user$ | async as user">
+        <div *ngIf="user.sub == team.userID">
+          {{team.teamName}}
+          <!-- mat dialog close closes dialog box and sends value to result variable -->
+          <button [mat-dialog-close]="team">Select</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="All Teams">
+    <div *ngFor="let team of data">
+      <!-- access auth info and if statement to find all but owners teams -->
+      <div *ngIf="auth.user$ | async as user">
+        <div *ngIf="user.sub != team.userID">
+          {{team.teamName}}
+          <!-- mat dialog close closes dialog box and sends value to result variable -->
+          <button [mat-dialog-close]="team">Select</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
