@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { AuthService } from '@auth0/auth0-angular';
 import { Team } from 'src/app/models/team/team';
 import { TeamService } from 'src/app/services/team/team.service';
+import { ViewTeamPlayersComponent } from '../view-team-players/view-team-players.component';
 
 
 @Component({
@@ -28,7 +29,11 @@ export class CompareTeamsComponent implements OnInit {
     this._teamService.getAllTeams().subscribe(unpackedTeams => this.teams = unpackedTeams,
       null,
       () => {
-
+        this.teams.forEach(team => {
+          if (team.players == null) {
+            team.players = [];
+          }
+        });
         console.log(this.teams);
         this.loaded = true;
       });
@@ -43,17 +48,18 @@ export class CompareTeamsComponent implements OnInit {
   }
 
   // open dialog box to change selected team
-  ViewAllTeams(teamA:boolean): void {
+  ViewAllTeams(teamA: boolean): void {
     const dialogRef = this.dialog.open(ViewTeam, {
-      width: '60vw',
+      width: '90vw',
       height: '600px',
-      data:this.teams,
+      data: this.teams,
     })
     dialogRef.afterClosed().subscribe(result => {
+      if (result == null) return;
       // check what team is changing
-      if(teamA){
+      if (teamA) {
         this.teamA = result;
-      }else{
+      } else {
         this.teamB = result;
       }
     });
@@ -83,6 +89,11 @@ export class CompareTeamsComponent implements OnInit {
         }
       }
     }
+    const dialogRef = this.dialog.open(ViewTeamPlayersComponent, {
+      width: '80vw',
+      height: '80vh',
+      data: teamToView,
+    });
   }
 }
 
@@ -95,6 +106,9 @@ export class CompareTeamsComponent implements OnInit {
 })
 
 export class ViewTeam {
+  localTeams: Team[];
+  teams: Team[];
+  userId: string;
   constructor(
     public dialogRef: MatDialogRef<ViewTeam>,
     @Inject(MAT_DIALOG_DATA) public data: Team[],
@@ -103,6 +117,10 @@ export class ViewTeam {
   ) { }
 
   ngAfterViewInit() {
+    this.auth.getUser().subscribe(userData => this.userId = userData.sub, null, () => {
+      this.localTeams = this.data.filter(team => team.userID === this.userId);
+      this.teams = this.data.filter(team => team.userID !== this.userId);
+    })
   }
 
   onNoClick(): void {
