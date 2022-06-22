@@ -54,7 +54,7 @@ export class ViewAllTeamsComponent implements OnInit {
         break;
       }
     }
-    const dialogRef = this.dialog.open(ViewTeamPlayersComponent, {
+    this.dialog.open(ViewTeamPlayersComponent, {
       width: '80vw',
       height: '80vh',
       data: teamToView,

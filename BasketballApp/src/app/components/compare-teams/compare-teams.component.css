@@ -3,16 +3,17 @@
     padding: 30px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .teamSelect {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
     font-family: 'Courier New', Courier, monospace;
     padding: 30px;
     font-size: 15px;
-
 }
 
 h2 {
@@ -20,8 +21,16 @@ h2 {
     font-size: 50px;
     font-weight: 550;
     text-align: center;
+    margin: 0px;
+    padding-left: 50px;
 }
-
+h3 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 30px;
+    font-weight: bold;
+    padding-right: 10px;
+}
 .buttonContainer {
     display: flex;
     justify-content: center;
@@ -35,6 +44,10 @@ h2 {
 .progSpinner {
     display: flex;
     justify-content: center;
+}
+.mat-icon:hover {
+    color: grey;
+    cursor: pointer;
 }
 
 @media screen and (max-width:900px) {

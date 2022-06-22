@@ -89,17 +89,28 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
   }
 
   addplayers(): void {
-    const dialogRef = this.dialog.open(SelectPlayer, {
-      width: '60vw',
-      height: '600px',
-      data: { playerList: this.playerList, team: this.currentTeam },
-    })
-    dialogRef.afterClosed().subscribe(result => {
-      this.playerTable.setupTable(this.currentTeam.players);
-      if (result.event > 0) {
-        this.saved = false;
-      }
-    });
+    //checks to see if the team player limit has been reached before allowing user to add players
+    if(this.currentTeam.players === null || this.currentTeam.players.length < 15 ){
+      const dialogRef = this.dialog.open(SelectPlayer, {
+        width: '60vw',
+        height: '600px',
+        data: { playerList: this.playerList, team: this.currentTeam },
+      })
+      dialogRef.afterClosed().subscribe(result => {
+        this.playerTable.setupTable(this.currentTeam.players);
+        if (result.event > 0) {
+          this.saved = false;
+        }
+      });
+    }
+    else{
+      const dialogData = new ConfirmDialogModel("Player limit has been reached", "Teams can only have 15 players. You must remove players from your current selection before you can add new players.");
+
+      this.dialog.open(Notification, {
+        maxWidth: "400px",
+        data: dialogData
+      });
+    } 
   }
 
   confirmDialog(): void {
@@ -127,6 +138,7 @@ export class EditTeamComponent implements OnInit, ComponentCanDeactivate {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(result);
       if (result != '' && result != undefined) {
         this.currentTeam.teamName = result;
         this.teamName = this.currentTeam.teamName;
@@ -242,4 +254,20 @@ export class EditTeamName {
   onNoClick(): void {
     this.dialogRef.close();
   }
+}
+
+@Component({
+  selector: 'notification',
+  templateUrl: 'notification.html',
+  styleUrls: ['../confirm/confirm.component.css']
+})
+export class Notification {
+  title: string;
+  message: string;
+  constructor(
+    public dialogRef: MatDialogRef<Notification>,
+    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel,
+    
+  ) { this.title = data.title;
+    this.message = data.message; }
 }
