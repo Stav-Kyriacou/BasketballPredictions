@@ -2,6 +2,8 @@
  
  This repo is the work of Team East creating the Basketball Prediction web application for Dod&Gy
  
+ See Demo.MP4 to get a demonstration of the applicaiton if the live links are down!
+ 
  ## Website
  https://teameastangular.azurewebsites.net/
  
